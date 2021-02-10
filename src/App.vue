@@ -10,7 +10,6 @@
     <div>
       <p>{{ search_input }}</p>
       <p>{{ login_register }}</p>
-      <p>changes</p>
     </div>
   </div>
 </template>
