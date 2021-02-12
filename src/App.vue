@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!--
     <Header v-bind:login="tmp" v-bind:username="username" v-bind:portrait_url="url"
             v-on:searchInput="searchInput" v-on:loginRegister="loginRegister">
     "loginRegister"></Header>
@@ -11,12 +12,17 @@
       <p>{{ search_input }}</p>
       <p>{{ login_register }}</p>
     </div>
-  </div>
+    !-->
+    <div>
+      <Swiper class="swiper-outer-container" :width="300" :height="300" :imgList="imgList" :initIndex="0" :loop="true" :autoTime="8000"></Swiper>
+    </div>
+
+    </div>
 </template>
 
 <script>
 
-import Header from './components/Header.vue'
+import Swiper from './components/Swiper.vue'
 
 export default {
   name: 'App',
@@ -26,11 +32,22 @@ export default {
       login_register: false,
       search_input: "Search What?",
       tmp: false,
-      url: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3251219681,3891116775&fm=26&gp=0.jpg"
+      url: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3251219681,3891116775&fm=26&gp=0.jpg",
+      imgList:[
+        {
+          'img':'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201708%2F09%2F20170809111256_TjKvc.png&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1615610456&t=404ea4fc201e0db13c69ceaa05bd0512'
+        },
+        {
+          'img':'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201809%2F05%2F20180905224158_bhexz.png&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1615610456&t=9c1fdc23cdbb130dd82376a8a931a9c4'
+        },
+        {
+          'img':'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fn1.itc.cn%2Fimg8%2Fwb%2Frecom%2F2016%2F08%2F11%2F147089479765239481.JPEG&refer=http%3A%2F%2Fn1.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1615610456&t=38fd7379f1f5adba999fd8c2b8950c09'
+        }
+      ]
     }
   },
   components: {
-    Header
+    Swiper
   },
   methods: {
     searchInput: function (input) {
@@ -50,5 +67,8 @@ export default {
 body{
   padding: 0;
   margin: 0;
+}
+.swiper-outer-container {
+  border: red solid 20px;
 }
 </style>
