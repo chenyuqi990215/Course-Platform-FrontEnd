@@ -3,20 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="5b4a6a59-f477-4b5c-a6a0-02a13f324b05" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/126afd1265f0ff1fa72317b7360ba9ab.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/126afd1265f0ff1fa72317b7360ba9ab.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/d5ab5f2713999d0ef417937ab255b333.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/d5ab5f2713999d0ef417937ab255b333.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/3a87a63861aa31f3e4d7b80293c4d609.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/3a87a63861aa31f3e4d7b80293c4d609.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/50077f5a929c8b927332c9f2aea97990.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/50077f5a929c8b927332c9f2aea97990.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/56c4c7b3c845c27f96866a64d26c6d36.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/56c4c7b3c845c27f96866a64d26c6d36.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/5dadac4336115a4f8bce010ca09b57d0.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/5dadac4336115a4f8bce010ca09b57d0.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/6273adeb1ceaa4644d24eeb6021ce0de.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/6273adeb1ceaa4644d24eeb6021ce0de.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/8210c5c2df4dcd4d378789c56d6af574.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/8210c5c2df4dcd4d378789c56d6af574.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/8a0b628aeab5774d3a3a43814042985b.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/8a0b628aeab5774d3a3a43814042985b.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/9e9628d1e921e3f0c8b4f99f42ed06b9.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/9e9628d1e921e3f0c8b4f99f42ed06b9.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/d601937b717fb829db25423e0908be0d.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/d601937b717fb829db25423e0908be0d.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/f0a7b64b7a19359f47096b53d0c5379c.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/f0a7b64b7a19359f47096b53d0c5379c.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SwiperItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SwiperItem.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +79,7 @@
       <option name="presentableId" value="Default" />
       <updated>1612881902823</updated>
       <workItem from="1612881903878" duration="41976000" />
-      <workItem from="1613113387448" duration="131000" />
+      <workItem from="1613113387448" duration="922000" />
     </task>
     <servers />
   </component>
