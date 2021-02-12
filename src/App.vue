@@ -60,9 +60,9 @@ body{
 }
 .swiper-outer-container {
   margin-left: 100px;
-  border-left: solid 60px;
-  border-right: solid 60px;
-  border-image: linear-gradient(to left, black 0%, rgb(200,200,200) 15%, rgb(200,200,200) 85%, black 100%) 50 50 50 50;
+  border-left: solid 70px;
+  border-right: solid 70px;
+  border-image: linear-gradient(to left, black 0%, rgb(200,200,200) 10%, rgb(200,200,200) 90%, black 100%) 60 60 60 60;
 }
 .bander-container {
   background-color: black;
