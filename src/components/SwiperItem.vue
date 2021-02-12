@@ -71,9 +71,9 @@ export default {
 
 .swiper-item-title{
   position:absolute;
-  left:-250px;
-  top:148px;
-  max-width: 200px;
+  left:-350px;
+  top:250px;
+  max-width: 300px;
   font-weight:700;
   font-size:30px;
   color:rgb(200,200,200);
