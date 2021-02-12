@@ -1,7 +1,7 @@
 <template>
   <div class="swiper-item" :style="{'-webkit-transform':imgLateX, 'width':width+'px', 'height':height+'px'}">
     <transition name="fade">
-      <img :src="img" :style="{'width':width+'px', 'height':height+'px'}" v-if="show"/>
+      <img :src="obj.url" :style="{'width':width+'px', 'height':height+'px'}" v-if="show"/>
     </transition>
 
   </div>
@@ -11,8 +11,8 @@
 export default {
   name: 'SwiperItem',
   props: {
-    img: {
-      type: String,
+    obj: {
+      type: Object,
     },
     width: {
       type: Number,
