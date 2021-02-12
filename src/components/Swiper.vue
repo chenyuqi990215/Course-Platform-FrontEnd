@@ -3,11 +3,11 @@
     <div class="swiper-box" :style="{width:allCount,'-webkit-transition':transitionConfig,'-webkit-transform':slateX}"
          ref='swiper'>
       <SwiperItem :img="imgList[imgList.length-1].img" :trans_width="-width" :width="width" :height="height"
-                   v-if="loop"/>
+                   v-if="loop" :show="imgIndex === imgList.length-1"/>
       <SwiperItem v-for="(item,index) in imgList" :key="index" :img="item.img" :trans_width="width*index"
-                   :width="width" :height="height"/>
+                   :width="width" :height="height" :show="imgIndex === index"/>
       <SwiperItem :img="imgList[0].img" :trans_width="width*imgList.length" :width="width" :height="height"
-                   v-if="loop"/>
+                   v-if="loop" :show="imgIndex === imgList.length"/>
     </div>
     <div class="swiper-dots" v-if="dots">
       <button v-for="(item,index) in imgList.length" :key="index" :class="{active:index==dotsIndex}"

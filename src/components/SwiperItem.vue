@@ -1,6 +1,9 @@
 <template>
   <div class="swiper-item" :style="{'-webkit-transform':imgLateX, 'width':width+'px', 'height':height+'px'}">
-    <img :src="img" :style="{'width':width+'px', 'height':height+'px'}"/>
+    <transition name="fade">
+      <img :src="img" :style="{'width':width+'px', 'height':height+'px'}" v-if="show"/>
+    </transition>
+
   </div>
 </template>
 
@@ -23,6 +26,10 @@ export default {
       type: Number,
       default: 100
     },
+    show: {
+      type: Boolean,
+      default: true
+    },
   },
   data() {
     return {}
@@ -44,5 +51,15 @@ export default {
 
 .swiper-item img {
   filter: alpha(opacity=240)
+}
+
+.fade-enter-active, .fade-leave-active
+{
+  -webkit-transition:opacity 1s;
+  transition:opacity 1s
+}
+.fade-enter,.fade-leave-to
+{
+  opacity:0
 }
 </style>
