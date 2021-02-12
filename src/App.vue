@@ -70,6 +70,8 @@ body{
   margin: 0;
 }
 .swiper-outer-container {
-  border: red solid 20px;
+  border-left: solid 60px;
+  border-right: solid 60px;
+  border-image: linear-gradient(to left, black 0%, rgb(200,200,200) 15%, rgb(200,200,200) 85%, black 100%) 50 50 50 50;
 }
 </style>

@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5b4a6a59-f477-4b5c-a6a0-02a13f324b05" name="Default Changelist" comment="" />
+    <list default="true" id="5b4a6a59-f477-4b5c-a6a0-02a13f324b05" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/126afd1265f0ff1fa72317b7360ba9ab.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/126afd1265f0ff1fa72317b7360ba9ab.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/d5ab5f2713999d0ef417937ab255b333.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/d5ab5f2713999d0ef417937ab255b333.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/3a87a63861aa31f3e4d7b80293c4d609.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/3a87a63861aa31f3e4d7b80293c4d609.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/50077f5a929c8b927332c9f2aea97990.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/50077f5a929c8b927332c9f2aea97990.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/56c4c7b3c845c27f96866a64d26c6d36.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/56c4c7b3c845c27f96866a64d26c6d36.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/5dadac4336115a4f8bce010ca09b57d0.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/5dadac4336115a4f8bce010ca09b57d0.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/6273adeb1ceaa4644d24eeb6021ce0de.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/6273adeb1ceaa4644d24eeb6021ce0de.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/8210c5c2df4dcd4d378789c56d6af574.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/8210c5c2df4dcd4d378789c56d6af574.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/8a0b628aeab5774d3a3a43814042985b.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/8a0b628aeab5774d3a3a43814042985b.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/9e9628d1e921e3f0c8b4f99f42ed06b9.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/9e9628d1e921e3f0c8b4f99f42ed06b9.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/d601937b717fb829db25423e0908be0d.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/d601937b717fb829db25423e0908be0d.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/f0a7b64b7a19359f47096b53d0c5379c.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/f0a7b64b7a19359f47096b53d0c5379c.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SwiperItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SwiperItem.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1oFUbJg8YcenpezeHE5wpgtQCVA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -65,7 +85,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1612881902823</updated>
-      <workItem from="1612881903878" duration="39004000" />
+      <workItem from="1612881903878" duration="41976000" />
+      <workItem from="1613113387448" duration="131000" />
     </task>
     <servers />
   </component>
@@ -77,37 +98,41 @@
       <screen x="0" y="23" width="1440" height="834" />
     </state>
     <state x="462" y="189" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.834@0.23.1440.834" timestamp="1612937560847" />
-    <state width="1414" height="213" key="GridCell.Tab.0.bottom" timestamp="1613105856869">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1414" height="213" key="GridCell.Tab.0.bottom" timestamp="1613112423733">
+      <screen x="0" y="23" width="1440" height="831" />
     </state>
+    <state width="1414" height="213" key="GridCell.Tab.0.bottom/0.23.1440.831@0.23.1440.831" timestamp="1613112423733" />
     <state width="1414" height="213" key="GridCell.Tab.0.bottom/0.23.1440.832@0.23.1440.832" timestamp="1613099611120" />
     <state width="1414" height="213" key="GridCell.Tab.0.bottom/0.23.1440.834@0.23.1440.834" timestamp="1613105856869" />
     <state width="1414" height="213" key="GridCell.Tab.0.bottom/0.23.1440.835@0.23.1440.835" timestamp="1613028798053" />
-    <state width="1414" height="213" key="GridCell.Tab.0.bottom/0.23.1440.836@0.23.1440.836" timestamp="1613025318609" />
+    <state width="1414" height="213" key="GridCell.Tab.0.bottom/0.23.1440.836@0.23.1440.836" timestamp="1613110321599" />
     <state width="1414" height="213" key="GridCell.Tab.0.bottom/0.23.1440.837@0.23.1440.837" timestamp="1613016991507" />
-    <state width="1414" height="213" key="GridCell.Tab.0.center" timestamp="1613105856868">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1414" height="213" key="GridCell.Tab.0.center" timestamp="1613112423733">
+      <screen x="0" y="23" width="1440" height="831" />
     </state>
+    <state width="1414" height="213" key="GridCell.Tab.0.center/0.23.1440.831@0.23.1440.831" timestamp="1613112423733" />
     <state width="1414" height="213" key="GridCell.Tab.0.center/0.23.1440.832@0.23.1440.832" timestamp="1613099611119" />
     <state width="1414" height="213" key="GridCell.Tab.0.center/0.23.1440.834@0.23.1440.834" timestamp="1613105856868" />
     <state width="1414" height="213" key="GridCell.Tab.0.center/0.23.1440.835@0.23.1440.835" timestamp="1613028798053" />
-    <state width="1414" height="213" key="GridCell.Tab.0.center/0.23.1440.836@0.23.1440.836" timestamp="1613025318608" />
+    <state width="1414" height="213" key="GridCell.Tab.0.center/0.23.1440.836@0.23.1440.836" timestamp="1613110321598" />
     <state width="1414" height="213" key="GridCell.Tab.0.center/0.23.1440.837@0.23.1440.837" timestamp="1613016991505" />
-    <state width="1414" height="213" key="GridCell.Tab.0.left" timestamp="1613105856868">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1414" height="213" key="GridCell.Tab.0.left" timestamp="1613112423733">
+      <screen x="0" y="23" width="1440" height="831" />
     </state>
+    <state width="1414" height="213" key="GridCell.Tab.0.left/0.23.1440.831@0.23.1440.831" timestamp="1613112423733" />
     <state width="1414" height="213" key="GridCell.Tab.0.left/0.23.1440.832@0.23.1440.832" timestamp="1613099611118" />
     <state width="1414" height="213" key="GridCell.Tab.0.left/0.23.1440.834@0.23.1440.834" timestamp="1613105856868" />
     <state width="1414" height="213" key="GridCell.Tab.0.left/0.23.1440.835@0.23.1440.835" timestamp="1613028798052" />
-    <state width="1414" height="213" key="GridCell.Tab.0.left/0.23.1440.836@0.23.1440.836" timestamp="1613025318607" />
+    <state width="1414" height="213" key="GridCell.Tab.0.left/0.23.1440.836@0.23.1440.836" timestamp="1613110321598" />
     <state width="1414" height="213" key="GridCell.Tab.0.left/0.23.1440.837@0.23.1440.837" timestamp="1613016991503" />
-    <state width="1414" height="213" key="GridCell.Tab.0.right" timestamp="1613105856869">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1414" height="213" key="GridCell.Tab.0.right" timestamp="1613112423733">
+      <screen x="0" y="23" width="1440" height="831" />
     </state>
+    <state width="1414" height="213" key="GridCell.Tab.0.right/0.23.1440.831@0.23.1440.831" timestamp="1613112423733" />
     <state width="1414" height="213" key="GridCell.Tab.0.right/0.23.1440.832@0.23.1440.832" timestamp="1613099611119" />
     <state width="1414" height="213" key="GridCell.Tab.0.right/0.23.1440.834@0.23.1440.834" timestamp="1613105856869" />
     <state width="1414" height="213" key="GridCell.Tab.0.right/0.23.1440.835@0.23.1440.835" timestamp="1613028798053" />
-    <state width="1414" height="213" key="GridCell.Tab.0.right/0.23.1440.836@0.23.1440.836" timestamp="1613025318608" />
+    <state width="1414" height="213" key="GridCell.Tab.0.right/0.23.1440.836@0.23.1440.836" timestamp="1613110321599" />
     <state width="1414" height="213" key="GridCell.Tab.0.right/0.23.1440.837@0.23.1440.837" timestamp="1613016991506" />
   </component>
 </project>

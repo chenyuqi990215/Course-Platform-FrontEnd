@@ -50,7 +50,7 @@ export default {
 }
 
 .swiper-item img {
-  filter: alpha(opacity=240)
+  filter: grayscale(50%);
 }
 
 .fade-enter-active, .fade-leave-active
