@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-    <!--
     <Header v-bind:login="tmp" v-bind:username="username" v-bind:portrait_url="url"
-            v-on:searchInput="searchInput" v-on:loginRegister="loginRegister">
-    "loginRegister"></Header>
+            v-on:searchInput="searchInput" v-on:loginRegister="loginRegister"></Header>
     <div>
       <button v-on:click="tmp=true">login</button>
       {{ tmp }}
@@ -12,7 +10,6 @@
       <p>{{ search_input }}</p>
       <p>{{ login_register }}</p>
     </div>
-    !-->
     <div>
       <Swiper class="swiper-outer-container" :width="300" :height="300" :imgList="imgList" :initIndex="0" :loop="true" :autoTime="8000"></Swiper>
     </div>
@@ -23,6 +20,7 @@
 <script>
 
 import Course from './entity/Course'
+import Header from "./components/Header";
 import Swiper from './components/Swiper.vue'
 
 export default {
@@ -48,7 +46,8 @@ export default {
     }
   },
   components: {
-    Swiper
+    Swiper,
+    Header
   },
   methods: {
     searchInput: function (input) {
