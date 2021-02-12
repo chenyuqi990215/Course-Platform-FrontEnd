@@ -204,4 +204,8 @@ export default {
   color: #ff0000;
 }
 
+.swiper-box {
+  position: relative;
+}
+
 </style>

@@ -3,6 +3,7 @@
     <transition name="fade">
       <div class="swiper-inter-item">
         <span class="swiper-item-title">{{obj.name}}</span>
+        <span class="swiper-item-university" v-if="obj.univerityList.length > 0">{{obj.univerityList.split(';')[0]}}</span>
         <a :href="obj.url">
           <img :src="obj.cover" :style="{'width':width+'px', 'height':height+'px'}" v-if="show"/>
         </a>
@@ -55,12 +56,13 @@ export default {
 
 .swiper-item img {
   filter: grayscale(50%);
+  z-index: 1;
 }
 
 .fade-enter-active, .fade-leave-active
 {
-  -webkit-transition:opacity 1s;
-  transition:opacity 1s
+  -webkit-transition:opacity 2s;
+  transition:opacity 2s
 }
 .fade-enter,.fade-leave-to
 {
@@ -73,13 +75,27 @@ export default {
 
 .swiper-item-title{
   position:absolute;
-  left:-350px;
+  right:40px;
   top:250px;
   max-width: 300px;
   font-weight:700;
-  font-size:30px;
-  color:rgb(200,200,200);
+  font-size:25px;
+  color:rgb(100,100,100);
   line-height:40px;
-  text-shadow:0 2px 2px rgba(0,0,0,.4)
+  text-shadow:0 2px 2px rgba(0,0,0,.4);
+  z-index: 2;
+}
+.swiper-item-university{
+  position:absolute;
+  background-color: rgb(143, 161, 205);
+  border: 5px solid rgb(143, 161, 255);
+  color: white;
+  border-radius: 5px;
+  right:40px;
+  top:210px;
+  max-width: 300px;
+  font-weight:700;
+  font-size:15px;
+  z-index: 2;
 }
 </style>
