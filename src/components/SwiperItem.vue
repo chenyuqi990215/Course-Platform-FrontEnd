@@ -3,7 +3,9 @@
     <transition name="fade">
       <div class="swiper-inter-item">
         <span class="swiper-item-title">{{obj.name}}</span>
-        <img :src="obj.url" :style="{'width':width+'px', 'height':height+'px'}" v-if="show"/>
+        <a :href="obj.url">
+          <img :src="obj.cover" :style="{'width':width+'px', 'height':height+'px'}" v-if="show"/>
+        </a>
       </div>
     </transition>
   </div>
