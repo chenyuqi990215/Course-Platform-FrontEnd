@@ -19,7 +19,7 @@
           <a href="https://github.com/zzpzbl"><p>@Zzpzbl</p></a>
         </li>
         <li>
-          <a href="#"><p>@wcy</p></a>
+          <a href="https://github.com/10185101232"><p>@wcy</p></a>
         </li>
       </ul>
     </footer>
