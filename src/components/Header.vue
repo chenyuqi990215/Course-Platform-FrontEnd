@@ -14,7 +14,7 @@
           <p class="text" v-if="login">个人中心</p>
         </div>
         <div class="self-container">
-          <p class="text" v-if="!login" v-on:click="LoginRegister"> 登录/注册</p>
+          <p class="text" v-if="!login" v-on:click="attemptRegister"> 登录/注册</p>
           <p class="text" v-if="login"> {{ username }}</p>
           <img class="portrait" v-if="!login" src="../assets/portrait.svg" alt="Demo Portrait">
           <img class="portrait" v-if="login" v-bind:src="portrait_url" alt="My Portrait">
@@ -42,8 +42,8 @@ export default {
     Search() {
       this.$emit('searchInput', this.search_input)
     },
-    LoginRegister() {
-      this.$emit('loginRegister', true)
+    attemptRegister() {
+      this.$emit('attemptRegister', true)
     }
   }
 }
@@ -102,7 +102,7 @@ p {
 }
 
 .logo {
-  width: 4%;
+  width: 45px;
   padding: 10px 20px 10px 10%;
 }
 

@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <div class="register-container">
     <div class="register-wrapper">
       <div id="register">
-        <p class="title">注册</p>
+        <p class="title">新用户注册</p>
+        <img class="close" src="../assets/close.svg" v-on:click="closeRegister">
         <el-form
             :model="ruleForm2"
             status-icon
@@ -11,12 +12,20 @@
             label-width="0"
             class="demo-ruleForm"
         >
+          <el-form-item prop="username">
+            <el-input v-model="ruleForm2.name" auto-complete="off" placeholder="请输入用户名"></el-input>
+          </el-form-item>
           <el-form-item prop="tel">
             <el-input v-model="ruleForm2.tel" auto-complete="off" placeholder="请输入手机号"></el-input>
           </el-form-item>
           <el-form-item prop="smscode" class="code">
             <el-input v-model="ruleForm2.smscode" placeholder="验证码"></el-input>
             <el-button type="primary" :disabled='isDisabled' @click="sendCode">{{buttonText}}</el-button>
+          </el-form-item>
+          <el-form-item prop="school">
+            <el-select v-model="ruleForm2.school" placeholder="请选择，若无请选择其他" style="width: 100%" filterable :filter-method="dataFilter">
+              <el-option v-for="item in stateArr" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
           </el-form-item>
           <el-form-item prop="pass">
             <el-input type="password" v-model="ruleForm2.pass" auto-complete="off" placeholder="输入密码"></el-input>
@@ -35,9 +44,26 @@
 </template>
 
 <script>
+import Data from "../entity/Data"
 export default {
   name: "Register",
   data() {
+    // <!--验证用户名是否合法-->
+    let checkUsername = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入用户名'))
+      } else {
+        callback()
+      }
+    }
+    // <!--验证学校是否合法-->
+    let checkSchool = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请选择学校'))
+      } else {
+        callback()
+      }
+    }
     // <!--验证手机号是否合法-->
     let checkTel = (rule, value, callback) => {
       if (value === '') {
@@ -78,17 +104,24 @@ export default {
       }
     };
     return {
+      successfulRegister: false,
+      stateArr: new Data().schools,
+      stateArrCopy: new Data().schools,
       ruleForm2: {
         pass: "",
         checkPass: "",
         tel: "",
-        smscode: ""
+        smscode: "",
+        name: "",
+        school: ""
       },
       rules2: {
         pass: [{ validator: validatePass, trigger: 'change' }],
         checkPass: [{ validator: validatePass2, trigger: 'change' }],
         tel: [{ validator: checkTel, trigger: 'change' }],
         smscode: [{ validator: checkSmscode, trigger: 'change' }],
+        name: [{validator: checkUsername, trigger: 'change'}],
+        school: [{validator: checkSchool, trigger: 'change'}]
       },
       buttonText: '发送验证码',
       isDisabled: false, // 是否禁止点击发送验证码按钮
@@ -123,9 +156,8 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          setTimeout(() => {
-            alert('注册成功')
-          }, 400);
+          this.successfulRegister = true;
+          this.$emit('closeRegister', true)
         } else {
           console.log("error submit!!");
           return false;
@@ -146,6 +178,22 @@ export default {
       } else {
         return false;
       }
+    },
+    dataFilter(val) {
+      this.value = val;
+      if (val) { //val存在
+        this.stateArr = this.stateArrCopy.filter((item) => {
+          if (!!~item.label.indexOf(val) || !!~item.label.toUpperCase().indexOf(val.toUpperCase())) {
+            return true
+          }
+        })
+      } else { //val为空时，还原数组
+        this.stateArr = this.stateArrCopy;
+      }
+    },
+    closeRegister() {
+      this.successfulRegister = false;
+      this.$emit('closeRegister', false)
     }
   }
 };
@@ -221,4 +269,10 @@ export default {
   border-color: #409EFF;
   color: #fff;
 }
+.close {
+  position: absolute;
+  right: 30px;
+  top: 40px;
+}
+
 </style>

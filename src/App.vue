@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <Header v-bind:login="tmp" v-bind:username="username" v-bind:portrait_url="url"
-            v-on:searchInput="searchInput" v-on:loginRegister="loginRegister"></Header>
+            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
+            :class="{grey_container: show_register || show_login}"></Header>
     <div class="bander-container">
       <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true" :autoTime="8000"></Swiper>
     </div>
@@ -17,9 +18,9 @@
     </div>
     <div>
       <p>{{ search_input }}</p>
-      <p>{{ login_register }}</p>
     </div>
     <Footer></Footer>
+    <Register class=register-container v-if="show_register" v-on:closeRegister="closeRegister"></Register>
   </div>
 </template>
 
@@ -29,13 +30,16 @@ import Data from "./entity/Data"
 import Header from "./components/Header.vue";
 import Swiper from './components/Swiper.vue';
 import Footer from "@/components/Footer";
+import Register from "@/components/Register";
 
 
 export default {
   name: 'App',
   data() {
     return {
-      login_register: false,
+      successful_register: false,
+      show_register: false,
+      show_login: false,
       search_input: "Search What?",
       tmp: false,
       imgList: new Data().imgList,
@@ -45,6 +49,7 @@ export default {
     }
   },
   components: {
+    Register,
     Footer,
     Swiper,
     Header
@@ -53,8 +58,15 @@ export default {
     searchInput: function (input) {
       this.search_input = input
     },
-    loginRegister: function (input) {
-      this.login_register = input
+    attemptLogin: function (input) {
+      this.show_login = input
+    },
+    attemptRegister: function (input) {
+      this.show_register = input
+    },
+    closeRegister: function (input) {
+      this.show_register = false
+      this.successful_register = input
     }
   }
 }
@@ -94,5 +106,11 @@ body{
   padding-left: 20%;
   padding-right: 20%;
   border-radius:8px;
+}
+.grey_container {
+  filter: grayscale(100%);
+}
+.register-container {
+  z-index:99999;
 }
 </style>

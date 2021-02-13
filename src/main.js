@@ -16,6 +16,7 @@ Vue.filter('moment', function (value, formatString) {
 });
 
 Vue.prototype.$axios = axios
+
 */
 
 Vue.config.productionTip = false
