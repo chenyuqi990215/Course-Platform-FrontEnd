@@ -8,7 +8,7 @@
       <ul>
         <li v-for="(data, index) in hot_course" :key='index'>
           <a href="#">
-            <span class="span-index">{{ index }}、</span>
+            <span class="span-index">{{ index+1 }}、</span>
             <span class="span-content">{{ data.course.name }}</span>
           </a>
         </li>
@@ -18,7 +18,7 @@
       <ul>
         <li v-for="(data, index) in hot_question" :key='index'>
           <a href="#">
-            <span class="span-index">{{ index }}、</span>
+            <span class="span-index">{{ index+1 }}、</span>
             <span class="span-content">{{ data.question.title }}</span>
           </a>
         </li>
