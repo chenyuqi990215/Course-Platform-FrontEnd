@@ -12,7 +12,7 @@
             label-width="0"
             class="demo-ruleForm"
         >
-          <el-form-item prop="username">
+          <el-form-item prop="name">
             <el-input v-model="ruleForm2.name" auto-complete="off" placeholder="请输入用户名"></el-input>
           </el-form-item>
           <el-form-item prop="tel">
@@ -166,9 +166,7 @@ export default {
     },
     // <!--进入登录页-->
     gotoLogin() {
-      this.$router.push({
-        path: "/login"
-      });
+      this.$emit('openLogin',true)
     },
     // 验证手机号
     checkMobile(str) {
@@ -271,6 +269,7 @@ export default {
 }
 .close {
   position: absolute;
+  width: 10px;
   right: 30px;
   top: 40px;
 }

@@ -14,7 +14,7 @@
           <p class="text" v-if="login">个人中心</p>
         </div>
         <div class="self-container">
-          <p class="text" v-if="!login" v-on:click="attemptRegister"> 登录/注册</p>
+          <span class="text" v-if="!login" v-on:click="attemptRegister"> 登录/注册</span>
           <p class="text" v-if="login"> {{ username }}</p>
           <img class="portrait" v-if="!login" src="../assets/portrait.svg" alt="Demo Portrait">
           <img class="portrait" v-if="login" v-bind:src="portrait_url" alt="My Portrait">

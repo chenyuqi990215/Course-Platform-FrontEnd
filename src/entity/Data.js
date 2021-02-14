@@ -1323,6 +1323,7 @@ function Data() {
         {value: '株洲市职工大学',label: '株洲市职工大学'},
         {value: '淄博电视大学',label: '淄博电视大学'},
         {value: '资溪劳动大学',label: '资溪劳动大学'},
+        {value: '其他',label: '其他'},
     ]
     return obj;
 }

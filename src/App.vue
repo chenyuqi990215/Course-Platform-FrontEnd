@@ -1,26 +1,22 @@
 <template>
   <div id="app">
-    <Header v-bind:login="tmp" v-bind:username="username" v-bind:portrait_url="url"
+    <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
             v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
-            :class="{grey_container: show_register || show_login}"></Header>
-    <div class="bander-container">
+            :class="{opacity_container: show_register || show_login}"></Header>
+    <div class="bander-container" :class="{opacity_container: show_register || show_login}">
       <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true" :autoTime="8000"></Swiper>
     </div>
-    <div class="cloud-container">
+    <div class="cloud-container" :class="{opacity_container: show_register || show_login}">
       <p class="cloud">主题指数</p>
       <div>
         <img src="./assets/cloud.png">
       </div>
     </div>
-    <div>
-      <button v-on:click="tmp=true">login</button>
-      {{ tmp }}
-    </div>
-    <div>
-      <p>{{ search_input }}</p>
-    </div>
-    <Footer></Footer>
-    <Register class=register-container v-if="show_register" v-on:closeRegister="closeRegister"></Register>
+    <Footer :class="{opacity_container: show_register || show_login}"></Footer>
+    <Register v-if="show_register"
+              v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
+    <Login v-if="show_login"
+           v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"></Login>
   </div>
 </template>
 
@@ -29,8 +25,9 @@
 import Data from "./entity/Data"
 import Header from "./components/Header.vue";
 import Swiper from './components/Swiper.vue';
-import Footer from "@/components/Footer";
-import Register from "@/components/Register";
+import Footer from "./components/Footer.vue";
+import Register from "./components/Register.vue";
+import Login from "./components/Login.vue";
 
 
 export default {
@@ -41,7 +38,7 @@ export default {
       show_register: false,
       show_login: false,
       search_input: "Search What?",
-      tmp: false,
+      successful_login: false,
       imgList: new Data().imgList,
       username: new Data().username,
       url: new Data().url,
@@ -52,7 +49,8 @@ export default {
     Register,
     Footer,
     Swiper,
-    Header
+    Header,
+    Login
   },
   methods: {
     searchInput: function (input) {
@@ -67,6 +65,18 @@ export default {
     closeRegister: function (input) {
       this.show_register = false
       this.successful_register = input
+    },
+    openLogin: function (input) {
+      this.show_register = !input
+      this.show_login = input
+    },
+    closeLogin: function (input) {
+      this.show_login = false
+      this.successful_login = input
+    },
+    openRegister: function (input) {
+      this.show_login = !input
+      this.show_register = input
     }
   }
 }
@@ -107,10 +117,7 @@ body{
   padding-right: 20%;
   border-radius:8px;
 }
-.grey_container {
-  filter: grayscale(100%);
-}
-.register-container {
-  z-index:99999;
+.opacity_container {
+  filter: opacity(50%);
 }
 </style>
