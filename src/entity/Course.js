@@ -1,5 +1,6 @@
 function Course(id, name, url, cover, origin='BiliBili', score=100, titleList="",universityList="",contentList=""){
     var obj = {};
+    obj.id = id;
     obj.name = name;
     obj.url = url;
     obj.cover = cover;
@@ -11,4 +12,4 @@ function Course(id, name, url, cover, origin='BiliBili', score=100, titleList=""
     return obj;
 }
 
-export default Course;
+export default Course

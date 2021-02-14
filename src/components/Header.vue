@@ -14,7 +14,9 @@
           <p class="text" v-if="login">个人中心</p>
         </div>
         <div class="self-container">
-          <span class="text" v-if="!login" v-on:click="attemptRegister"> 登录/注册</span>
+          <a href="#">
+            <span class="text" v-if="!login" v-on:click="attemptRegister"> 登录/注册</span>
+          </a>
           <p class="text" v-if="login"> {{ username }}</p>
           <img class="portrait" v-if="!login" src="../assets/portrait.svg" alt="Demo Portrait">
           <img class="portrait" v-if="login" v-bind:src="portrait_url" alt="My Portrait">
@@ -50,6 +52,10 @@ export default {
 </script>
 
 <style scoped>
+
+a{
+  text-decoration: none;
+}
 
 div {
   margin: 0;

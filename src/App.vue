@@ -5,6 +5,7 @@
             :class="{opacity_container: show_register || show_login}"></Header>
     <div class="bander-container" :class="{opacity_container: show_register || show_login}">
       <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true" :autoTime="8000"></Swiper>
+      <Hot :width="500" :height="400" :hot_course="hot_course" :hot_question="hot_question"></Hot>
     </div>
     <div class="cloud-container" :class="{opacity_container: show_register || show_login}">
       <p class="cloud">主题指数</p>
@@ -12,6 +13,7 @@
         <img src="./assets/cloud.png">
       </div>
     </div>
+    <Resource></Resource>
     <Footer :class="{opacity_container: show_register || show_login}"></Footer>
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
@@ -28,6 +30,8 @@ import Swiper from './components/Swiper.vue';
 import Footer from "./components/Footer.vue";
 import Register from "./components/Register.vue";
 import Login from "./components/Login.vue";
+import Hot from "./components/Hot.vue";
+import Resource from "./components/Resource";
 
 
 export default {
@@ -39,13 +43,17 @@ export default {
       show_login: false,
       search_input: "Search What?",
       successful_login: false,
-      imgList: new Data().imgList,
+      imgList: new Data().courses,
       username: new Data().username,
       url: new Data().url,
       cloud_url: "./assets/cloud.png",
+      hot_course: new Data().courses,
+      hot_question: new Data().questions
     }
   },
   components: {
+    Resource,
+    Hot,
     Register,
     Footer,
     Swiper,
@@ -91,13 +99,14 @@ body{
   margin: 0;
 }
 .swiper-outer-container {
-  margin-left: 10%;
   border-left: solid 70px;
   border-right: solid 70px;
   border-image: linear-gradient(to left, black 0%, rgb(200,200,200) 10%, rgb(200,200,200) 90%, black 100%) 60 60 60 60;
 }
 .bander-container {
+  display: flex;
   background-color: black;
+  justify-content: center;
 }
 .cloud-container {
   background-color: white;

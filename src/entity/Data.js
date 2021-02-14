@@ -1,8 +1,9 @@
 import Course from './Course'
+import Question from "./Question";
 
 function Data() {
     var obj = {};
-    obj.imgList = [
+    obj.courses = [
         {
             'course': new Course(1, '[中英字幕]吴恩达机器学习系列课程', 'https://www.bilibili.com/video/BV164411b7dx?from=search&seid=719799793224630018',
                 'https://i0.hdslb.com/bfs/archive/0aff68fab987a889d1cca8620266e66b2b03d9f2.jpg@640w_400h.webp', 'Bilibili',
@@ -17,6 +18,17 @@ function Data() {
             'course': new Course(3, '【一起啃书】机器学习西瓜书白话解读', 'https://www.bilibili.com/video/BV17J411C7zZ?from=search&seid=719799793224630018',
                 'https://i1.hdslb.com/bfs/archive/bfc2b7b0def91541903140bc532a16d9af8eebd7.jpg@640w_400h.webp', 'Bilibili',
                 100,"","","")
+        }
+    ]
+    obj.questions = [
+        {
+            'question': new Question(1,'推荐《[中英字幕]吴恩达机器学习系列课程》课程'),
+        },
+        {
+            'question': new Question(2,'数据结构中最小生成树算法有哪些？'),
+        },
+        {
+            'question': new Question(3,'学了数据结构之后可以学什么？'),
         }
     ]
     obj.username = "Chen Yuqi";
