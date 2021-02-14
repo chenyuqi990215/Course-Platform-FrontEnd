@@ -3,6 +3,20 @@
     <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
             v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
             :class="{opacity_container: show_register || show_login}"></Header>
+    <div class="tag-container">
+      <a href="#">
+        <p>首页</p>
+      </a>
+      <a href="#">
+        <p>优质课程</p>
+      </a>
+      <a href="#">
+        <p>优质视频</p>
+      </a>
+      <a href="#">
+        <p>优质资源</p>
+      </a>
+    </div>
     <div class="bander-container" :class="{opacity_container: show_register || show_login}">
       <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true" :autoTime="8000"></Swiper>
       <Hot :width="500" :height="400" :hot_course="hot_course" :hot_question="hot_question"></Hot>
@@ -93,6 +107,18 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+a {
+  text-decoration: none;
+}
+.tag-container{
+  padding-left: 10%;
+  background-color: rgb(231,231,231);
+  display: flex;
+}
+.tag-container p {
+  color: black;
+  margin-right: 50px;
 }
 body{
   padding: 0;
