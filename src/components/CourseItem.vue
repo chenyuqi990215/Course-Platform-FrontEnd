@@ -1,7 +1,7 @@
 <template>
   <div class="course-item-container">
     <a :href="course.course.url">
-      <img class="course-item-img" :src="course.course.cover">
+      <img class="course-item-img" v-bind:src="course.course.cover" alt="course-item">
     </a>
     <a :href="course.course.url">
       <p class="course-item-title">{{ course.course.name }}</p>

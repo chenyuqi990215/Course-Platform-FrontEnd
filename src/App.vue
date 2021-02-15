@@ -23,6 +23,7 @@
       <Interest :courses="hot_course" :resources="hot_resource" :interests="interests"
                 v-if="successful_login"></Interest>
       <Origin></Origin>
+      <img :src="test_img" alt="test">
       <Footer></Footer>
     </div>
     <Register v-if="show_register"
@@ -52,6 +53,7 @@ export default {
   name: 'App',
   data() {
     return {
+      test_img: 'https://i0.hdslb.com/bfs/archive/0aff68fab987a889d1cca8620266e66b2b03d9f2.jpg@640w_400h.webp',
       successful_register: false,
       show_register: false,
       show_login: false,
