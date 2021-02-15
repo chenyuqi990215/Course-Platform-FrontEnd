@@ -49,7 +49,7 @@ p {
 }
 .resource-item-container {
   width: 250px;
-  height: 200px;
+  height: 100px;
 }
 .resource-item-ul {
   list-style-type: none;

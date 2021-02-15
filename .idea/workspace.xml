@@ -20,7 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b4a6a59-f477-4b5c-a6a0-02a13f324b05" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/Option.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Resource.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ResourceItem.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entity/Resource.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CourseItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CourseItem.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Interest.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Interest.vue" afterDir="false" />
@@ -45,6 +50,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="1oFUbJg8YcenpezeHE5wpgtQCVA" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -54,7 +67,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -72,6 +85,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\WebstormProject\Course-Platform-FrontEnd\src\components" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/assets" />
     </key>
@@ -106,6 +120,12 @@
       <updated>1612881902823</updated>
       <workItem from="1612881903878" duration="41976000" />
       <workItem from="1613113387448" duration="61559000" />
+      <workItem from="1613113387448" duration="21987000" />
+      <workItem from="1613273104711" duration="1448000" />
+      <workItem from="1613277134274" duration="274000" />
+      <workItem from="1613298047482" duration="7115000" />
+      <workItem from="1613364287215" duration="13711000" />
+      <workItem from="1613113387448" duration="54978000" />
     </task>
     <servers />
   </component>
@@ -122,6 +142,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="462" y="189" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1612937560847">

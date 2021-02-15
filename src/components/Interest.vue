@@ -1,7 +1,7 @@
 <template>
   <div class="interest-container">
     <div class="interest-header">
-      <p>可能感兴趣的内容</p>
+      <p class="interest-p">可能感兴趣的内容</p>
       <ul class="interest-item-ul">
         <li class="interest-item-li" v-for="(item,index) in interests.slice(0,4)" :key="index" >
           <p class="interest-item-p">{{item.label}}</p>
@@ -50,15 +50,22 @@ p {
   margin-block-start: 0;
   margin-block-end: 0;
 }
+.interest-header {
+  display: flex;
+  margin-left: 150px;
+  margin-bottom: 30px;
+}
+.interest-p {
+  font-size: 1.3em;
+  font-weight: bold;
+}
 .interest-item-ul {
+  margin-left: 20px;
   list-style-type: none;
   display: flex;
   flex-flow: row wrap;
   align-content: flex-start;
   width: 250px;
-}
-.interest-item-li {
-  flex:0 0 50%;
 }
 .interest-item-p {
   width:80px;

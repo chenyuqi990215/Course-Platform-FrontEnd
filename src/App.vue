@@ -1,31 +1,34 @@
 <template>
   <div id="app">
-    <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
-            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
-            :class="{opacity_container: show_register || show_login}"></Header>
-    <div class="tag-container">
-      <a href="#"><p>首页</p></a>
-      <a href="#"><p>优质课程</p></a>
-      <a href="#"><p>优质视频</p></a>
-      <a href="#"><p>优质资源</p></a>
-    </div>
-    <div class="bander-container" :class="{opacity_container: show_register || show_login}">
-      <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true" :autoTime="8000"></Swiper>
-      <Hot :width="500" :height="400" :hot_course="hot_course" :hot_question="hot_question"></Hot>
-    </div>
-    <div class="cloud-container" :class="{opacity_container: show_register || show_login}">
-      <p class="cloud">主题指数</p>
-      <div>
-        <img src="./assets/cloud.png">
+    <div :class="{opacity_container: show_register || show_login||show_option}">
+      <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
+              v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
+      <div class="tag-container">
+        <a href="#"><p>首页</p></a>
+        <a href="#"><p>优质课程</p></a>
+        <a href="#"><p>优质视频</p></a>
+        <a href="#"><p>优质资源</p></a>
       </div>
+      <div class="bander-container">
+        <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true" :autoTime="8000"></Swiper>
+        <Hot :width="500" :height="400" :hot_course="hot_course" :hot_question="hot_question"></Hot>
+      </div>
+      <div class="cloud-container">
+        <p class="cloud">主题指数</p>
+        <div>
+          <img src="./assets/cloud.png">
+        </div>
+      </div>
+      <Interest :courses="hot_course" :resources="hot_resource" :interests="interests"></Interest>
+      <Origin></Origin>
+      <Footer></Footer>
     </div>
-    <Interest :courses="hot_course" :resources="hot_resource" :interests="interests"></Interest>
-    <Origin :class="{opacity_container: show_register || show_login}"></Origin>
-    <Footer :class="{opacity_container: show_register || show_login}"></Footer>
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
     <Login v-if="show_login"
            v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"></Login>
+    <Option v-if="show_option" v-on:submitTable="closeOption"></Option>
+
   </div>
 </template>
 
@@ -37,9 +40,11 @@ import Swiper from './components/Swiper.vue';
 import Footer from "./components/Footer.vue";
 import Register from "./components/Register.vue";
 import Login from "./components/Login.vue";
+import Option from "./components/Option.vue";
 import Hot from "./components/Hot.vue";
 import Origin from "./components/Origin";
 import Interest from "@/components/Interest";
+
 
 
 export default {
@@ -49,6 +54,8 @@ export default {
       successful_register: false,
       show_register: false,
       show_login: false,
+      show_option:false,
+
       search_input: "Search What?",
       successful_login: false,
       imgList: new Data().courses,
@@ -70,6 +77,7 @@ export default {
     Swiper,
     Header,
     Login,
+    Option,
   },
   methods: {
     searchInput: function (input) {
@@ -83,7 +91,7 @@ export default {
     },
     closeRegister: function (input) {
       this.show_register = false
-      this.successful_register = input
+      this.show_option = input;
     },
     openLogin: function (input) {
       this.show_register = !input
@@ -96,7 +104,13 @@ export default {
     openRegister: function (input) {
       this.show_login = !input
       this.show_register = input
+    },
+    closeOption:function (input) {
+      this.show_option=!input
+      this.successful_register = input
+      this.show_login = input
     }
+
   }
 }
 </script>
