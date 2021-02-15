@@ -2,7 +2,7 @@
   <div class="course-container">
     <ul class="course-ul">
       <li class="course-li" v-for="(item,index) in courses" :key="index">
-        <CourseItem :course="item"></CourseItem>
+        <CourseItem class="course-item" :course="item"></CourseItem>
       </li>
     </ul>
   </div>
@@ -26,8 +26,7 @@ export default {
 <style scoped>
 div {
   padding: 0;
-  margin-left: 80px;
-  margin-right: 80px;
+  margin: 0 120px 0 120px;
 }
 ul {
   list-style-type: none;
@@ -37,7 +36,13 @@ ul {
 .course-ul {
   display: flex;
   flex-flow: row wrap;
-  align-content: flex-start;
 }
-
+.course-li {
+  margin: 0;
+  padding: 0;
+}
+.course-item {
+  margin: 0 20px;
+  padding: 0;
+}
 </style>

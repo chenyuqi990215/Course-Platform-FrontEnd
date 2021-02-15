@@ -40,7 +40,7 @@ li {
 }
 .course-item-container{
   width:250px;
-  height:320px;
+  height:300px;
 }
 p {
   padding: 0;
