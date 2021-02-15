@@ -4,18 +4,10 @@
             v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
             :class="{opacity_container: show_register || show_login}"></Header>
     <div class="tag-container">
-      <a href="#">
-        <p>首页</p>
-      </a>
-      <a href="#">
-        <p>优质课程</p>
-      </a>
-      <a href="#">
-        <p>优质视频</p>
-      </a>
-      <a href="#">
-        <p>优质资源</p>
-      </a>
+      <a href="#"><p>首页</p></a>
+      <a href="#"><p>优质课程</p></a>
+      <a href="#"><p>优质视频</p></a>
+      <a href="#"><p>优质资源</p></a>
     </div>
     <div class="bander-container" :class="{opacity_container: show_register || show_login}">
       <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true" :autoTime="8000"></Swiper>
@@ -27,7 +19,8 @@
         <img src="./assets/cloud.png">
       </div>
     </div>
-    <Resource></Resource>
+    <Course :courses="hot_course"></Course>
+    <Origin :class="{opacity_container: show_register || show_login}"></Origin>
     <Footer :class="{opacity_container: show_register || show_login}"></Footer>
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
@@ -45,7 +38,8 @@ import Footer from "./components/Footer.vue";
 import Register from "./components/Register.vue";
 import Login from "./components/Login.vue";
 import Hot from "./components/Hot.vue";
-import Resource from "./components/Resource";
+import Origin from "./components/Origin";
+import Course from "./components/Course";
 
 
 export default {
@@ -66,13 +60,14 @@ export default {
     }
   },
   components: {
-    Resource,
+    Origin,
     Hot,
     Register,
     Footer,
     Swiper,
     Header,
-    Login
+    Login,
+    Course
   },
   methods: {
     searchInput: function (input) {

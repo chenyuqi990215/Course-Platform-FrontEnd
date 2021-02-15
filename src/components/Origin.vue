@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "Resource"
+  name: "Origin"
 }
 </script>
 
