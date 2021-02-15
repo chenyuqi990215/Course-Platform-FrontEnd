@@ -38,6 +38,14 @@ function Data() {
                 'CSDN',100,"机器学习","")
         },
     ]
+    obj.interests = [
+        {
+            'label': '机器学习',
+        },
+        {
+            'label': '深度学习',
+        }
+    ]
     obj.questions = [
         {
             'question': new Question(1,'推荐《[中英字幕]吴恩达机器学习系列课程》课程'),

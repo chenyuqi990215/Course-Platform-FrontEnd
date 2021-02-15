@@ -73,7 +73,7 @@ p {
   width:80px;
   background-color: rgb(231,231,231);
   color: rgb(61,61,61);
-  margin:5px 10px;
+  margin:2px 10px;
   padding: 5px;
   text-align: center;
   border-radius: 5px;

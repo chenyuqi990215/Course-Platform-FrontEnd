@@ -19,7 +19,7 @@
         <img src="./assets/cloud.png">
       </div>
     </div>
-    <Course :courses="hot_course"></Course>
+    <Interest :courses="hot_course" :resources="hot_resource" :interests="interests"></Interest>
     <Origin :class="{opacity_container: show_register || show_login}"></Origin>
     <Footer :class="{opacity_container: show_register || show_login}"></Footer>
     <Register v-if="show_register"
@@ -39,7 +39,7 @@ import Register from "./components/Register.vue";
 import Login from "./components/Login.vue";
 import Hot from "./components/Hot.vue";
 import Origin from "./components/Origin";
-import Course from "./components/Course";
+import Interest from "@/components/Interest";
 
 
 export default {
@@ -56,10 +56,13 @@ export default {
       url: new Data().url,
       cloud_url: "./assets/cloud.png",
       hot_course: new Data().courses,
-      hot_question: new Data().questions
+      hot_question: new Data().questions,
+      hot_resource: new Data().resources,
+      interests: new Data().interests
     }
   },
   components: {
+    Interest,
     Origin,
     Hot,
     Register,
@@ -67,7 +70,6 @@ export default {
     Swiper,
     Header,
     Login,
-    Course
   },
   methods: {
     searchInput: function (input) {

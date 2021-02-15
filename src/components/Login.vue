@@ -73,7 +73,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.successfulRegister = true;
+          this.successfulLogin = true;
           this.$emit('closeLogin', true)
         } else {
           console.log("error submit!!");
@@ -107,7 +107,7 @@ export default {
       this.$emit('openRegister',true)
     },
     closeLogin() {
-      this.successfulRegister = false;
+      this.successfulLogin = false;
       this.$emit('closeLogin', false)
     }
   }
