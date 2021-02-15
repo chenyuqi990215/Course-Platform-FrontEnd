@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "push": "npm build && scp -r dist/* root@47.100.79.77:/www"
+    "push": "vue-cli-service build && scp -r dist/* root@47.100.79.77:/www"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -14,6 +14,7 @@
     "element-ui": "^2.15.0",
     "moment": "^2.29.1",
     "vue": "^2.6.11",
+    "vue-lazyload": "^1.3.3",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.5.1"
   },
