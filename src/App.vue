@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div :class="{opacity_container: show_register || show_login||show_option}">
+    <div :class="{opacity_container: show_register || show_login || show_option}">
       <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
               v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
       <div class="tag-container">
@@ -10,7 +10,8 @@
         <a href="#"><p>优质资源</p></a>
       </div>
       <div class="bander-container">
-        <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true" :autoTime="8000"></Swiper>
+        <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true"
+                :autoTime="8000"></Swiper>
         <Hot :width="500" :height="400" :hot_course="hot_course" :hot_question="hot_question"></Hot>
       </div>
       <div class="cloud-container">
@@ -19,7 +20,8 @@
           <img src="./assets/cloud.png">
         </div>
       </div>
-      <Interest :courses="hot_course" :resources="hot_resource" :interests="interests" v-if="successful_login"></Interest>
+      <Interest :courses="hot_course" :resources="hot_resource" :interests="interests"
+                v-if="successful_login"></Interest>
       <Origin></Origin>
       <Footer></Footer>
     </div>
@@ -46,7 +48,6 @@ import Origin from "./components/Origin";
 import Interest from "@/components/Interest";
 
 
-
 export default {
   name: 'App',
   data() {
@@ -54,7 +55,7 @@ export default {
       successful_register: false,
       show_register: false,
       show_login: false,
-      show_option:false,
+      show_option: false,
 
       search_input: "Search What?",
       successful_login: false,
@@ -105,7 +106,7 @@ export default {
       this.show_login = !input
       this.show_register = input
     },
-    closeOption:function (input) {
+    closeOption: function (input) {
       this.show_option = !input
       this.successful_register = input
       this.show_login = input
@@ -119,50 +120,61 @@ export default {
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
+
 a {
   text-decoration: none;
 }
-.tag-container{
+
+.tag-container {
   padding-left: 10%;
-  background-color: rgb(231,231,231);
+  background-color: rgb(231, 231, 231);
   display: flex;
 }
+
 .tag-container p {
   color: black;
   margin-right: 50px;
 }
-body{
+
+body {
   padding: 0;
   margin: 0;
 }
+
 .swiper-outer-container {
   border-left: solid 70px;
   border-right: solid 70px;
-  border-image: linear-gradient(to left, black 0%, rgb(200,200,200) 10%, rgb(200,200,200) 90%, black 100%) 60 60 60 60;
+  border-image: linear-gradient(to left, black 0%, rgb(200, 200, 200) 10%, rgb(200, 200, 200) 90%, black 100%) 60 60 60 60;
 }
+
 .bander-container {
   display: flex;
   background-color: black;
   justify-content: center;
 }
+
 .cloud-container {
   background-color: white;
   margin: 5% 10%;
 }
-.cloud-container p{
+
+.cloud-container p {
   font-weight: bold;
   font-size: 1.3em;
 }
+
 .cloud-container img {
   padding: 30px;
   width: 600px;
 }
+
 .cloud-container div {
-  border: 8px solid rgb(128,168,245);
+  border: 8px solid rgb(128, 168, 245);
   padding-left: 20%;
   padding-right: 20%;
-  border-radius:8px;
+  border-radius: 8px;
 }
+
 .opacity_container {
   filter: opacity(50%);
 }
