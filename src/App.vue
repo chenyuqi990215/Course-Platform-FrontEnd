@@ -19,7 +19,7 @@
           <img src="./assets/cloud.png">
         </div>
       </div>
-      <Interest :courses="hot_course" :resources="hot_resource" :interests="interests"></Interest>
+      <Interest :courses="hot_course" :resources="hot_resource" :interests="interests" v-if="successful_login"></Interest>
       <Origin></Origin>
       <Footer></Footer>
     </div>
@@ -106,7 +106,7 @@ export default {
       this.show_register = input
     },
     closeOption:function (input) {
-      this.show_option=!input
+      this.show_option = !input
       this.successful_register = input
       this.show_login = input
     }
