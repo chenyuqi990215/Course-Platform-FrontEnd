@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import Data from "../entity/Data"
 export default {
   name: "ResourceItem",
 
