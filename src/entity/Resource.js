@@ -1,15 +1,13 @@
-function Course(id, name, url, cover, origin='BiliBili', score=100, titleList="",universityList="",contentList=""){
+function Resource(id, name, url, origin='CSDN', score=100, titleList="",contentList=""){
     var obj = {};
     obj.id = id;
     obj.name = name;
     obj.url = url;
-    obj.cover = cover;
     obj.origin = origin;
     obj.score = score;
     obj.titleList = titleList;
-    obj.univerityList = universityList;
     obj.contentList = contentList;
     return obj;
 }
 
-export default Course
+export default Resource

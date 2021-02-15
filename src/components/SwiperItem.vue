@@ -3,7 +3,7 @@
     <transition name="fade">
       <div class="swiper-inter-item">
         <span class="swiper-item-title">{{obj.name}}</span>
-        <span class="swiper-item-university" v-if="obj.univerityList.length > 0">{{obj.univerityList.split(';')[0]}}</span>
+        <span class="swiper-item-university" v-if="obj.univerityList.length > 0">{{obj.univerityList.split('；')[0]}}</span>
         <a :href="obj.url">
           <img :src="obj.cover" :style="{'width':width+'px', 'height':height+'px'}" v-if="show"/>
         </a>

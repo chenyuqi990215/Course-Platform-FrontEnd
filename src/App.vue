@@ -2,9 +2,17 @@
   <div id="app">
     <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
             v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
-            :class="{opacity_container: show_register || show_login||show_option}"></Header>
+
+      :class="{opacity_container: show_register || show_login||show_option}"></Header>
+    <div class="tag-container">
+      <a href="#"><p>首页</p></a>
+      <a href="#"><p>优质课程</p></a>
+      <a href="#"><p>优质视频</p></a>
+      <a href="#"><p>优质资源</p></a>
+    </div>
     <div class="bander-container" :class="{opacity_container: show_register || show_login||show_option}">
       <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true" :autoTime="8000"></Swiper>
+      <Hot :width="500" :height="400" :hot_course="hot_course" :hot_question="hot_question"></Hot>
     </div>
     <div class="cloud-container" :class="{opacity_container: show_register || show_login||show_option}">
       <p class="cloud">主题指数</p>
@@ -13,13 +21,17 @@
       </div>
     </div>
 
+    <Course :courses="hot_course"></Course>
+    <Origin :class="{opacity_container: show_register || show_login}"></Origin>
     <Footer :class="{opacity_container: show_register || show_login||show_option}"></Footer>
+
+
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
     <Login v-if="show_login"
            v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"></Login>
     <Option v-if="show_option" v-on:submitTable="closeOption"></Option>
-    {{show_option}}
+
   </div>
 </template>
 
@@ -32,6 +44,10 @@ import Footer from "./components/Footer.vue";
 import Register from "./components/Register.vue";
 import Login from "./components/Login.vue";
 import Option from "./components/Option.vue";
+import Hot from "./components/Hot.vue";
+import Origin from "./components/Origin";
+import Course from "./components/Course";
+
 
 
 export default {
@@ -41,23 +57,28 @@ export default {
       successful_register: false,
       show_register: false,
       show_login: false,
-      show_option:true,
+      show_option:false,
 
       search_input: "Search What?",
       successful_login: false,
-      imgList: new Data().imgList,
+      imgList: new Data().courses,
       username: new Data().username,
       url: new Data().url,
       cloud_url: "./assets/cloud.png",
+      hot_course: new Data().courses,
+      hot_question: new Data().questions
     }
   },
   components: {
+    Origin,
+    Hot,
     Register,
     Footer,
     Swiper,
     Header,
     Login,
-    Option
+    Option,
+    Course
   },
   methods: {
     searchInput: function (input) {
@@ -99,18 +120,31 @@ export default {
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
+a {
+  text-decoration: none;
+}
+.tag-container{
+  padding-left: 10%;
+  background-color: rgb(231,231,231);
+  display: flex;
+}
+.tag-container p {
+  color: black;
+  margin-right: 50px;
+}
 body{
   padding: 0;
   margin: 0;
 }
 .swiper-outer-container {
-  margin-left: 10%;
   border-left: solid 70px;
   border-right: solid 70px;
   border-image: linear-gradient(to left, black 0%, rgb(200,200,200) 10%, rgb(200,200,200) 90%, black 100%) 60 60 60 60;
 }
 .bander-container {
+  display: flex;
   background-color: black;
+  justify-content: center;
 }
 .cloud-container {
   background-color: white;
