@@ -2,21 +2,24 @@
   <div id="app">
     <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
             v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
-            :class="{opacity_container: show_register || show_login}"></Header>
-    <div class="bander-container" :class="{opacity_container: show_register || show_login}">
+            :class="{opacity_container: show_register || show_login||show_option}"></Header>
+    <div class="bander-container" :class="{opacity_container: show_register || show_login||show_option}">
       <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true" :autoTime="8000"></Swiper>
     </div>
-    <div class="cloud-container" :class="{opacity_container: show_register || show_login}">
+    <div class="cloud-container" :class="{opacity_container: show_register || show_login||show_option}">
       <p class="cloud">主题指数</p>
       <div>
         <img src="./assets/cloud.png">
       </div>
     </div>
-    <Footer :class="{opacity_container: show_register || show_login}"></Footer>
+
+    <Footer :class="{opacity_container: show_register || show_login||show_option}"></Footer>
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
     <Login v-if="show_login"
            v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"></Login>
+    <Option v-if="show_option" v-on:submitTable="closeOption"></Option>
+    {{show_option}}
   </div>
 </template>
 
@@ -28,6 +31,7 @@ import Swiper from './components/Swiper.vue';
 import Footer from "./components/Footer.vue";
 import Register from "./components/Register.vue";
 import Login from "./components/Login.vue";
+import Option from "./components/Option.vue";
 
 
 export default {
@@ -37,6 +41,8 @@ export default {
       successful_register: false,
       show_register: false,
       show_login: false,
+      show_option:true,
+
       search_input: "Search What?",
       successful_login: false,
       imgList: new Data().imgList,
@@ -50,7 +56,8 @@ export default {
     Footer,
     Swiper,
     Header,
-    Login
+    Login,
+    Option
   },
   methods: {
     searchInput: function (input) {
@@ -64,7 +71,7 @@ export default {
     },
     closeRegister: function (input) {
       this.show_register = false
-      this.successful_register = input
+      this.show_option = input;
     },
     openLogin: function (input) {
       this.show_register = !input
@@ -77,7 +84,13 @@ export default {
     openRegister: function (input) {
       this.show_login = !input
       this.show_register = input
+    },
+    closeOption:function (input) {
+      this.show_option=!input
+      this.successful_register = input
+      this.show_login = input
     }
+
   }
 }
 </script>
