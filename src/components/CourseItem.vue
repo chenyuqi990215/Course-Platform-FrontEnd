@@ -6,12 +6,12 @@
     <a :href="course.course.url">
       <p class="course-item-title">{{ course.course.name }}</p>
     </a>
-    <ul class="course-item-ul">
+    <ul class="course-item-ul" v-if="course.course.titleList.length > 0">
       <li class="course-item-li" v-for="(item,index) in course.course.titleList.split('；').slice(0,4)" :key="index" >
         <p class="course-item-p">{{item}}</p>
       </li>
     </ul>
-    <p class="course-item-origin">来源：{{ course.course.origin }}</p>
+    <p class="course-item-origin" v-if="course.course.origin !== ''">来源：{{ course.course.origin }}</p>
   </div>
 </template>
 

@@ -8,8 +8,8 @@
         </li>
       </ul>
     </div>
-    <Course :courses="courses"></Course>
-    <Resource :resources="resources"></Resource>
+    <Course class="interest-course" :courses="courses"></Course>
+    <Resource class="interest-resource" :resources="resources"></Resource>
   </div>
 </template>
 
@@ -77,5 +77,10 @@ p {
   border-radius: 5px;
   font-size: 0.6em;
 }
-
+.interest-course {
+  margin: 0 120px 0 120px;
+}
+.interest-resource {
+  margin: 0 120px 0 120px;
+}
 </style>

@@ -1,4 +1,4 @@
-function Course(id, name, url, cover, origin='BiliBili', score=100, titleList="",universityList="",contentList=""){
+function Course(id, name, url, cover, origin='BiliBili', score=100, amount="100万", titleList="",universityList="",contentList=""){
     var obj = {};
     obj.id = id;
     obj.name = name;
@@ -6,6 +6,7 @@ function Course(id, name, url, cover, origin='BiliBili', score=100, titleList=""
     obj.cover = cover;
     obj.origin = origin;
     obj.score = score;
+    obj.amount = amount;
     obj.titleList = titleList;
     obj.univerityList = universityList;
     obj.contentList = contentList;
