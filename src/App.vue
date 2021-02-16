@@ -19,7 +19,7 @@
         <div>
           <img src="./assets/cloud.png">
         </div>
-
+      </div>
       <Interest :courses="hot_course" :resources="hot_resource" :interests="interests"
                 v-if="successful_login"></Interest>
       <Origin></Origin>
@@ -30,7 +30,6 @@
     <Login v-if="show_login"
            v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"></Login>
     <Option v-if="show_option" v-on:submitTable="closeOption"></Option>
-
   </div>
 </template>
 
