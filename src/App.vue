@@ -23,7 +23,6 @@
       <Interest :courses="hot_course" :resources="hot_resource" :interests="interests"
                 v-if="successful_login"></Interest>
       <Origin></Origin>
-      <CourseDetail></CourseDetail>
       <Footer></Footer>
     </div>
     <Register v-if="show_register"
@@ -46,7 +45,6 @@ import Option from "./components/Option.vue";
 import Hot from "./components/Hot.vue";
 import Origin from "./components/Origin";
 import Interest from "@/components/Interest";
-import CourseDetail from "@/components/CourseDetail";
 
 export default {
   name: 'App',
@@ -71,7 +69,6 @@ export default {
     }
   },
   components: {
-    CourseDetail,
     Interest,
     Origin,
     Hot,
