@@ -1,28 +1,10 @@
 <template>
-  <div id="app">
+  <div id="appSearch">
     <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
             v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
 
-      :class="{opacity_container: show_register || show_login||show_option}"></Header>
-    <div class="tag-container">
-      <a href="#"><p>首页</p></a>
-      <a href="#"><p>优质课程</p></a>
-      <a href="#"><p>优质视频</p></a>
-      <a href="#"><p>优质资源</p></a>
-    </div>
-    <div class="bander-container" :class="{opacity_container: show_register || show_login||show_option}">
-      <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true" :autoTime="8000"></Swiper>
-      <Hot :width="500" :height="400" :hot_course="hot_course" :hot_question="hot_question"></Hot>
-    </div>
-    <div class="cloud-container" :class="{opacity_container: show_register || show_login||show_option}">
-      <p class="cloud">主题指数</p>
-      <div>
-        <img src="./assets/cloud.png">
-      </div>
-    </div>
+            :class="{opacity_container: show_register || show_login||show_option}"></Header>
 
-    <Course :courses="hot_course"></Course>
-    <Origin :class="{opacity_container: show_register || show_login}"></Origin>
     <Footer :class="{opacity_container: show_register || show_login||show_option}"></Footer>
 
 
@@ -31,8 +13,7 @@
     <Login v-if="show_login"
            v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"></Login>
     <Option v-if="show_option" v-on:submitTable="closeOption"></Option>
-
-
+    <Result> </Result>
   </div>
 </template>
 
@@ -40,19 +21,15 @@
 
 import Data from "./entity/Data"
 import Header from "./components/Header.vue";
-import Swiper from './components/Swiper.vue';
 import Footer from "./components/Footer.vue";
 import Register from "./components/Register.vue";
 import Login from "./components/Login.vue";
 import Option from "./components/Option.vue";
-import Hot from "./components/Hot.vue";
-import Origin from "./components/Origin";
-import Course from "./components/Course";
-
+import Result from "./components/Result.vue";
 
 
 export default {
-  name: 'App',
+  name: 'AppSearch',
   data() {
     return {
       successful_register: false,
@@ -71,16 +48,13 @@ export default {
     }
   },
   components: {
-    Origin,
-    Hot,
+
     Register,
     Footer,
-    Swiper,
     Header,
     Login,
     Option,
-    Course,
-
+    Result
   },
   methods: {
     searchInput: function (input) {
