@@ -25,12 +25,12 @@
           </div>
         </div>
         <p class="course-amount-p"><span class="course-amount-span">{{course.course.amount}}</span>播放</p>
-        <ul class="course-ul-university">
+        <ul class="course-ul-university" v-if="course.course.univerityList.length > 0">
           <li class="course-li-university" v-for="(item,index) in course.course.univerityList.split('；').slice(0,4)" :key="index" >
             <p class="course-p-university">{{item}}</p>
           </li>
         </ul>
-        <ul class="course-ul-title">
+        <ul class="course-ul-title" v-if="course.course.titleList.length > 0">
           <li class="course-li-title" v-for="(item,index) in course.course.titleList.split('；').slice(0,4)" :key="index" >
             <p class="course-p-title">{{item}}</p>
           </li>

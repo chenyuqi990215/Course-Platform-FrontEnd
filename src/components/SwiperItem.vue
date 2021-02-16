@@ -47,14 +47,13 @@ export default {
   methods: {
     clickCourse() {
       this.$router.push({
-        name: 'AppDetail',
+        name: 'Course',
         params: {
           id: this.obj.id,
           name: this.obj.name,
           type: '优质课程',
         }
       })
-
     }
   }
 }

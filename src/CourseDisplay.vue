@@ -1,17 +1,16 @@
 <template>
-  <div id="appDetail">
+  <div id="display">
     <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
             v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
 
-            :class="{opacity_container: show_register || show_login||show_option}"></Header>
+            :class="{opacity_container: show_register || show_login || show_option}"></Header>
     <div class="tag-container">
       <p>
         首页  >  <span>{{ type }}</span> >  <span>{{ course.course.name }}</span>
       </p>
     </div>
     <CourseDetail :course="course" :relative_course="relative_course"></CourseDetail>
-    <Footer :class="{opacity_container: show_register || show_login||show_option}"></Footer>
-
+    <Footer :class="{opacity_container: show_register || show_login || show_option}"></Footer>
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
     <Login v-if="show_login"
@@ -21,7 +20,6 @@
 </template>
 
 <script>
-
 import Data from "./entity/Data"
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
@@ -30,9 +28,8 @@ import Login from "./components/Login.vue";
 import Option from "./components/Option.vue";
 import CourseDetail from "@/components/CourseDetail";
 
-
 export default {
-  name: 'AppDetail',
+  name: 'CourseDisplay',
   data() {
     return {
       successful_register: false,
@@ -45,8 +42,8 @@ export default {
       url: new Data().url,
       course_id: this.$route.params.id,
       course_name: this.$route.params.name,
-      course: new Data().courses[this.course_id],
       relative_course: new Data().relative_course,
+      course : new Data().total_courses[0],
       type: this.$route.params.type
     }
   },
@@ -59,6 +56,9 @@ export default {
     Option,
   },
   methods: {
+    init() {
+      this.course = new Data().total_courses[this.course_id];
+    },
     searchInput: function (input) {
       this.search_input = input
     },
@@ -89,13 +89,16 @@ export default {
       this.successful_register = input
       this.show_login = input
     }
-
+  },
+  created() {
+    console.log('created Event  --> Goto init()')
+    this.init()
   }
 }
 </script>
 
 <style>
-#appDetail {
+#courseDetail {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 a {
