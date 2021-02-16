@@ -5,7 +5,7 @@
         <span class="swiper-item-title">{{obj.name}}</span>
         <span class="swiper-item-university" v-if="obj.univerityList.length > 0">{{obj.univerityList.split('；')[0]}}</span>
         <a :href="obj.url">
-          <img :src="obj.cover" :style="{'width':width+'px', 'height':height+'px'}" v-if="show"/>
+          <img v-bind:src="obj.cover" referrerpolicy="no-referrer" :style="{'width':width+'px', 'height':height+'px'}" v-if="show" alt="course"/>
         </a>
       </div>
     </transition>

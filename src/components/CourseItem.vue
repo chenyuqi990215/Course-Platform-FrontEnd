@@ -1,17 +1,17 @@
 <template>
   <div class="course-item-container">
     <a :href="course.course.url">
-      <img class="course-item-img" :src="course.course.cover">
+      <img class="course-item-img" referrerpolicy="no-referrer" v-bind:src="course.course.cover" alt="course-item">
     </a>
     <a :href="course.course.url">
       <p class="course-item-title">{{ course.course.name }}</p>
     </a>
-    <ul class="course-item-ul">
+    <ul class="course-item-ul" v-if="course.course.titleList.length > 0">
       <li class="course-item-li" v-for="(item,index) in course.course.titleList.split('；').slice(0,4)" :key="index" >
         <p class="course-item-p">{{item}}</p>
       </li>
     </ul>
-    <p class="course-item-origin">来源：{{ course.course.origin }}</p>
+    <p class="course-item-origin" v-if="course.course.origin !== ''">来源：{{ course.course.origin }}</p>
   </div>
 </template>
 
@@ -73,7 +73,7 @@ p {
   width:80px;
   background-color: rgb(231,231,231);
   color: rgb(61,61,61);
-  margin:5px 10px;
+  margin:2px 10px;
   padding: 5px;
   text-align: center;
   border-radius: 5px;
