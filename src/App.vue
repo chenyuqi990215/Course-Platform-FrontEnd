@@ -19,11 +19,10 @@
         <div>
           <img src="./assets/cloud.png">
         </div>
-      </div>
+
       <Interest :courses="hot_course" :resources="hot_resource" :interests="interests"
                 v-if="successful_login"></Interest>
       <Origin></Origin>
-      <img :src="test_img" alt="test">
       <Footer></Footer>
     </div>
     <Register v-if="show_register"
@@ -47,7 +46,6 @@ import Option from "./components/Option.vue";
 import Hot from "./components/Hot.vue";
 import Origin from "./components/Origin";
 import Interest from "@/components/Interest";
-
 
 export default {
   name: 'App',
