@@ -22,6 +22,22 @@
     <list default="true" id="5b4a6a59-f477-4b5c-a6a0-02a13f324b05" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AppSearch.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Result.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Option.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Option.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/app.0767218d.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CourseDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Course.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Course.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CourseItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CourseItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Interest.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Interest.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Resource.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Resource.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Course.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Course.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Data.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,6 +156,11 @@
       <workItem from="1613298047482" duration="7115000" />
       <workItem from="1613364287215" duration="13711000" />
       <workItem from="1613113387448" duration="54978000" />
+      <workItem from="1613381075968" duration="60000" />
+      <workItem from="1613383702959" duration="580000" />
+      <workItem from="1613397589420" duration="3752000" />
+      <workItem from="1613401420332" duration="1188000" />
+      <workItem from="1613438108270" duration="10434000" />
     </task>
     <servers />
   </component>
