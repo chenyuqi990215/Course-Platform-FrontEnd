@@ -3,7 +3,7 @@
     <h2 class="course-name"> {{ course.course.name }}</h2>
     <div class="course-inner-container">
       <img class="course-cover" :src="course.course.cover" referrerpolicy="no-referrer" alt="course-img">
-      <div>
+      <div class="course-another-container">
         <p class="course-score-p">评分</p>
         <div class="course-score-container">
           <h1 class="course-score-h1"> {{ Math.floor(course.course.score) / 10 }}</h1>
@@ -51,15 +51,12 @@
 </template>
 
 <script>
-import Data from '../entity/Data'
-import Course from "@/components/Course";
+import Course from "../components/Course";
 export default {
   name: "CourseDetail",
-  data() {
-    return {
-      course: new Data().courses[0],
-      relative_course: new Data().relative_course
-    }
+  props: {
+    course: Object,
+    relative_course: Array
   },
   components: {
     Course
@@ -202,18 +199,21 @@ p{
 }
 .course-view-p {
   font-weight: bold;
-  width: 150px;
-  height: 50px;
+  width: 120px;
+  height: 40px;
   background-color: rgb(126,172,231);
   color: white;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.3em;
   border-radius: 10px;
-  padding-top: 15px;
+  padding-top: 10px;
 }
 .course-origin{
   color: rgb(150,150,150);
   margin-top: 20px;
   margin-left: 20px;
+}
+.course-another-container{
+  margin-left: 100px;
 }
 </style>
