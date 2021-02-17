@@ -1,16 +1,16 @@
 <template>
   <div id="display">
-    <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
-            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
-
-            :class="{opacity_container: show_register || show_login || show_option}"></Header>
-    <div class="tag-container">
-      <p>
-        首页  >  <span>{{ type }}</span> >  <span>{{ course.course.name }}</span>
-      </p>
+    <div :class="{opacity_container: show_register || show_login || show_option}">
+      <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
+              v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
+      <div class="tag-container">
+        <p>
+          首页  >  <span>{{ type }}</span> >  <span>{{ course.course.name }}</span>
+        </p>
+      </div>
+      <CourseDetail :course="course" :relative_course="relative_course"></CourseDetail>
+      <Footer></Footer>
     </div>
-    <CourseDetail :course="course" :relative_course="relative_course"></CourseDetail>
-    <Footer :class="{opacity_container: show_register || show_login || show_option}"></Footer>
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
     <Login v-if="show_login"
@@ -43,7 +43,7 @@ export default {
       course_id: this.$route.params.id,
       course_name: this.$route.params.name,
       relative_course: new Data().relative_course,
-      course : new Data().total_courses[0],
+      course : new Data().total_courses[this.course_id],
       type: this.$route.params.type
     }
   },
@@ -56,9 +56,6 @@ export default {
     Option,
   },
   methods: {
-    init() {
-      this.course = new Data().total_courses[this.course_id];
-    },
     searchInput: function (input) {
       this.search_input = input
     },
@@ -89,10 +86,6 @@ export default {
       this.successful_register = input
       this.show_login = input
     }
-  },
-  created() {
-    console.log('created Event  --> Goto init()')
-    this.init()
   }
 }
 </script>
