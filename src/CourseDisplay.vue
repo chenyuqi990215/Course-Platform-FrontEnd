@@ -1,16 +1,16 @@
 <template>
   <div id="display">
+    <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
+            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
     <div :class="{opacity_container: show_register || show_login || show_option}">
-      <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
-              v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
       <div class="tag-container">
         <p>
           首页  >  <span>{{ type }}</span> >  <span>{{ course.course.name }}</span>
         </p>
       </div>
       <CourseDetail :course="course" :relative_course="relative_course"></CourseDetail>
-      <Footer></Footer>
     </div>
+    <Footer></Footer>
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
     <Login v-if="show_login"

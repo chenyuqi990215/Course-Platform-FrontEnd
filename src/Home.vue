@@ -1,8 +1,8 @@
 <template>
   <div id="home">
+    <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
+            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
     <div :class="{opacity_container: show_register || show_login || show_option}">
-      <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
-              v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
       <div class="tag-container">
         <a href="#"><p>首页</p></a>
         <a href="#"><p>优质课程</p></a>
@@ -23,8 +23,8 @@
       <Interest :courses="hot_course" :resources="hot_resource" :interests="interests"
                 v-if="successful_login"></Interest>
       <Origin></Origin>
-      <Footer></Footer>
     </div>
+    <Footer></Footer>
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
     <Login v-if="show_login"
@@ -177,4 +177,5 @@ body {
 .opacity_container {
   filter: opacity(50%);
 }
+
 </style>
