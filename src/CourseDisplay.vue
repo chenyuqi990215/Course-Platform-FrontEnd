@@ -10,7 +10,7 @@
       </div>
       <CourseDetail :course="course" :relative_course="relative_course"></CourseDetail>
     </div>
-    <Footer></Footer>
+    <Footer :class="{opacity_container: show_register || show_login || show_option}"></Footer>
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
     <Login v-if="show_login"
@@ -27,7 +27,6 @@ import Register from "./components/Register.vue";
 import Login from "./components/Login.vue";
 import Option from "./components/Option.vue";
 import CourseDetail from "@/components/CourseDetail";
-
 export default {
   name: 'CourseDisplay',
   data() {
@@ -43,7 +42,7 @@ export default {
       course_id: this.$route.params.id,
       course_name: this.$route.params.name,
       relative_course: new Data().relative_course,
-      course : new Data().total_courses[this.course_id],
+      course : new Data().total_courses[0],
       type: this.$route.params.type
     }
   },
@@ -56,6 +55,9 @@ export default {
     Option,
   },
   methods: {
+    init() {
+      this.course = new Data().total_courses[this.course_id];
+    },
     searchInput: function (input) {
       this.search_input = input
     },
@@ -86,6 +88,10 @@ export default {
       this.successful_register = input
       this.show_login = input
     }
+  },
+  created() {
+    console.log('created Event  --> Goto init()')
+    this.init()
   }
 }
 </script>
@@ -106,12 +112,10 @@ body{
   background-color: rgb(231, 231, 231);
   display: flex;
 }
-
 .tag-container p {
   color: black;
   margin-right: 50px;
 }
-
 .opacity_container {
   filter: opacity(50%);
 }
