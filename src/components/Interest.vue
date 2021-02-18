@@ -16,7 +16,6 @@
 <script>
 import Course from "@/components/Course";
 import Resource from "@/components/Resource";
-
 export default {
   name: "Interest",
   components: {Resource, Course},

@@ -1,4 +1,4 @@
-function Resource(id, name, url, origin='CSDN', score=100, titleList="",contentList=""){
+function Resource(id, name, url, origin='CSDN',cover, score=100, titleList="",contentList=""){
     var obj = {};
     obj.id = id;
     obj.name = name;
@@ -7,6 +7,7 @@ function Resource(id, name, url, origin='CSDN', score=100, titleList="",contentL
     obj.score = score;
     obj.titleList = titleList;
     obj.contentList = contentList;
+    obj.cover = cover;
     return obj;
 }
 

@@ -5,15 +5,24 @@
 
             :class="{opacity_container: show_register || show_login||show_option}"></Header>
 
-    <Footer :class="{opacity_container: show_register || show_login||show_option}"></Footer>
-
-
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
     <Login v-if="show_login"
            v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"></Login>
     <Option v-if="show_option" v-on:submitTable="closeOption"></Option>
-    <Result> </Result>
+    <Result :courses="hot_course" :resources="resources" :videos="videos" v-on:show="chooseToShow"> </Result>
+    <div class="course-container">
+      <div class="notice-header">
+        <span class="notice-p">找到如下"</span>
+        <span class="notice-p-content">{{search_input}}</span>
+        <span class="notice-p">"相关内容</span>
+      </div>
+      <Course2 v-if="show_course||show_all" :courses="hot_course"></Course2>
+      <Video2 v-if="show_video||show_all" :courses="videos"></Video2>
+      <Resource2 v-if="show_resource||show_all" :resources="resources" ></Resource2>
+    </div>
+
+    <Footer :class="{opacity_container: show_register || show_login||show_option}"></Footer>
   </div>
 </template>
 
@@ -26,24 +35,35 @@ import Register from "./components/Register.vue";
 import Login from "./components/Login.vue";
 import Option from "./components/Option.vue";
 import Result from "./components/Result.vue";
+import Video2 from "./components/Video2.vue";
+import Resource2 from "@/components/Resource2";
+import Course2 from "@/components/Course2";
+
 
 
 export default {
   name: 'AppSearch',
+
   data() {
     return {
       successful_register: false,
       show_register: false,
       show_login: false,
       show_option:false,
+      show_all:true,
+      show_course:false,
+      show_video:false,
+      show_resource:false,
 
-      search_input: "Search What?",
+      search_input: "机器学习",
       successful_login: false,
       imgList: new Data().courses,
       username: new Data().username,
       url: new Data().url,
       cloud_url: "./assets/cloud.png",
       hot_course: new Data().courses,
+      videos: new Data().videos,
+      resources: new Data().resources,
       hot_question: new Data().questions
     }
   },
@@ -54,8 +74,12 @@ export default {
     Header,
     Login,
     Option,
-    Result
+    Result,
+    Video2,
+    Course2,
+    Resource2
   },
+
   methods: {
     searchInput: function (input) {
       this.search_input = input
@@ -86,6 +110,36 @@ export default {
       this.show_option=!input
       this.successful_register = input
       this.show_login = input
+    },
+    chooseToShow:function (input){
+      if(input===0)
+      {
+        this.show_all=true;
+        this.show_course=false;
+        this.show_video=false;
+        this.show_resource=false;
+      }
+      else if(input===1)
+      {
+        this.show_all=false;
+        this.show_course=true;
+        this.show_video=false;
+        this.show_resource=false;
+      }
+      else if(input===2)
+      {
+        this.show_all=false;
+        this.show_course=false;
+        this.show_video=true;
+        this.show_resource=false;
+      }
+      else if(input===3)
+      {
+        this.show_all=false;
+        this.show_course=false;
+        this.show_video=false;
+        this.show_resource=true;
+      }
     }
 
   }
@@ -93,53 +147,24 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-}
+
 a {
   text-decoration: none;
 }
-.tag-container{
-  padding-left: 10%;
-  background-color: rgb(231,231,231);
-  display: flex;
-}
-.tag-container p {
-  color: black;
-  margin-right: 50px;
-}
+
+
 body{
   padding: 0;
   margin: 0;
 }
-.swiper-outer-container {
-  border-left: solid 70px;
-  border-right: solid 70px;
-  border-image: linear-gradient(to left, black 0%, rgb(200,200,200) 10%, rgb(200,200,200) 90%, black 100%) 60 60 60 60;
+.notice-p-content{
+  color:rgb(143,161,205);
 }
-.bander-container {
-  display: flex;
-  background-color: black;
-  justify-content: center;
+.notice-header{
+  padding:60px 0 0 120px;
+  margin-top: -9px;
 }
-.cloud-container {
-  background-color: white;
-  margin: 5% 10%;
-}
-.cloud-container p{
-  font-weight: bold;
-  font-size: 1.3em;
-}
-.cloud-container img {
-  padding: 30px;
-  width: 600px;
-}
-.cloud-container div {
-  border: 8px solid rgb(128,168,245);
-  padding-left: 20%;
-  padding-right: 20%;
-  border-radius:8px;
-}
+
 .opacity_container {
   filter: opacity(50%);
 }
