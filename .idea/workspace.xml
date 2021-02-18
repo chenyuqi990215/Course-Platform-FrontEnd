@@ -20,15 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b4a6a59-f477-4b5c-a6a0-02a13f324b05" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/entity/Posting.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entity/User.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CourseDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CourseDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Hot.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Hot.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Question.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
