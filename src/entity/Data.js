@@ -107,8 +107,6 @@ function Data() {
             'user': new User(1,'Ding Ruixin','华东师范大学','13462057288','http://47.100.79.77/image/QQ20210218-0.jpg')
         }
     ]
-    obj.username = "Chen Yuqi";
-    obj.url = "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3251219681,3891116775&fm=26&gp=0.jpg";
     obj.schools = [
         {value: '阿拉善广播电视大学',label: '阿拉善广播电视大学'},
         {value: '鞍钢职工大学',label: '鞍钢职工大学'},
