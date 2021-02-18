@@ -1,6 +1,7 @@
 import Course from './Course'
-import Question from "./Question";
+import Posting from "./Posting";
 import Resource from "./Resource";
+import User from "./User"
 
 function Data() {
     var obj = {};
@@ -85,15 +86,25 @@ function Data() {
             'label': '深度学习',
         }
     ]
-    obj.questions = [
+    obj.postings = [
         {
-            'question': new Question(1,'推荐《[中英字幕]吴恩达机器学习系列课程》课程'),
+            'posting': new Posting(0,'推荐','推荐《[中英字幕]吴恩达机器学习系列课程》课程',
+                "老师讲过拟合讲的真的很好。",88,'2020-11-12',0),
         },
         {
-            'question': new Question(2,'数据结构中最小生成树算法有哪些？'),
+            'posting': new Posting(1,'课程疑惑','数据结构中最小生成树算法有哪些？','',52,'2020-11-15',1),
         },
         {
-            'question': new Question(3,'学了数据结构之后可以学什么？'),
+            'posting': new Posting(2,'学习规划','学了数据结构之后可以学什么？',"",32,'2020-11-20',1),
+        }
+    ]
+    obj.users = [
+        {
+            'user': new User(0,'Chen Yuqi','华东师范大学','13818981638',
+                'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3251219681,3891116775&fm=26&gp=0.jpg'),
+        },
+        {
+            'user': new User(1,'Ding Ruixin','华东师范大学','13462057288','http://47.100.79.77/image/QQ20210218-0.jpg')
         }
     ]
     obj.username = "Chen Yuqi";

@@ -12,7 +12,7 @@
       <div class="bander-container">
         <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true"
                 :autoTime="8000"></Swiper>
-        <Hot :width="500" :height="400" :hot_course="hot_course" :hot_question="hot_question"></Hot>
+        <Hot :width="500" :height="400" :hot_course="hot_course" :hot_posting="hot_posting"></Hot>
       </div>
       <div class="cloud-container">
         <p class="cloud">主题指数</p>
@@ -28,7 +28,8 @@
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
     <Login v-if="show_login"
-           v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"></Login>
+           v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"
+           v-on:successfulLogin="successfulLogin"></Login>
     <Option v-if="show_option" v-on:submitTable="closeOption"></Option>
   </div>
 </template>
@@ -59,11 +60,11 @@ export default {
       search_input: "Search What?",
       successful_login: false,
       imgList: new Data().courses,
-      username: new Data().username,
-      url: new Data().url,
+      username: "",
+      url: "",
       cloud_url: "./assets/cloud.png",
       hot_course: new Data().courses,
-      hot_question: new Data().questions,
+      hot_posting: new Data().postings,
       hot_resource: new Data().resources,
       interests: new Data().interests
     }
@@ -109,8 +110,17 @@ export default {
       this.show_option = !input
       this.successful_register = input
       this.show_login = input
+    },
+    successfulLogin: function (input) {
+      var idx;
+      if (input === "Chen Yuqi") {
+        idx = 0;
+      } else {
+        idx = 1;
+      }
+      this.username = new Data().users[idx].user.name;
+      this.url = new Data().users[idx].user.portrait_url;
     }
-
   }
 }
 </script>

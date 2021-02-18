@@ -36,7 +36,7 @@
           </li>
         </ul>
         <div class="course-view-container">
-          <a :href="course.course.url">
+          <a :href="course.course.url" target=_blank>
             <p class="course-view-p">立即观看</p>
           </a>
           <p class="course-origin">来源：{{course.course.origin}}</p>
@@ -199,18 +199,18 @@ p{
 }
 .course-view-p {
   font-weight: bold;
-  width: 120px;
-  height: 40px;
+  width: 90px;
+  height: 30px;
   background-color: rgb(126,172,231);
   color: white;
   text-align: center;
-  font-size: 1.3em;
-  border-radius: 10px;
-  padding-top: 10px;
+  font-size: 1.1em;
+  border-radius: 5px;
+  padding-top: 5px;
 }
 .course-origin{
   color: rgb(150,150,150);
-  margin-top: 20px;
+  margin-top: 5px;
   margin-left: 20px;
 }
 .course-another-container{
