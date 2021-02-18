@@ -59,27 +59,27 @@ function Data() {
         {
             'resource': new Resource(0,'吴恩达《机器学习系列课程》学习笔记（一）',
                 'https://blog.csdn.net/tangxiaoyin/article/details/105016097?ops_request_misc=%25257B%252522request%25255Fid%252522%25253A%252522161336842816780266267053%252522%25252C%252522scm%252522%25253A%25252220140713.130102334..%252522%25257D&request_id=161336842816780266267053&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-4-105016097.first_rank_v2_pc_rank_v29_10&utm_term=%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0',
-                'CSDN',100,"机器学习","")
+                "唐门教主",'CSDN',100,"机器学习","")
         },
         {
             'resource': new Resource(1,'机器学习知识点笔记（一）',
                 'https://blog.csdn.net/qq_42189368/article/details/87213237?ops_request_misc=%25257B%252522request%25255Fid%252522%25253A%252522161336842816780266267053%252522%25252C%252522scm%252522%25253A%25252220140713.130102334..%252522%25257D&request_id=161336842816780266267053&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~baidu_landing_v2~default-6-87213237.first_rank_v2_pc_rank_v29_10&utm_term=%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0',
-                'CSDN',100,"机器学习","")
+                '邦戈栗子','CSDN',100,"机器学习","")
         },
         {
             'resource': new Resource(2,'《机器学习实战》学习笔记（一）：机器学习基础',
                 'https://blog.csdn.net/TeFuirnever/article/details/99734084?ops_request_misc=%25257B%252522request%25255Fid%252522%25253A%252522161336842816780266231212%252522%25252C%252522scm%252522%25253A%25252220140713.130102334.pc%25255Fall.%252522%25257D&request_id=161336842816780266231212&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_v2~rank_v29-9-99734084.first_rank_v2_pc_rank_v29_10&utm_term=%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0',
-                'CSDN',100,"机器学习","")
+                '我是管小亮','CSDN',100,"机器学习","")
         },
         {
             'resource': new Resource(3,'吴恩达深度学习笔记（1）-深度学习引言',
                 'https://www.jianshu.com/p/d03e95fc3734',
-                '简书',95,"深度学习","")
+                '极客Array','简书',95,"深度学习","")
         },
         {
             'resource': new Resource(4,'深度学习笔记01 - 深度学习的基础概念',
                 'https://www.jianshu.com/p/b8956b6a4e34',
-                '简书',100,"深度学习","")
+                '瓦力人工智能',100,"深度学习","")
         },
     ]
     obj.courses = [
@@ -122,17 +122,17 @@ function Data() {
                 {
                     'resource': new Resource(0,'吴恩达《机器学习系列课程》学习笔记（一）',
                         'https://blog.csdn.net/tangxiaoyin/article/details/105016097?ops_request_misc=%25257B%252522request%25255Fid%252522%25253A%252522161336842816780266267053%252522%25252C%252522scm%252522%25253A%25252220140713.130102334..%252522%25257D&request_id=161336842816780266267053&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-4-105016097.first_rank_v2_pc_rank_v29_10&utm_term=%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0',
-                        'CSDN',100,"机器学习","")
+                        "唐门教主",'CSDN',100,"机器学习","")
                 },
                 {
                     'resource': new Resource(1,'机器学习知识点笔记（一）',
                         'https://blog.csdn.net/qq_42189368/article/details/87213237?ops_request_misc=%25257B%252522request%25255Fid%252522%25253A%252522161336842816780266267053%252522%25252C%252522scm%252522%25253A%25252220140713.130102334..%252522%25257D&request_id=161336842816780266267053&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~baidu_landing_v2~default-6-87213237.first_rank_v2_pc_rank_v29_10&utm_term=%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0',
-                        'CSDN',100,"机器学习","")
+                        '邦戈栗子','CSDN',100,"机器学习","")
                 },
                 {
                     'resource': new Resource(2,'《机器学习实战》学习笔记（一）：机器学习基础',
                         'https://blog.csdn.net/TeFuirnever/article/details/99734084?ops_request_misc=%25257B%252522request%25255Fid%252522%25253A%252522161336842816780266231212%252522%25252C%252522scm%252522%25253A%25252220140713.130102334.pc%25255Fall.%252522%25257D&request_id=161336842816780266231212&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_v2~rank_v29-9-99734084.first_rank_v2_pc_rank_v29_10&utm_term=%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0',
-                        'CSDN',100,"机器学习","")
+                        '我是管小亮','CSDN',100,"机器学习","")
                 },
             ],
             'videos': [
@@ -169,12 +169,12 @@ function Data() {
                 {
                     'resource': new Resource(3,'吴恩达深度学习笔记（1）-深度学习引言',
                         'https://www.jianshu.com/p/d03e95fc3734',
-                        '简书',95,"深度学习","")
+                        '极客Array','简书',95,"深度学习","")
                 },
                 {
                     'resource': new Resource(4,'深度学习笔记01 - 深度学习的基础概念',
                         'https://www.jianshu.com/p/b8956b6a4e34',
-                        '简书',100,"深度学习","")
+                        '瓦力人工智能',100,"深度学习","")
                 },
             ],
             'videos': [
@@ -203,17 +203,17 @@ function Data() {
         {
             'resource': new Resource(0,'吴恩达《机器学习系列课程》学习笔记（一）',
                 'https://blog.csdn.net/tangxiaoyin/article/details/105016097?ops_request_misc=%25257B%252522request%25255Fid%252522%25253A%252522161336842816780266267053%252522%25252C%252522scm%252522%25253A%25252220140713.130102334..%252522%25257D&request_id=161336842816780266267053&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-4-105016097.first_rank_v2_pc_rank_v29_10&utm_term=%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0',
-                'CSDN',100,"机器学习","")
+                "唐门教主",'CSDN',100,"机器学习","")
         },
         {
             'resource': new Resource(1,'机器学习知识点笔记（一）',
                 'https://blog.csdn.net/qq_42189368/article/details/87213237?ops_request_misc=%25257B%252522request%25255Fid%252522%25253A%252522161336842816780266267053%252522%25252C%252522scm%252522%25253A%25252220140713.130102334..%252522%25257D&request_id=161336842816780266267053&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~baidu_landing_v2~default-6-87213237.first_rank_v2_pc_rank_v29_10&utm_term=%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0',
-                'CSDN',100,"机器学习","")
+                '邦戈栗子','CSDN',100,"机器学习","")
         },
         {
             'resource': new Resource(2,'《机器学习实战》学习笔记（一）：机器学习基础',
                 'https://blog.csdn.net/TeFuirnever/article/details/99734084?ops_request_misc=%25257B%252522request%25255Fid%252522%25253A%252522161336842816780266231212%252522%25252C%252522scm%252522%25253A%25252220140713.130102334.pc%25255Fall.%252522%25257D&request_id=161336842816780266231212&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_v2~rank_v29-9-99734084.first_rank_v2_pc_rank_v29_10&utm_term=%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0',
-                'CSDN',100,"机器学习","")
+                '我是管小亮','CSDN',100,"机器学习","")
         },
     ]
     obj.interests = [
