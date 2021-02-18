@@ -4,9 +4,9 @@
       <div class="swiper-inter-item">
         <span class="swiper-item-title">{{obj.name}}</span>
         <span class="swiper-item-university" v-if="obj.univerityList.length > 0">{{obj.univerityList.split('；')[0]}}</span>
-        <a :href="obj.url">
-          <img v-bind:src="obj.cover" referrerpolicy="no-referrer" :style="{'width':width+'px', 'height':height+'px'}" v-if="show" alt="course"/>
-        </a>
+        <img v-bind:src="obj.cover" referrerpolicy="no-referrer"
+             :style="{'width':width+'px', 'height':height+'px'}" v-if="show" alt="course"
+              v-on:click="clickCourse"/>
       </div>
     </transition>
   </div>
@@ -42,6 +42,18 @@ export default {
   computed: {
     imgLateX() {
       return 'translate3d(' + (this.trans_width) + 'px,0,0)'
+    }
+  },
+  methods: {
+    clickCourse() {
+      this.$router.push({
+        name: 'Course',
+        params: {
+          id: this.obj.id,
+          name: this.obj.name,
+          type: '优质课程',
+        }
+      })
     }
   }
 }

@@ -1,11 +1,7 @@
 <template>
   <div class="course-item-container">
-    <a :href="course.course.url">
-      <img class="course-item-img" referrerpolicy="no-referrer" v-bind:src="course.course.cover" alt="course-item">
-    </a>
-    <a :href="course.course.url">
-      <p class="course-item-title">{{ course.course.name }}</p>
-    </a>
+    <img class="course-item-img" v-on:click="clickCourse" referrerpolicy="no-referrer" v-bind:src="course.course.cover" alt="course-item">
+    <p class="course-item-title" v-on:click="clickCourse">{{ course.course.name }}</p>
     <ul class="course-item-ul" v-if="course.course.titleList.length > 0">
       <li class="course-item-li" v-for="(item,index) in course.course.titleList.split('；').slice(0,4)" :key="index" >
         <p class="course-item-p">{{item}}</p>
@@ -23,6 +19,18 @@ export default {
       type: Object
     },
   },
+  methods: {
+    clickCourse() {
+      this.$router.push({
+        name: 'Course',
+        params: {
+          id: this.course.course.id,
+          name: this.course.course.name,
+          type: '优质课程',
+        }
+      })
+    }
+  }
 }
 
 </script>

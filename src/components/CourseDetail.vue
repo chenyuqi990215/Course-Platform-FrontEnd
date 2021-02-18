@@ -3,7 +3,7 @@
     <h2 class="course-name"> {{ course.course.name }}</h2>
     <div class="course-inner-container">
       <img class="course-cover" :src="course.course.cover" referrerpolicy="no-referrer" alt="course-img">
-      <div>
+      <div class="course-another-container">
         <p class="course-score-p">评分</p>
         <div class="course-score-container">
           <h1 class="course-score-h1"> {{ Math.floor(course.course.score) / 10 }}</h1>
@@ -25,18 +25,18 @@
           </div>
         </div>
         <p class="course-amount-p"><span class="course-amount-span">{{course.course.amount}}</span>播放</p>
-        <ul class="course-ul-university">
+        <ul class="course-ul-university" v-if="course.course.univerityList.length > 0">
           <li class="course-li-university" v-for="(item,index) in course.course.univerityList.split('；').slice(0,4)" :key="index" >
             <p class="course-p-university">{{item}}</p>
           </li>
         </ul>
-        <ul class="course-ul-title">
+        <ul class="course-ul-title" v-if="course.course.titleList.length > 0">
           <li class="course-li-title" v-for="(item,index) in course.course.titleList.split('；').slice(0,4)" :key="index" >
             <p class="course-p-title">{{item}}</p>
           </li>
         </ul>
         <div class="course-view-container">
-          <a :href="course.course.url">
+          <a :href="course.course.url" target=_blank>
             <p class="course-view-p">立即观看</p>
           </a>
           <p class="course-origin">来源：{{course.course.origin}}</p>
@@ -51,15 +51,12 @@
 </template>
 
 <script>
-import Data from '../entity/Data'
-import Course from "@/components/Course";
+import Course from "../components/Course";
 export default {
   name: "CourseDetail",
-  data() {
-    return {
-      course: new Data().courses[0],
-      relative_course: new Data().relative_course
-    }
+  props: {
+    course: Object,
+    relative_course: Array
   },
   components: {
     Course
@@ -202,18 +199,21 @@ p{
 }
 .course-view-p {
   font-weight: bold;
-  width: 150px;
-  height: 50px;
+  width: 90px;
+  height: 30px;
   background-color: rgb(126,172,231);
   color: white;
   text-align: center;
-  font-size: 1.5em;
-  border-radius: 10px;
-  padding-top: 15px;
+  font-size: 1.1em;
+  border-radius: 5px;
+  padding-top: 5px;
 }
 .course-origin{
   color: rgb(150,150,150);
-  margin-top: 20px;
+  margin-top: 5px;
   margin-left: 20px;
+}
+.course-another-container{
+  margin-left: 100px;
 }
 </style>

@@ -60,11 +60,14 @@ export default {
       imgList: new Data().courses,
       username: new Data().username,
       url: new Data().url,
+<<<<<<< HEAD
       cloud_url: "./assets/cloud.png",
       hot_course: new Data().courses,
       videos: new Data().videos,
       resources: new Data().resources,
       hot_question: new Data().questions
+=======
+>>>>>>> f5cfe86efeeb34028ef0a47b408ef6568dbd576f
     }
   },
   components: {

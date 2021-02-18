@@ -75,6 +75,7 @@ export default {
         if (valid) {
           this.successfulLogin = true;
           this.$emit('closeLogin', true)
+          this.$emit('successfulLogin',this.ruleForm2.name)
         } else {
           console.log("error submit!!");
           return false;

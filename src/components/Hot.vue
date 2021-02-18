@@ -14,12 +14,12 @@
         </li>
       </ul>
     </div>
-    <div class="hot-wrapper" v-if="show_question">
+    <div class="hot-wrapper" v-if="show_posting">
       <ul>
-        <li v-for="(data, index) in hot_question" :key='index'>
+        <li v-for="(data, index) in hot_posting" :key='index'>
           <a href="#">
             <span class="span-index">{{ index+1 }}、</span>
-            <span class="span-content">{{ data.question.title }}</span>
+            <span class="span-content">{{ data.posting.title }}</span>
           </a>
         </li>
       </ul>
@@ -34,16 +34,16 @@ export default {
   data() {
     return {
       show_course: true,
-      show_question: false,
+      show_posting: false,
     }
   },
   methods: {
     showCourse() {
       this.show_course = true;
-      this.show_question = false;
+      this.show_posting = false;
     },
     showQuestion() {
-      this.show_question = true;
+      this.show_posting = true;
       this.show_course = false;
     }
   },
@@ -59,7 +59,7 @@ export default {
     hot_course: {
       type: Array
     },
-    hot_question: {
+    hot_posting: {
       type: Array
     }
   }
