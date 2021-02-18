@@ -1,28 +1,26 @@
 <template>
   <div id="appSearch">
     <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
-            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
-
-            :class="{opacity_container: show_register || show_login||show_option}"></Header>
-
+            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
+    <div :class="{opacity_container: show_register || show_login || show_option}">
+      <Result :courses="hot_course" :resources="resources" :videos="videos" v-on:show="chooseToShow"> </Result>
+      <div class="course-container">
+        <div class="notice-header">
+          <span class="notice-p">找到如下"</span>
+          <span class="notice-p-content">{{search_input}}</span>
+          <span class="notice-p">"相关内容</span>
+        </div>
+        <Course2 v-if="show_course || show_all" :courses="hot_course"></Course2>
+        <Video2 v-if="show_video || show_all" :courses="videos"></Video2>
+        <Resource2 v-if="show_resource || show_all" :resources="resources"></Resource2>
+      </div>
+    </div>
+    <Footer></Footer>
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
     <Login v-if="show_login"
            v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"></Login>
     <Option v-if="show_option" v-on:submitTable="closeOption"></Option>
-    <Result :courses="hot_course" :resources="resources" :videos="videos" v-on:show="chooseToShow"> </Result>
-    <div class="course-container">
-      <div class="notice-header">
-        <span class="notice-p">找到如下"</span>
-        <span class="notice-p-content">{{search_input}}</span>
-        <span class="notice-p">"相关内容</span>
-      </div>
-      <Course2 v-if="show_course||show_all" :courses="hot_course"></Course2>
-      <Video2 v-if="show_video||show_all" :courses="videos"></Video2>
-      <Resource2 v-if="show_resource||show_all" :resources="resources" ></Resource2>
-    </div>
-
-    <Footer :class="{opacity_container: show_register || show_login||show_option}"></Footer>
   </div>
 </template>
 
@@ -38,8 +36,6 @@ import Result from "./components/Result.vue";
 import Video2 from "./components/Video2.vue";
 import Resource2 from "@/components/Resource2";
 import Course2 from "@/components/Course2";
-
-
 
 export default {
   name: 'AppSearch',
@@ -60,14 +56,10 @@ export default {
       imgList: new Data().courses,
       username: new Data().username,
       url: new Data().url,
-<<<<<<< HEAD
-      cloud_url: "./assets/cloud.png",
       hot_course: new Data().courses,
       videos: new Data().videos,
       resources: new Data().resources,
-      hot_question: new Data().questions
-=======
->>>>>>> f5cfe86efeeb34028ef0a47b408ef6568dbd576f
+      hot_question: new Data().resources
     }
   },
   components: {
