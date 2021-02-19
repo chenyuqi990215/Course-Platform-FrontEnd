@@ -5,14 +5,13 @@ import 'element-ui/lib/theme-chalk/index.css'
 import VueRouter from 'vue-router';
 import CourseDisplay from "@/CourseDisplay";
 import Home from "@/Home";
-import VeeValidate from 'vee-validate'
-
+import VeeValidate, { Validator } from "vee-validate";
+import zh_CN from 'vee-validate/dist/locale/zh_CN';
 
 Vue.use(VueRouter);
 Vue.use(ElementUI);
 Vue.use(VeeValidate);
-
-
+Validator.localize('zh_CN', zh_CN);
 
 const routers = [
     {
