@@ -5,6 +5,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import VueRouter from 'vue-router';
 import CourseDisplay from "@/CourseDisplay";
 import Home from "@/Home";
+import Posts from "@/Posts";
 
 
 Vue.use(VueRouter);
@@ -31,7 +32,7 @@ const router = new VueRouter({
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App),
+  render: h => h(Posts),
   router,
 }).$mount('#app')
 

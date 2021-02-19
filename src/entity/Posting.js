@@ -1,4 +1,4 @@
-function Posting(id,type,title,content,counter,post_time,user_id)
+function Posting(id,type,title,content,counter,comment_num,post_time,user_id)
 {
     var obj = {}
     obj.id = id;
@@ -6,6 +6,7 @@ function Posting(id,type,title,content,counter,post_time,user_id)
     obj.title = title;
     obj.content = content;
     obj.counter = counter;
+    obj.comment_num = comment_num;
     obj.post_time = post_time;
     obj.user_id = user_id;
     return obj;
