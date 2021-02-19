@@ -21,7 +21,7 @@ const routers = [
       component: CourseDisplay
     },
     {
-      path: '/home',
+      path: '/',
       name: 'Home',
       component: Home
     }
