@@ -5,10 +5,13 @@ import 'element-ui/lib/theme-chalk/index.css'
 import VueRouter from 'vue-router';
 import CourseDisplay from "@/CourseDisplay";
 import Home from "@/Home";
+import VeeValidate from 'vee-validate'
 
 
 Vue.use(VueRouter);
-Vue.use(ElementUI)
+Vue.use(ElementUI);
+Vue.use(VeeValidate);
+
 
 
 const routers = [
@@ -18,7 +21,7 @@ const routers = [
       component: CourseDisplay
     },
     {
-      path: '/',
+      path: '/home',
       name: 'Home',
       component: Home
     }
