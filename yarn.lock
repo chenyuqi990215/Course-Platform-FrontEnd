@@ -9277,6 +9277,11 @@
   "resolved" "https://registry.npm.taobao.org/vary/download/vary-1.1.2.tgz"
   "version" "1.1.2"
 
+"vee-validate@^2.0.3":
+  "integrity" "sha512-nQdBvO+zb13/2swY+CpCah4ZKg0zAzQOhmJIiaOkC8AGps1sWFNq4GiAGNbccr/2ZAsX4/2J+brb7Bj5xAreHg=="
+  "resolved" "https://registry.npmjs.org/vee-validate/-/vee-validate-2.0.3.tgz"
+  "version" "2.0.3"
+
 "vendors@^1.0.0":
   "integrity" "sha1-4rgApT56Kbk1BsPPQRANFsTErY4="
   "resolved" "https://registry.npm.taobao.org/vendors/download/vendors-1.0.4.tgz"
@@ -9371,7 +9376,7 @@
   "resolved" "https://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@^2 || ^3.0.0-0", "vue@^2.5.17", "vue@^2.6.11":
+"vue@^2 || ^3.0.0-0", "vue@^2.5.17", "vue@^2.6.11", "vue@>= 2.2.0":
   "integrity" "sha1-9evU+mvShpQD4pqJau1JBEVskSM="
   "resolved" "https://registry.npm.taobao.org/vue/download/vue-2.6.12.tgz"
   "version" "2.6.12"
