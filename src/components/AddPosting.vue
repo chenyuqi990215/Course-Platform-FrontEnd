@@ -36,7 +36,7 @@
       <textarea class="input-content" rows="5" placeholder="内容：经验感悟" v-model="content" v-if="show_guide"></textarea>
       <textarea class="input-content" rows="5" placeholder="内容：自定义内容" v-model="content" v-if="show_self"></textarea>
       <picker class="picker-emoji" v-if="show_emoji"
-          :include="['people']" :showSearch="false" :showPreview="false" :showCategories="false" @select="addEmoji"
+              :include="['people']" :showSearch="false" :showPreview="false" :showCategories="false" @select="addEmoji"
       />
     </div>
     <div class="foot-container">
@@ -142,11 +142,10 @@ export default {
   -ms-flex-direction: column;
   flex-direction: column;
   height: 100px;
-  width: 800px;
   color: #ffffff;
   border-radius: 5px;
   background: #fff;
-  left:150px;
+  left: 300px;
 }
 input {
   outline: none;

@@ -28,6 +28,8 @@
 </template>
 
 <script>
+
+
 export default {
   name: 'Header',
   props: {
@@ -42,7 +44,14 @@ export default {
   },
   methods: {
     Search() {
-      this.$emit('searchInput', this.search_input)
+      this.$emit('searchInput', this.search_input);
+
+      this.$router.push({
+        name: 'Search',
+        params:{
+          search_input:this.search_input,
+        }
+      })
     },
     attemptRegister() {
       this.$emit('attemptRegister', true)

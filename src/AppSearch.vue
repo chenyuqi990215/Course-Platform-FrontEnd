@@ -3,14 +3,14 @@
     <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
             v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
     <div :class="{opacity_container: show_register || show_login || show_option}">
-      <Result :courses="hot_course" :resources="resources" :videos="videos" v-on:show="chooseToShow"> </Result>
+      <Result :courses="courses" :resources="resources" :videos="videos" v-on:show="chooseToShow"> </Result>
       <div class="course-container">
         <div class="notice-header">
           <span class="notice-p">找到如下"</span>
           <span class="notice-p-content">{{search_input}}</span>
           <span class="notice-p">"相关内容</span>
         </div>
-        <Course2 v-if="show_course || show_all" :courses="hot_course"></Course2>
+        <Course2 v-if="show_course || show_all" :courses="courses"></Course2>
         <Video2 v-if="show_video || show_all" :courses="videos"></Video2>
         <Resource2 v-if="show_resource || show_all" :resources="resources"></Resource2>
       </div>
@@ -50,18 +50,18 @@ export default {
       show_course:false,
       show_video:false,
       show_resource:false,
-
-      search_input: "机器学习",
       successful_login: false,
+      search_input:this.$route.params.search_input,
       imgList: new Data().courses,
       username: new Data().username,
       url: new Data().url,
-      hot_course: new Data().courses,
+      courses: new Data().deep_learning.courses,
       videos: new Data().videos,
       resources: new Data().resources,
       hot_question: new Data().resources
     }
   },
+
   components: {
 
     Register,
@@ -76,6 +76,10 @@ export default {
   },
 
   methods: {
+    init() {
+
+
+    },
     searchInput: function (input) {
       this.search_input = input
     },
@@ -137,6 +141,9 @@ export default {
       }
     }
 
+  },
+  created() {
+    this.init()
   }
 }
 </script>

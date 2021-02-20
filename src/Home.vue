@@ -8,6 +8,7 @@
         <a href="#"><p>优质课程</p></a>
         <a href="#"><p>优质视频</p></a>
         <a href="#"><p>优质资源</p></a>
+        <a href="#"><p v-on:click="toPosting">论坛讨论</p></a>
       </div>
       <div class="bander-container">
         <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true"
@@ -120,6 +121,11 @@ export default {
       }
       this.username = new Data().users[idx].user.name;
       this.url = new Data().users[idx].user.portrait_url;
+    },
+    toPosting() {
+      this.$router.push({
+        name: 'Post'
+      })
     }
   }
 }
