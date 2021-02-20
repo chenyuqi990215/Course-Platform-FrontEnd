@@ -55,7 +55,7 @@ export default {
       imgList: new Data().courses,
       username: new Data().username,
       url: new Data().url,
-      courses: new Data().deep_learning.courses,
+      courses: new Data().courses,
       videos: new Data().videos,
       resources: new Data().resources,
       hot_question: new Data().resources
@@ -77,7 +77,17 @@ export default {
 
   methods: {
     init() {
-
+      console.log(this.search_input)
+      if (this.search_input === '机器学习') {
+        this.courses = new Data().machine_learning.courses;
+        this.videos = new Data().machine_learning.videos;
+        this.resources = new Data().machine_learning.resources;
+      } else {
+        console.log('deep learning')
+        this.courses = new Data().deep_learning.courses;
+        this.videos = new Data().deep_learning.videos;
+        this.resources = new Data().deep_learning.resources;
+      }
 
     },
     searchInput: function (input) {
