@@ -30,7 +30,7 @@
       <div class="post-container">
         <Posts2  :postings="postings" :users="users"></Posts2>
       </div>
-      <AddPosting> </AddPosting>
+      <AddPosting :course_title="''"> </AddPosting>
     </div>
     <Footer></Footer>
     <Register v-if="show_register"
