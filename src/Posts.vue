@@ -112,6 +112,7 @@ export default {
       this.show_login = input
     },
     change_all(){
+      this.postings = this.postingsCopy;
       this.all=false;
       this.hot=true;
       this.comment=true;
@@ -119,6 +120,7 @@ export default {
       this.question=true;
     },
     change_hot(){
+      this.postings = this.postingsCopy;
       this.all=true;
       this.hot=false;
       this.comment=true;
@@ -126,6 +128,7 @@ export default {
       this.question=true;
     },
     change_comment(){
+      this.postings = this.postingsCopy.filter(item => item.posting.type === "课程推荐");
       this.all=true;
       this.hot=true;
       this.comment=false;
@@ -133,6 +136,7 @@ export default {
       this.question=true;
     },
     change_experience(){
+      this.postings = this.postingsCopy.filter(item => item.posting.type === "经验分享");
       this.all=true;
       this.hot=true;
       this.comment=true;
@@ -140,12 +144,16 @@ export default {
       this.question=true;
     },
     change_question(){
+      this.postings = this.postingsCopy.filter(item => item.posting.type === "课程疑惑");
       this.all=true;
       this.hot=true;
       this.comment=true;
       this.experience=true;
       this.question=false;
     }
+  },
+  created() {
+    this.postingsCopy = this.postings;
   }
 }
 </script>
