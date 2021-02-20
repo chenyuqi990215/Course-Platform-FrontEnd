@@ -31,7 +31,6 @@ export default {
 
 <style scoped>
 .post-container {
-
   background:white;
   margin:0;
 }

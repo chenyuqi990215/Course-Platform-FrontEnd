@@ -5,6 +5,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import VueRouter from 'vue-router';
 import CourseDisplay from "@/CourseDisplay";
 import Home from "@/Home";
+import Posts from "@/Posts"
 import VeeValidate, { Validator } from "vee-validate";
 import zh_CN from 'vee-validate/dist/locale/zh_CN';
 
@@ -23,6 +24,11 @@ const routers = [
         path: '/',
         name: 'Home',
         component: Home
+    },
+    {
+        path: '/post',
+        name: 'Post',
+        component: Posts
     }
 ]
 

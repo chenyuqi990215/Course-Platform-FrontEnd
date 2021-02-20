@@ -101,7 +101,6 @@ export default {
     }
   },
   created() {
-    console.log('created Event  --> Goto init()')
     this.init()
   }
 }

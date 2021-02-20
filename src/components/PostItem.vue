@@ -23,14 +23,13 @@
           <div class="cai" v-if="cai_click" v-on:click="change_cai">
             <img class="bottom-img"  src="../assets/cai-click.png" alt="cai">
           </div>
-          <div class="comment"  >
+          <div class="comment">
             <img class="bottom-img"  src="../assets/talk.png" alt="talk">
             <span class="bottom-img-num">{{post.posting.comment_num}}</span>
           </div>
           <div class="time">
             <span class="bottom-img-num">{{post.posting.post_time}}</span>
           </div>
-
         </div>
       </div>
 
@@ -39,12 +38,6 @@
         <span class="user-name">{{ user.user.name }}</span>
       </div>
     </div>
-
-
-
-
-
-
   </div>
 </template>
 
@@ -93,7 +86,7 @@ li {
 }
 .post-item-container {
   margin:30px 0;
-  width:100%;
+  width:90%;
   background:white;
 }
 p {
@@ -105,12 +98,11 @@ p {
 .post-item-title {
   color: black;
   font-size: 1.1em;
-  max-width: 700px;
+  max-width: 600px;
   margin-left: 15px;
 }
 
 .post-item-ul {
-
   list-style-type: none;
   display: flex;
   flex-flow: row wrap;
@@ -149,17 +141,15 @@ p {
 }
 .user-container{
   display:flex;
-  justify-content: flex-end;
   float:right;
   margin-right:20px;
-
 }
 .ov{
   white-space: nowrap;
   overflow:hidden;
   text-overflow: ellipsis;
   font-size: smaller;
-  width:700px;
+  width:600px;
   margin:20px 20px;
 }
 .bottom-img{

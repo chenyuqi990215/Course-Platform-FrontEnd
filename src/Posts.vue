@@ -1,5 +1,5 @@
 <template>
-  <div id="appSearch" class="appSearch">
+  <div id="post" class="post">
     <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
             v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
     <div :class="{opacity_container: show_register || show_login || show_option}">
@@ -8,29 +8,29 @@
         <span>></span>
         <span class="here">论坛讨论</span>
       </nav>
-      <div class="selector">
-        <ul class="selector-ul">
-          <li :class="{selector_li:all,selector_li_click:!all}" v-on:click="change_all">
-            看帖
-          </li>
-          <li  :class="{selector_li:hot,selector_li_click:!hot}" v-on:click="change_hot" >
-            热门
-          </li>
-          <li :class="{selector_li:comment,selector_li_click:!comment}" v-on:click="change_comment">
-            推荐
-          </li>
-          <li :class="{selector_li:question,selector_li_click:!question}" v-on:click="change_question">
-            答疑
-          </li>
-          <li :class="{selector_li:experience,selector_li_click:!experience}" v-on:click="change_experience">
-            经验
-          </li>
-        </ul>
+      <div class="posting-container">
+        <div class="selector">
+          <ul class="selector-ul">
+            <li :class="{selector_li:all,selector_li_click:!all}" v-on:click="change_all">
+              看帖
+            </li>
+            <li  :class="{selector_li:hot,selector_li_click:!hot}" v-on:click="change_hot" >
+              热门
+            </li>
+            <li :class="{selector_li:comment,selector_li_click:!comment}" v-on:click="change_comment">
+              推荐
+            </li>
+            <li :class="{selector_li:question,selector_li_click:!question}" v-on:click="change_question">
+              答疑
+            </li>
+            <li :class="{selector_li:experience,selector_li_click:!experience}" v-on:click="change_experience">
+              经验
+            </li>
+          </ul>
+        </div>
+        <Posts2 class="post-outer-container" :postings="postings" :users="users"></Posts2>
+        <AddPosting :course_title="''"></AddPosting>
       </div>
-      <div class="post-container">
-        <Posts2  :postings="postings" :users="users"></Posts2>
-      </div>
-      <AddPosting> </AddPosting>
     </div>
     <Footer></Footer>
     <Register v-if="show_register"
@@ -155,13 +155,16 @@ export default {
 </script>
 
 <style>
-.appSearch{
+.post{
   background:whitesmoke;
 }
 a {
   text-decoration: none;
 }
 
+.post-outer-container {
+  width: 100%;
+}
 
 body{
   padding: 0;
@@ -186,12 +189,10 @@ nav{
 .here{
   cursor:pointer;
 }
-.post-container{
-  margin:0 20%;
+.posting-container{
+  margin:0 10%;
 }
 .selector{
-  width:62.5%;
-  margin:0 20%;
   background: rgb(230,230,230);
   border-top-left-radius: 1em;
   border-top-right-radius: 1em;
@@ -206,18 +207,22 @@ nav{
 .selector_li{
   font-size:larger;
   color:rgb(78, 78, 78);
-  padding:15px 20px 15px 20px;
+  padding:15px 30px 15px 30px;
   display:block;
   text-decoration: none;
   cursor:pointer;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
 }
 .selector_li_click{
   font-size:larger;
   color:white;
-  padding:15px 20px 15px 20px;
+  padding:15px 30px 15px 30px;
   display:block;
   background:rgb(143,161,205);
   text-decoration: none;
   cursor:pointer;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
 }
 </style>
