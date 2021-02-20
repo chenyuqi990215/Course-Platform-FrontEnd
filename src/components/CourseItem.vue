@@ -23,7 +23,7 @@ export default {
     clickCourse() {
       this.$router.push({
         name: 'Course',
-        params: {
+        query: {
           id: this.course.course.id,
           name: this.course.course.name,
           type: '优质课程',

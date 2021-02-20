@@ -51,7 +51,7 @@ export default {
       show_video:false,
       show_resource:false,
       successful_login: false,
-      search_input:this.$route.params.search_input,
+      search_input:this.$route.query.search_input,
       imgList: new Data().courses,
       username: new Data().username,
       url: new Data().url,
@@ -77,7 +77,6 @@ export default {
 
   methods: {
     init() {
-      console.log(this.search_input)
       if (this.search_input === '机器学习') {
         this.courses = new Data().machine_learning.courses;
         this.videos = new Data().machine_learning.videos;
@@ -88,10 +87,19 @@ export default {
         this.videos = new Data().deep_learning.videos;
         this.resources = new Data().deep_learning.resources;
       }
-
     },
     searchInput: function (input) {
       this.search_input = input
+      if (this.search_input === '机器学习') {
+        this.courses = new Data().machine_learning.courses;
+        this.videos = new Data().machine_learning.videos;
+        this.resources = new Data().machine_learning.resources;
+      } else {
+        console.log('deep learning')
+        this.courses = new Data().deep_learning.courses;
+        this.videos = new Data().deep_learning.videos;
+        this.resources = new Data().deep_learning.resources;
+      }
     },
     attemptLogin: function (input) {
       this.show_login = input

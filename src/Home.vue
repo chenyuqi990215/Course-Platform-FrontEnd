@@ -124,7 +124,7 @@ export default {
     },
     toPosting() {
       this.$router.push({
-        name: 'Post'
+        name: 'Post',
       })
     }
   }

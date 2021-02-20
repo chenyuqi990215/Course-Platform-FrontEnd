@@ -48,7 +48,7 @@ export default {
     clickCourse() {
       this.$router.push({
         name: 'Course',
-        params: {
+        query: {
           id: this.obj.id,
           name: this.obj.name,
           type: '优质课程',

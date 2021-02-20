@@ -40,11 +40,11 @@ export default {
       successful_login: false,
       username: new Data().username,
       url: new Data().url,
-      course_id: this.$route.params.id,
-      course_name: this.$route.params.name,
+      course_id: this.$route.query.id,
+      course_name: this.$route.query.name,
       relative_course: new Data().relative_course,
       course : new Data().total_courses[0],
-      type: this.$route.params.type
+      type: this.$route.query.type
     }
   },
   components: {

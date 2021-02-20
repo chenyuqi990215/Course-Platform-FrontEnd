@@ -47,7 +47,7 @@ export default {
       this.$emit('searchInput', this.search_input);
       this.$router.push({
         name: 'Search',
-        params:{
+        query:{
           search_input: this.search_input,
         }
       })
