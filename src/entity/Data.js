@@ -105,19 +105,21 @@ function Data() {
                 {
                     'course': new Course(0, '[中英字幕]吴恩达机器学习系列课程', 'https://www.bilibili.com/video/BV164411b7dx?from=search&seid=719799793224630018',
                         'https://i0.hdslb.com/bfs/archive/0aff68fab987a889d1cca8620266e66b2b03d9f2.jpg@640w_400h.webp', 'Bilibili',
-                        70,"100万","机器学习","斯坦福大学","")
+                        70, "100万", "机器学习", "斯坦福大学", "")
                 },
                 {
                     'course': new Course(1, '李宏毅2020机器学习深度学习(完整版)国语', 'https://www.bilibili.com/video/BV1JE411g7XF?from=search&seid=719799793224630018',
                         'https://i2.hdslb.com/bfs/archive/9685eae51d940ea37804efdcb5b92d57d191512c.jpg@640w_400h.webp', 'Bilibili',
-                        95,"100万","机器学习；深度学习","台湾大学","")
+                        95, "100万", "机器学习；深度学习", "台湾大学", "")
                 },
                 {
                     'course': new Course(2, '【一起啃书】机器学习西瓜书白话解读', 'https://www.bilibili.com/video/BV17J411C7zZ?from=search&seid=719799793224630018',
                         'https://i1.hdslb.com/bfs/archive/bfc2b7b0def91541903140bc532a16d9af8eebd7.jpg@640w_400h.webp', 'Bilibili',
-                        85,"100万","机器学习","","")
+                        85, "100万", "机器学习", "", "")
                 },
             ],
+        },
+        {
             'resources': [
                 {
                     'resource': new Resource(0,'吴恩达《机器学习系列课程》学习笔记（一）',
@@ -135,6 +137,8 @@ function Data() {
                         '我是管小亮','CSDN',100,"50万","机器学习","")
                 },
             ],
+        },
+        {
             'videos': [
                 {
                     'course': new Course(5,'机器学习-白板推导系列(一)-开篇',
@@ -157,26 +161,30 @@ function Data() {
                 {
                     'course': new Course(1, '李宏毅2020机器学习深度学习(完整版)国语', 'https://www.bilibili.com/video/BV1JE411g7XF?from=search&seid=719799793224630018',
                         'https://i2.hdslb.com/bfs/archive/9685eae51d940ea37804efdcb5b92d57d191512c.jpg@640w_400h.webp', 'Bilibili',
-                        95,"100万","机器学习；深度学习","台湾大学","")
+                        95, "100万", "机器学习；深度学习", "台湾大学", "")
                 },
                 {
                     'course': new Course(7, '深度学习（卷积网络、循环神经网络、对抗神经网络、Tensorflow实战）', 'https://www.bilibili.com/video/BV1P4411f7hK?from=search&seid=17104411751473767918',
                         'https://i1.hdslb.com/bfs/archive/07aed908d43ca6af414d2691e64b4f4d55ad0896.jpg@640w_400h.webp', 'Bilibili',
-                        85,"150万","深度学习","","")
+                        85, "150万", "深度学习", "", "")
                 },
             ],
+        },
+        {
             'resources': [
                 {
-                    'resource': new Resource(3,'吴恩达深度学习笔记（1）-深度学习引言',
+                    'resource': new Resource(3, '吴恩达深度学习笔记（1）-深度学习引言',
                         'https://www.jianshu.com/p/d03e95fc3734',
-                        '极客Array','简书',95,"50万","深度学习","")
+                        '极客Array', '简书', 95, "50万", "深度学习", "")
                 },
                 {
-                    'resource': new Resource(4,'深度学习笔记01 - 深度学习的基础概念',
+                    'resource': new Resource(4, '深度学习笔记01 - 深度学习的基础概念',
                         'https://www.jianshu.com/p/b8956b6a4e34',
-                        '瓦力人工智能',100,"50万","深度学习","")
+                        '瓦力人工智能', 100, "50万", "深度学习", "")
                 },
             ],
+        },
+        {
             'videos': [
                 {
                     'course': new Course(8,'图深度学习-07讲-图论基础7 (复杂图及其在实际生活中的应用)',
