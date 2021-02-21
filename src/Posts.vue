@@ -36,7 +36,8 @@
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
     <Login v-if="show_login"
-           v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"></Login>
+           v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"
+           v-on:successfulLogin="successfulLogin"></Login>
     <Option v-if="show_option" v-on:submitTable="closeOption"></Option>
   </div>
 </template>
@@ -150,6 +151,21 @@ export default {
       this.comment=true;
       this.experience=true;
       this.question=false;
+    },
+    successfulLogin: function (input) {
+      var idx;
+      if (input === "Chen Yuqi") {
+        idx = 0;
+      } else {
+        idx = 1;
+      }
+      this.username = new Data().users[idx].user.name;
+      this.url = new Data().users[idx].user.portrait_url;
+    },
+    toPosting() {
+      this.$router.push({
+        name: 'Post',
+      })
     }
   },
   created() {
