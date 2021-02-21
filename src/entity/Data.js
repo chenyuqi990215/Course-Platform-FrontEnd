@@ -40,7 +40,7 @@ function Data() {
         {
             'course': new Course(6,'【机器学习算法实战】基于Apriori算法的商品零售购物',
                 'https://www.bilibili.com/video/BV15Z4y1p7ev?from=search&seid=12396233812789999927',
-                'https//i1.hdslb.com/bfs/archive/369633f29bdc8499b57249fbd71095fe25ab05bb.png@640w_400h.webp',
+                'https://i1.hdslb.com/bfs/archive/369633f29bdc8499b57249fbd71095fe25ab05bb.png@640w_400h.webp',
                 'Bilibili',70,"1万","机器学习","","机器学习")
         },
         {
@@ -144,7 +144,7 @@ function Data() {
             {
                 'course': new Course(6, '【机器学习算法实战】基于Apriori算法的商品零售购物',
                     'https://www.bilibili.com/video/BV15Z4y1p7ev?from=search&seid=12396233812789999927',
-                    'https//i1.hdslb.com/bfs/archive/369633f29bdc8499b57249fbd71095fe25ab05bb.png@640w_400h.webp',
+                    'https://i1.hdslb.com/bfs/archive/369633f29bdc8499b57249fbd71095fe25ab05bb.png@640w_400h.webp',
                     'Bilibili', 70, "1万", "机器学习", "", "机器学习")
             }]
     }
