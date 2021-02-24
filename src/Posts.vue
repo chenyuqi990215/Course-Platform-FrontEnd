@@ -4,11 +4,11 @@
             v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
             v-on:toCenter="toCenter"></Header>
     <div :class="{opacity_container: show_register || show_login || show_option}">
-      <nav>
-        <span class="goToHome">首页</span>
-        <span>></span>
-        <span class="here">论坛讨论</span>
-      </nav>
+      <div class="tag-container">
+        <p>
+          首页  >  论坛讨论
+        </p>
+      </div>
       <div class="posting-container">
         <div class="selector">
           <ul class="selector-ul">

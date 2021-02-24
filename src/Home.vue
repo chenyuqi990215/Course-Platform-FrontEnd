@@ -22,7 +22,10 @@
           <img src="./assets/cloud.png">
         </div>
       </div>
-      <posts3 class="post-outer-container" :postings="postings" :users="users" v-if="successful_login"></posts3>
+      <div style="margin-right: 20%">
+        <posts3 class="post-outer-container" :postings="postings" :users="users" v-if="successful_login"></posts3>
+      </div>
+
       <Interest :courses="hot_course" :resources="hot_resource" :interests="interests"
                 v-if="successful_login"></Interest>
 

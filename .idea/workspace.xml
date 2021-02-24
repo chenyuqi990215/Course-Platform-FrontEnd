@@ -24,8 +24,9 @@
       <change beforePath="$PROJECT_DIR$/dist/css/app.08c79b74.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/css/app.2449561e.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/css/app.28aca6ab.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CourseDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CourseDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Posts4.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Posts4.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Posts.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Posts.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Posts3.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Posts3.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +155,7 @@
       <workItem from="1613813306077" duration="7719000" />
       <workItem from="1613831107166" duration="4112000" />
       <workItem from="1613889018270" duration="1735000" />
-      <workItem from="1613975722631" duration="18781000" />
+      <workItem from="1613975722631" duration="19773000" />
     </task>
     <servers />
   </component>

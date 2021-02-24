@@ -41,7 +41,7 @@ export default {
 }
 .post-container {
   width:100%;
-  margin-left:10%;
+  margin-left:13%;
   background:white;
 
 }
@@ -54,7 +54,7 @@ export default {
 }
 
 .post-li {
-  width:17%;
+  width:25%;
   padding: 0;
   margin: 0;
 }
