@@ -10,6 +10,7 @@ import Posts from "@/Posts"
 import AppSearch from "@/AppSearch";
 import VeeValidate, { Validator } from "vee-validate";
 import zh_CN from 'vee-validate/dist/locale/zh_CN';
+import CenterHome from "@/CenterHome";
 
 Vue.use(VueRouter);
 Vue.use(ElementUI);
@@ -42,6 +43,11 @@ const routers = [
         path:'/search',
         name:'Search',
         component:AppSearch
+    },
+    {
+        path:'/center',
+        name:'Center',
+        component: CenterHome
     }
 ]
 

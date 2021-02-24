@@ -1,8 +1,7 @@
 <template>
-  <div id="home">
+  <div id="post" class="post">
     <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
-            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
-            v-on:toCenter="toCenter"></Header>
+            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
     <div :class="{opacity_container: show_register || show_login || show_option}">
       <div class="tag-container">
         <a href="#"><p>首页</p></a>
@@ -11,20 +10,13 @@
         <a href="#"><p>优质资源</p></a>
         <a href="#"><p v-on:click="toPosting">论坛讨论</p></a>
       </div>
-      <div class="bander-container">
-        <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true"
-                :autoTime="8000"></Swiper>
-        <Hot :width="500" :height="400" :hot_course="hot_course" :hot_posting="hot_posting"></Hot>
+      <div class="center-container">
+        <CenterNav v-on:CenterSelect="CenterSelect" :user="user" :msg_count="msg_count"></CenterNav>
+        <Info class="info-outer-container" v-if="type === 'info'"></Info>
+        <Save class="info-outer-container" v-if="type === 'save'"></Save>
+        <Msg class="info-outer-container" v-if="type === 'msg'"></Msg>
+        <Post class="info-outer-container" v-if="type === 'post'"></Post>
       </div>
-      <div class="cloud-container">
-        <p class="cloud">主题指数</p>
-        <div>
-          <img src="./assets/cloud.png">
-        </div>
-      </div>
-      <Interest :courses="hot_course" :resources="hot_resource" :interests="interests"
-                v-if="successful_login"></Interest>
-      <Origin></Origin>
     </div>
     <Footer></Footer>
     <Register v-if="show_register"
@@ -37,51 +29,49 @@
 </template>
 
 <script>
-
-import Data from "./entity/Data"
+import Data from "./entity/Data";
 import Header from "./components/Header.vue";
-import Swiper from './components/Swiper.vue';
 import Footer from "./components/Footer.vue";
 import Register from "./components/Register.vue";
 import Login from "./components/Login.vue";
 import Option from "./components/Option.vue";
-import Hot from "./components/Hot.vue";
-import Origin from "./components/Origin";
-import Interest from "@/components/Interest";
+import CenterNav from "@/components/CenterNav";
+import Info from "@/components/Info";
+import Save from "@/components/Save";
+import Post from "@/components/Post";
+import Msg from "@/components/Msg"
+
 
 export default {
-  name: 'Home',
+  name: 'CenterHome',
   data() {
     return {
-      test_img: 'https://i0.hdslb.com/bfs/archive/0aff68fab987a889d1cca8620266e66b2b03d9f2.jpg@640w_400h.webp',
       successful_register: false,
       show_register: false,
       show_login: false,
-      show_option: false,
-
-      search_input: "Search What?",
+      show_option:false,
+      search_input: "机器学习",
       successful_login: false,
-      imgList: new Data().courses,
-      username: "",
-      url: "",
-      cloud_url: "./assets/cloud.png",
-      hot_course: new Data().courses,
-      hot_posting: new Data().postings,
-      hot_resource: new Data().resources,
-      interests: new Data().interests,
-      user_id: 0,
+      username: new Data().username,
+      url: new Data().url,
+      users: new Data().users,
+      user: new Data().users[0].user,
+      type: 'info',
+      user_id: this.$route.query.id,
+      msg_count: 100,
     }
   },
   components: {
-    Interest,
-    Origin,
-    Hot,
+    CenterNav,
     Register,
     Footer,
-    Swiper,
     Header,
     Login,
-    Option
+    Option,
+    Info,
+    Save,
+    Msg,
+    Post
   },
   methods: {
     searchInput: function (input) {
@@ -109,8 +99,8 @@ export default {
       this.show_login = !input
       this.show_register = input
     },
-    closeOption: function (input) {
-      this.show_option = !input
+    closeOption:function (input) {
+      this.show_option=!input
       this.successful_register = input
       this.show_login = input
     },
@@ -128,79 +118,32 @@ export default {
         name: 'Post',
       })
     },
-    toCenter() {
-      this.$router.push({
-        name: 'Center',
-        query: {
-          id: this.user_id,
-        }
-      })
-    },
+    CenterSelect(input) {
+      this.type= input
+    }
+  },
+  created() {
+    this.user = this.users[this.user_id].user;
   }
 }
 </script>
 
-<style>
-#home {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-}
-
+<style scoped>
 a {
   text-decoration: none;
 }
-
-.tag-container {
-  padding-left: 10%;
-  background-color: rgb(231, 231, 231);
-  display: flex;
-}
-
-.tag-container p {
-  color: black;
-  margin-right: 50px;
-}
-
-body {
+body{
   padding: 0;
   margin: 0;
 }
-
-.swiper-outer-container {
-  border-left: solid 70px;
-  border-right: solid 70px;
-  border-image: linear-gradient(to left, black 0%, rgb(200, 200, 200) 10%, rgb(200, 200, 200) 90%, black 100%) 60 60 60 60;
-}
-
-.bander-container {
+.center-container {
   display: flex;
-  background-color: black;
-  justify-content: center;
+  background-color: rgb(250,250,250);
 }
-
-.cloud-container {
-  background-color: white;
-  margin: 5% 10%;
-}
-
-.cloud-container p {
-  font-weight: bold;
-  font-size: 1.3em;
-}
-
-.cloud-container img {
-  padding: 30px;
-  width: 600px;
-}
-
-.cloud-container div {
-  border: 8px solid rgb(128, 168, 245);
-  padding-left: 20%;
-  padding-right: 20%;
-  border-radius: 8px;
-}
-
 .opacity_container {
   filter: opacity(50%);
 }
-
+.info-outer-container {
+  margin-left: 40%;
+}
 </style>

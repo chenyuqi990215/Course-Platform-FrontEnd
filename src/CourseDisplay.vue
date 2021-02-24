@@ -1,7 +1,8 @@
 <template>
   <div id="display">
     <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
-            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
+            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
+            v-on:toCenter="toCenter"></Header>
     <div :class="{opacity_container: show_register || show_login || show_option}">
       <div class="tag-container">
         <p>
@@ -44,7 +45,8 @@ export default {
       course_name: this.$route.query.name,
       relative_course: new Data().relative_course,
       course : new Data().total_courses[0],
-      type: this.$route.query.type
+      type: this.$route.query.type,
+      user_id: 0,
     }
   },
   components: {
@@ -89,15 +91,22 @@ export default {
       this.successful_register = input
       this.show_login = input
     },
+    toCenter() {
+      this.$router.push({
+        name: 'Center',
+        query: {
+          id: this.user_id
+        }
+      })
+    },
     successfulLogin: function (input) {
-      var idx;
       if (input === "Chen Yuqi") {
-        idx = 0;
+        this.user_id = 0;
       } else {
-        idx = 1;
+        this.user_id = 1;
       }
-      this.username = new Data().users[idx].user.name;
-      this.url = new Data().users[idx].user.portrait_url;
+      this.username = new Data().users[this.user_id].user.name;
+      this.url = new Data().users[this.user_id].user.portrait_url;
     }
   },
   created() {
