@@ -1,7 +1,8 @@
 <template>
   <div id="home">
     <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
-            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
+            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
+            v-on:toCenter="toCenter"></Header>
     <div :class="{opacity_container: show_register || show_login || show_option}">
       <div class="tag-container">
         <a href="#"><p>首页</p></a>
@@ -72,6 +73,7 @@ export default {
       hot_posting: new Data().postings,
       hot_resource: new Data().resources,
       interests: new Data().interests,
+      user_id: 0,
       postings:new Data().postings,
       users: new Data().users,
     }
@@ -120,20 +122,27 @@ export default {
       this.show_login = input
     },
     successfulLogin: function (input) {
-      var idx;
       if (input === "Chen Yuqi") {
-        idx = 0;
+        this.user_id = 0;
       } else {
-        idx = 1;
+        this.user_id = 1;
       }
-      this.username = new Data().users[idx].user.name;
-      this.url = new Data().users[idx].user.portrait_url;
+      this.username = new Data().users[this.user_id].user.name;
+      this.url = new Data().users[this.user_id].user.portrait_url;
     },
     toPosting() {
       this.$router.push({
         name: 'Post',
       })
-    }
+    },
+    toCenter() {
+      this.$router.push({
+        name: 'Center',
+        query: {
+          id: this.user_id,
+        }
+      })
+    },
   }
 }
 </script>

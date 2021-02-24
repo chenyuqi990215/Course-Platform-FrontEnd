@@ -1,7 +1,8 @@
 <template>
   <div id="post" class="post">
     <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
-            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
+            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
+            v-on:toCenter="toCenter"></Header>
     <div :class="{opacity_container: show_register || show_login || show_option}">
       <nav>
         <span class="goToHome">首页</span>
@@ -69,7 +70,8 @@ export default {
       hot:true,
       comment:true,
       question:true,
-      experience:true
+      experience:true,
+      user_id: 0
     }
   },
   components: {
@@ -153,20 +155,27 @@ export default {
       this.question=false;
     },
     successfulLogin: function (input) {
-      var idx;
       if (input === "Chen Yuqi") {
-        idx = 0;
+        this.user_id = 0;
       } else {
-        idx = 1;
+        this.user_id = 1;
       }
-      this.username = new Data().users[idx].user.name;
-      this.url = new Data().users[idx].user.portrait_url;
+      this.username = new Data().users[this.user_id].user.name;
+      this.url = new Data().users[this.user_id].user.portrait_url;
     },
     toPosting() {
       this.$router.push({
         name: 'Post',
       })
-    }
+    },
+    toCenter() {
+      this.$router.push({
+        name: 'Center',
+        query: {
+          id: this.user_id
+        }
+      })
+    },
   },
   created() {
     this.postingsCopy = this.postings;

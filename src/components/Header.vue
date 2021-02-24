@@ -11,7 +11,7 @@
           <img class="search-logo" src="../assets/search.svg" alt="Search Img" v-on:click="Search">
         </div>
         <div class="self-center-container">
-          <p class="text" v-if="login">个人中心</p>
+          <p class="text" v-if="login" v-on:click="toCenter">个人中心</p>
         </div>
         <div class="self-container">
           <a href="#">
@@ -54,6 +54,9 @@ export default {
     },
     attemptRegister() {
       this.$emit('attemptRegister', true)
+    },
+    toCenter() {
+      this.$emit('toCenter',true)
     }
   }
 }
@@ -155,6 +158,7 @@ input:focus {
   font-size: .9em;
   margin: 0 10px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .portrait {
