@@ -1,9 +1,9 @@
 <template>
   <div class="resource-item-container">
     <div class="resource-information-container">
-      <a :href="resource.resource.url">
-        <span class="resource-item-title">{{ resource.resource.name }}</span>
-      </a>
+
+        <span class="resource-item-title" v-on:click="clickResource">{{ resource.resource.name }}</span>
+
       <ul class="resource-item-ul" v-if="resource.resource.titleList.length > 0">
         <li class="resource-item-li" v-for="(item,index) in resource.resource.titleList.split('；').slice(0,4)" :key="index" >
           <p class="resource-item-p">{{item}}</p>
@@ -26,6 +26,18 @@ export default {
       type: Object
     },
   },
+  methods:{
+    clickResource() {
+      this.$router.push({
+        name: 'Resource',
+        query: {
+          id: this.resource.resource.id,
+          name: this.resource.resource.name,
+          type: '优质资源',
+        }
+      })
+    }
+  }
 }
 
 </script>
@@ -60,6 +72,7 @@ p {
   font-size: 1.1em;
   max-width: 500px;
   margin-left: 15px;
+  cursor:pointer;
 }
 
 .resource-item-ul {

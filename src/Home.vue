@@ -21,8 +21,10 @@
           <img src="./assets/cloud.png">
         </div>
       </div>
+      <posts3 class="post-outer-container" :postings="postings" :users="users" v-if="successful_login"></posts3>
       <Interest :courses="hot_course" :resources="hot_resource" :interests="interests"
                 v-if="successful_login"></Interest>
+
       <Origin></Origin>
     </div>
     <Footer></Footer>
@@ -47,6 +49,8 @@ import Option from "./components/Option.vue";
 import Hot from "./components/Hot.vue";
 import Origin from "./components/Origin";
 import Interest from "@/components/Interest";
+import Posts3 from "./components/Posts3.vue";
+
 
 export default {
   name: 'Home',
@@ -67,7 +71,9 @@ export default {
       hot_course: new Data().courses,
       hot_posting: new Data().postings,
       hot_resource: new Data().resources,
-      interests: new Data().interests
+      interests: new Data().interests,
+      postings:new Data().postings,
+      users: new Data().users,
     }
   },
   components: {
@@ -79,7 +85,8 @@ export default {
     Swiper,
     Header,
     Login,
-    Option
+    Option,
+    Posts3,
   },
   methods: {
     searchInput: function (input) {
@@ -189,9 +196,16 @@ body {
   padding-right: 20%;
   border-radius: 8px;
 }
+.post-outer-container{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 
 .opacity_container {
   filter: opacity(50%);
 }
 
+.post-outer-container {
+  width: 100%;
+}
 </style>

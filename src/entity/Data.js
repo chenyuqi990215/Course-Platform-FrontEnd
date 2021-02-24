@@ -218,6 +218,18 @@ function Data() {
                 '我是管小亮','CSDN',100,"50万","机器学习","")
         },
     ]
+    obj.relative_resource =[
+        {
+            'resource': new Resource(0,'吴恩达《机器学习系列课程》学习笔记（一）',
+                'https://blog.csdn.net/tangxiaoyin/article/details/105016097?ops_request_misc=%25257B%252522request%25255Fid%252522%25253A%252522161336842816780266267053%252522%25252C%252522scm%252522%25253A%25252220140713.130102334..%252522%25257D&request_id=161336842816780266267053&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-4-105016097.first_rank_v2_pc_rank_v29_10&utm_term=%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0',
+                "唐门教主",'CSDN',100,"50万","机器学习","")
+        },
+        {
+            'resource': new Resource(1,'机器学习知识点笔记（一）',
+                'https://blog.csdn.net/qq_42189368/article/details/87213237?ops_request_misc=%25257B%252522request%25255Fid%252522%25253A%252522161336842816780266267053%252522%25252C%252522scm%252522%25253A%25252220140713.130102334..%252522%25257D&request_id=161336842816780266267053&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~baidu_landing_v2~default-6-87213237.first_rank_v2_pc_rank_v29_10&utm_term=%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0',
+                '邦戈栗子','CSDN',100,"50万","机器学习","")
+        },
+    ]
     obj.interests = [
         {
             'label': '机器学习',
@@ -236,7 +248,14 @@ function Data() {
         },
         {
             'posting': new Posting(2,'经验分享','我正在学习JAVA基础，马上就要学习完了，之后我应该怎么继续深入？',"很迷茫，我有点想学习写网站，但是什么都不知道，也不知道从什么地方开始学起，JAVAWeb我也是只知道这个可用来写网站，其他的什么都不知道。",32,100,'2020-11-20',1),
-        }
+        },
+        {
+            'posting': new Posting(3,'课程疑惑','Python有做大型游戏的潜力吗？',
+                "NeoX和Messiah,都使用Python作为脚本语言。你最近所了解的比较火的挂着猪厂旗号的，也都是Python写的。",16,100,'2021-2-23',0),
+        },
+        {
+            'posting': new Posting(4,'经验分享','PHP、JAVA、Python、C、C++这几种编程语言都各有什么特点或优点？',"PHP：没有优点 Java：库多、库多、库多 Python：语法清楚、语法清楚、语法清楚  C：能操纵底层，能细粒度优化性能。",32,34,'2021-2-20',0),
+        },
     ]
     obj.users = [
         {
