@@ -110,12 +110,14 @@ export default {
       this.show_guide = false;
     },
     clickSelf() {
+      this.title = "";
       this.show_recommend = false;
       this.show_question = false;
       this.show_self = true;
       this.show_guide = false;
     },
     clickGuide() {
+      this.title = "";
       this.show_recommend = false;
       this.show_question = false;
       this.show_self = false;
