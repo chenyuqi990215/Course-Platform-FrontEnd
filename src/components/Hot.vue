@@ -6,7 +6,7 @@
     </div>
     <div class="hot-wrapper" v-if="show_course">
       <ul>
-        <li v-for="(data, index) in hot_course" :key='index'>
+        <li v-for="(data, index) in hot_course.slice(0,3)" :key='index'>
           <a href="#">
             <span class="span-index">{{ index+1 }}、</span>
             <span class="span-content">{{ data.course.name }}</span>
@@ -16,7 +16,7 @@
     </div>
     <div class="hot-wrapper" v-if="show_posting">
       <ul>
-        <li v-for="(data, index) in hot_posting" :key='index'>
+        <li v-for="(data, index) in hot_posting.slice(0,3)" :key='index'>
           <a href="#">
             <span class="span-index">{{ index+1 }}、</span>
             <span class="span-content">{{ data.posting.title }}</span>
