@@ -13,7 +13,7 @@
     </div>
     <div  v-if="resource.resource.cover !== ''">
       <span class="resource-item-cover">博主：{{resource.resource.cover}}</span>
-      <span class="resource-item-score">浏览量：{{resource.resource.score}}</span>
+      <span class="resource-item-score">浏览量：{{resource.resource.amount}}</span>
     </div>
   </div>
 </template>

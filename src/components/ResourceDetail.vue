@@ -1,12 +1,19 @@
 <template>
   <div class="resource-detail-container">
-    <p class="resource-score-p">评分</p>
     <h2 class="resource-name"> {{ resource.resource.name }}</h2>
     <div class="resource-inner-container">
       <div class="resource-another-container">
-        <p class="resource-score-p">评分</p>
-        <div class="resource-score-container">
-          <h1 class="resource-score-h1"> {{ Math.floor(resource.resource.score) / 10 }}</h1>
+        <div  class="resource-information" v-if="resource.resource.cover !== ''">
+          <span class="title">博主：</span><span class="resource-p">{{resource.resource.cover}}</span>
+        </div>
+          <br>
+        <div class="resource-information">
+          <span class="title">来源：</span> <span class="resource-p">{{resource.resource.origin}}</span>
+        </div>
+        <br>
+        <div class="resource-information">
+        <span class="title">评分:</span>
+          <span class="resource-score-h1"> {{ Math.floor(resource.resource.score) / 10 }}</span>
           <div class="star-rating">
             <div class="star-rating-top" :style="{width:Math.floor(resource.resource.score)+'%'}">
               <span></span>
@@ -24,8 +31,7 @@
             </div>
           </div>
         </div>
-        <p class="resource-amount-p"><span class="resource-amount-span">{{resource.resource.amount}}</span>播放</p>
-
+        <br>
         <ul class="resource-ul-title" v-if="resource.resource.titleList.length > 0">
           <li class="resource-li-title" v-for="(item,index) in resource.resource.titleList.split('；').slice(0,4)" :key="index" >
             <p class="resource-p-title">{{item}}</p>
@@ -33,20 +39,22 @@
         </ul>
         <div class="resource-view-container">
           <a :href="resource.resource.url" target=_blank>
-            <p class="resource-view-p">立即浏览</p>
+            <p class="resource-view-p">阅读全文</p>
           </a>
-          <p class="resource-origin">来源：{{resource.resource.origin}}</p>
+          <p class="resource-p-amount">{{resource.resource.amount}}点击</p>
         </div>
       </div>
     </div>
+    <div class="resource-relative-container">
+      <h3 class="resource-relative-h3">相似笔记</h3>
+      <Resource class="resource-relative-course" :resources="relative_resource"></Resource>
+    </div>
+
     <div class="post-outer-container">
       <posts4 class="post-outer-container" :postings="postings" :users="users" :course_title=" resource.resource.name"></posts4>
     </div>
 
-    <div class="resource-relative-container">
-      <h3 class="resource-relative-h3">相似课程</h3>
-      <Resource class="resource-relative-course" :resources="relative_resources"></Resource>
-    </div>
+
   </div>
 </template>
 
@@ -65,7 +73,7 @@ export default {
 
   props: {
     resource: Object,
-    relative_resources: Array
+    relative_resource: Array
   },
   components: {
     Resource,
@@ -94,13 +102,23 @@ p{
   margin: 0;
   padding: 0;
 }
+.resource-score{
+  display:flex;
+}
+.resource-name{
+  margin-bottom:30px;
+}
+.resource-information{
+  margin:0;
+  display:flex;
+}
 .star-rating {
   unicode-bidi: bidi-override;
   color: #ddd;
   font-size: 0;
   height: 25px;
-  margin-top: 5px;
-  margin-left: 15px;
+  margin-top: -3px;
+  margin-left: 5px;
   position: relative;
   display: table;
   padding: 0;
@@ -134,6 +152,7 @@ p{
   z-index: 0;
 }
 .resource-ul-title {
+  margin-left:-10px;
   list-style-type: none;
   display: flex;
   flex-flow: row wrap;
@@ -153,40 +172,36 @@ p{
   border-radius: 5px;
   font-size: 0.6em;
 }
-.resource-ul-university {
-  list-style-type: none;
-  display: flex;
-  flex-flow: row wrap;
-  align-content: flex-start;
-  width: 250px;
-}
-.resource-li-university {
-  flex:0 0 50%;
-}
-.resource-p-university {
-  width:80px;
-  background-color: rgb(143, 161, 205);
-  color: white;
-  margin:5px 10px;
-  padding: 5px;
-  text-align: center;
-  border-radius: 5px;
-  font-size: 0.6em;
-}
+
 .resource-detail-container {
   margin: 30px 150px;
 }
 .resource-inner-container {
-  margin: 10px;
+  margin-left: 0;
+  margin-top: 10px;
   display: flex;
 }
 
 .resource-relative-container {
-  margin: 0;
+  margin:50px 0;
 }
-.resource-score-p {
+.title{
+  color: black;
+  font-size: 1.1em;
+
+}
+.resource-p {
   color: rgb(150,150,150);
   font-size: 1.1em;
+  margin-left:0;
+  padding:0;
+}
+.resource-p-amount{
+  color: rgb(150,150,150);
+  font-size: 1.1em;
+  margin-left:10px;
+  margin-top:10px;
+  padding:0;
 }
 .resource-score-container {
   display: flex;
@@ -195,6 +210,7 @@ p{
 .resource-score-h1 {
   width: 50px;
   text-align: center;
+  padding-top: 5px;
 }
 .resource-amount-p{
   margin-top: 10px;
@@ -202,7 +218,7 @@ p{
 .resource-view-container{
   margin-top: 20px;
   display: flex;
-  justify-content: flex-start;
+
 }
 .resource-view-p {
   font-weight: bold;
@@ -215,17 +231,16 @@ p{
   border-radius: 5px;
   padding-top: 5px;
 }
-.resource-origin{
-  color: rgb(150,150,150);
-  margin-top: 5px;
-  margin-left: 20px;
-}
+
 .resource-another-container{
-  margin-left: 100px;
+  margin-left: 0;
 }
 .post-outer-container{
   width:100%;
   margin-left:0;
 
+}
+.resource-relative-course{
+  margin-left: -10px;
 }
 </style>
