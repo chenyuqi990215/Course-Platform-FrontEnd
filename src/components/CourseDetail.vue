@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="post-outer-container">
-      <posts4 class="post-outer-container" :postings="postings" :users="users" :course_title=" course.course.name"></posts4>
+      <posts4 :postings="postings" :users="users" :course_title=" course.course.name"></posts4>
     </div>
 
     <div class="course-relative-container">
@@ -178,7 +178,7 @@ p{
   font-size: 0.6em;
 }
 .course-detail-container {
-  margin: 30px 150px;
+  margin: 30px 200px 30px 150px;
 }
 .course-inner-container {
   margin: 10px;
@@ -231,8 +231,6 @@ p{
   margin-left: 100px;
 }
 .post-outer-container{
-  width:100%;
-  margin-left:0;
-
+  margin: 10px;
 }
 </style>

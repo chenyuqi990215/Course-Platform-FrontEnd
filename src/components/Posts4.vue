@@ -1,23 +1,25 @@
 <template>
   <div class="post-container">
     <p class="head">相关讨论</p>
-    <div class="upper-half">
-    <div class="title-wrapper">
-      <p :class="{selector_li:!other,selector_li_click:other}" v-on:click="change_other">全部类型</p>
-      <p :class="{selector_li:!comment,selector_li_click:comment}" v-on:click="change_comment">课程推荐</p>
-      <p :class="{selector_li:!question,selector_li_click:question}" v-on:click="change_question">课程答疑</p>
-      <p :class="{selector_li:!experience,selector_li_click:experience}" v-on:click="change_experience">经验分享</p>
+    <div class="post-inner-container">
+      <div class="upper-half">
+        <div class="title-wrapper">
+          <p :class="{selector_li:!other,selector_li_click:other}" v-on:click="change_other">全部类型</p>
+          <p :class="{selector_li:!comment,selector_li_click:comment}" v-on:click="change_comment">课程推荐</p>
+          <p :class="{selector_li:!question,selector_li_click:question}" v-on:click="change_question">课程答疑</p>
+          <p :class="{selector_li:!experience,selector_li_click:experience}" v-on:click="change_experience">经验分享</p>
 
+        </div>
+        <div class="to-post" v-on:click="show_AddPosting">
+          发布帖子
+        </div>
+      </div>
+      <ul class="post-ul">
+        <li class="post-li" v-for="(item,index) in postings.slice(start_num,start_num+4)" :key="index">
+          <PostItem3 class="post-item" :post="item" :user="users[item.posting.user_id]" ></PostItem3>
+        </li>
+      </ul>
     </div>
-    <div class="to-post" v-on:click="show_AddPosting">
-      发布帖子
-    </div>
-    </div>
-    <ul class="post-ul">
-      <li class="post-li" v-for="(item,index) in postings.slice(start_num,start_num+4)" :key="index">
-        <PostItem3 class="post-item" :post="item" :user="users[item.posting.user_id]" ></PostItem3>
-      </li>
-    </ul>
     <AddPosting  class="add-posting" :course_title="course_title" v-if="AddPosting"></AddPosting>
   </div>
 </template>
@@ -130,10 +132,10 @@ export default {
 .title-wrapper{
   position: relative;
   display: flex;
+  width:80%;
   flex-wrap: wrap;
   background-color: white;
   border-bottom: 3px solid rgb(230,230,230);
-  width:63%;
   margin:5px 0 30px 1%;
 }
 .title-wrapper p {
@@ -169,14 +171,12 @@ export default {
   border-radius: 5px;
   margin-top:32px;
   height:24px;
+  margin-left: 10%;
 }
 .add-posting{
-  width:65%;
   margin:15px 0 30px 1%;
 }
 .post-container {
-  width:100%;
-  margin-left:10%;
   background:white;
 
 }
@@ -186,17 +186,17 @@ export default {
   padding: 0;
   margin: 0;
   display:flex;
+  justify-content: flex-start;
 }
 
 .post-li {
-  width:18%;
+  width:250px;
   padding: 0;
   margin: 0;
 }
 .post-item {
   margin: 0;
   padding: 0;
-
 }
 
 </style>
