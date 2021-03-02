@@ -6509,6 +6509,11 @@
   dependencies:
     "path-key" "^3.0.0"
 
+"npmx@^0.0.0":
+  "integrity" "sha1-N+wtFmH8QyKf8XjOxoJhTS2KFBM="
+  "resolved" "https://registry.npmjs.org/npmx/-/npmx-0.0.0.tgz"
+  "version" "0.0.0"
+
 "nth-check@^1.0.2":
   "integrity" "sha1-sr0pXDfj3VijvwcAN2Zjuk2c8Fw="
   "resolved" "https://registry.npm.taobao.org/nth-check/download/nth-check-1.0.2.tgz"
@@ -9392,6 +9397,11 @@
   "integrity" "sha1-9evU+mvShpQD4pqJau1JBEVskSM="
   "resolved" "https://registry.npm.taobao.org/vue/download/vue-2.6.12.tgz"
   "version" "2.6.12"
+
+"vuex@^3.6.2":
+  "integrity" "sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw=="
+  "resolved" "https://registry.npmjs.org/vuex/-/vuex-3.6.2.tgz"
+  "version" "3.6.2"
 
 "watchpack-chokidar2@^2.0.1":
   "integrity" "sha1-OFAAcu5uzmbzdpk2lQ6hdxvhyVc="
