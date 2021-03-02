@@ -243,4 +243,6 @@ p{
 .resource-relative-course{
   margin-left: -10px;
 }
+
 </style>
+
