@@ -73,6 +73,13 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
+          this.$axios.post('http://47.100.79.77:8080/signIn?username='+this.ruleForm2.name+'&password='+this.ruleForm2.pass, {
+              headers:{   //设置上传请求头
+                'Content-Type':'application/json',
+              },
+          }).then((res)=>{
+            console.log(res)
+          })
           this.successfulLogin = true;
           this.$emit('closeLogin', true)
           this.$emit('successfulLogin',this.ruleForm2.name)

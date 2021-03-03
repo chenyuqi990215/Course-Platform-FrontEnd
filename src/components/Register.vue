@@ -157,7 +157,22 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.successfulRegister = true;
-          this.$emit('closeRegister', true)
+          let data = {
+            'name': this.ruleForm2.name,
+            'telephone': this.ruleForm2.tel,
+            'school': this.ruleForm2.school,
+            'password': this.ruleForm2.pass,
+          }
+          let header = {
+            'Content-Type':'application/json'
+          }
+          this.$emit('closeRegister', true);
+          this.$axios.post('http://47.100.79.77:8080/User/insert', {
+            params: data,
+            headers: header
+          }).then((res)=>{
+            console.log(res)
+          })
         } else {
           console.log("error submit!!");
           return false;

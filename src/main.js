@@ -14,6 +14,9 @@ import CenterHome from "@/CenterHome";
 import ResourceDisplay from "@/ResourceDisplay";
 import axios from 'axios'
 import store from "./store";
+import Element from 'element-ui'
+import "element-ui/lib/theme-chalk/index.css"
+Vue.use(Element)
 Vue.prototype.$axios = axios
 
 Vue.use(VueRouter);
@@ -28,25 +31,30 @@ Router.prototype.push = function push(location) {
 }
 
 axios.defaults.baseURL='http://47.100.79.77:8080'
+axios.create({
+    baseURL: process.env.BASE_API, // api 的 base_url
+    timeout: 5000, // 请求超时时间
+    headers: { 'Content-Type':'application/json' }
+})
 axios.interceptors.request.use(config => {
-    console.log("前置拦截")
-    // 可以统一设置请求头
+    if (sessionStorage.getItem('token')) { // 若存在token，则每个Http Header都加上token
+        config.headers.Authorization = `token ${sessionStorage.getItem('token')}`
+    }
     return config
 })
 axios.interceptors.response.use(response => {
-        const res = response.data;
-        // 当结果的code是否为200的情况
-        if (res.code === 200) {
-            return response
+        const res = response;
+        if (res.status === 200) {
+            return res.data
         } else {
             // 弹窗异常信息
             Element.Message({
-                message: response.data.msg,
+                message: res.status,
                 type: 'error',
                 duration: 2 * 1000
             })
             // 直接拒绝往下面返回结果信息
-            return Promise.reject(response.data.msg)
+            return Promise.reject(res.status)
         }
     },
     error => {
