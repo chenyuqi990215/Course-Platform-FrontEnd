@@ -45,7 +45,7 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(response => {
         const res = response;
         if (res.status === 200) {
-            return res.data
+            return res
         } else {
             // 弹窗异常信息
             Element.Message({

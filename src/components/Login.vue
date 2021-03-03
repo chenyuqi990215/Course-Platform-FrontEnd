@@ -32,6 +32,7 @@
 </template>
 
 <script>
+
 export default {
   name: "Login",
   data() {
@@ -61,7 +62,7 @@ export default {
         name: "",
       },
       rules2: {
-        pass: [{ validator: validatePass, trigger: 'change' }],
+        pass: [{validator: validatePass, trigger: 'change'}],
         name: [{validator: checkUsername, trigger: 'change'}],
       },
       isDisabled: false, // 是否禁止点击发送验证码按钮
@@ -73,16 +74,31 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.$axios.post('http://47.100.79.77:8080/signIn?username='+this.ruleForm2.name+'&password='+this.ruleForm2.pass, {
-              headers:{   //设置上传请求头
-                'Content-Type':'application/json',
-              },
-          }).then((res)=>{
-            console.log(res)
+          this.$axios.post('http://47.100.79.77:8080/signIn?username=' + this.ruleForm2.name + '&password=' + this.ruleForm2.pass, {
+            headers: {   //设置上传请求头
+              'Content-Type': 'application/json',
+            },
+          }).then((res) => {
+            console.log(res.data)
+            if (res.data === 1) {
+              this.$message({
+                message: "登录失败",
+                type: 'error',
+                duration: 2 * 1000
+              })
+            } else {
+              this.$axios.get('http://47.100.79.77:8080/User/Detail', {
+                headers: {   //设置上传请求头
+                  'Content-Type': 'application/json',
+                },
+              }).then((res) => {
+                console.log(res.data)
+              })
+              this.successfulLogin = true;
+              this.$emit('closeLogin', true)
+              this.$emit('successfulLogin', this.ruleForm2.name)
+            }
           })
-          this.successfulLogin = true;
-          this.$emit('closeLogin', true)
-          this.$emit('successfulLogin',this.ruleForm2.name)
         } else {
           console.log("error submit!!");
           return false;
@@ -112,7 +128,7 @@ export default {
     },
     // <!--进入登录页-->
     gotoRegister() {
-      this.$emit('openRegister',true)
+      this.$emit('openRegister', true)
     },
     closeLogin() {
       this.successfulLogin = false;
@@ -142,6 +158,7 @@ export default {
   left: 0;
   bottom: 0;
 }
+
 #register {
   max-width: 340px;
   margin: 60px auto;
@@ -151,14 +168,17 @@ export default {
   position: relative;
   z-index: 9;
 }
+
 .title {
   margin: 10px;
   text-align: center;
-  width:50px;
+  width: 50px;
 }
+
 .el-form-item {
   text-align: center;
 }
+
 .register {
   margin-top: 10px;
   font-size: 14px;
@@ -170,24 +190,29 @@ export default {
   width: 160px;
   margin-left: 250px;
 }
+
 .register:hover {
   color: #2c2fd6;
 }
+
 .code >>> .el-form-item__content {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .code button {
   margin-left: 20px;
   width: 140px;
   text-align: center;
 }
+
 .el-button--primary:focus {
   background: #409EFF;
   border-color: #409EFF;
   color: #fff;
 }
+
 .close {
   position: absolute;
   width: 10px;
