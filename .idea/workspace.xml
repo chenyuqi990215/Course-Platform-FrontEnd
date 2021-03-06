@@ -20,8 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b4a6a59-f477-4b5c-a6a0-02a13f324b05" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/dist/css/app.55a8fad1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/css/app.7b78e671.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/js/app.4706e7e2.js" beforeDir="false" />
@@ -30,8 +28,7 @@
       <change beforePath="$PROJECT_DIR$/dist/js/chunk-vendors.b6400450.js.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.config.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,7 +164,7 @@
       <workItem from="1614661660968" duration="1397000" />
       <workItem from="1614699009785" duration="1086000" />
       <workItem from="1614770418755" duration="4623000" />
-      <workItem from="1614822484598" duration="3634000" />
+      <workItem from="1614822484598" duration="3800000" />
     </task>
     <servers />
   </component>
