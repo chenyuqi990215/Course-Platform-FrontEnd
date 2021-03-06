@@ -27,8 +27,6 @@
       <change beforePath="$PROJECT_DIR$/dist/js/chunk-vendors.b6400450.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/js/chunk-vendors.b6400450.js.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue.config.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -164,7 +162,7 @@
       <workItem from="1614661660968" duration="1397000" />
       <workItem from="1614699009785" duration="1086000" />
       <workItem from="1614770418755" duration="4623000" />
-      <workItem from="1614822484598" duration="3800000" />
+      <workItem from="1614822484598" duration="4072000" />
     </task>
     <servers />
   </component>
