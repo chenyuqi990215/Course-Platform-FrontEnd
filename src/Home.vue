@@ -33,7 +33,7 @@
     </div>
     <Footer></Footer>
     <Register v-if="show_register"
-              v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
+              v-on:closeRegister="closeRegister" v-on:openLogin="openLogin" v-on:stepOver="stepOver"></Register>
     <Login v-if="show_login"
            v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"
            v-on:successfulLogin="successfulLogin"></Login>
@@ -75,9 +75,10 @@ export default {
       hot_course: new Data().courses,
       hot_posting: new Data().postings,
       hot_resource: new Data().resources,
+      step_over: false,
       interests: new Data().interests,
       user_id: 0,
-      postings:new Data().postings,
+      postings: new Data().postings,
       users: new Data().users,
     }
   },
@@ -94,6 +95,28 @@ export default {
     Posts3,
   },
   methods: {
+    init() {
+      console.log("init");
+      this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        console.log(res.data);
+        let n = res.data.indexOf("!DOCTYPE html");
+        if (n >= 0) {
+          console.log(n)
+
+        } else {
+          console.log(res.data[0].name)
+          this.username = res.data[0].name
+          this.url = res.data[0].portrait_url
+          this.successful_login = true
+          console.log(this.username)
+          console.log(this.url)
+        }
+      })
+    },
     searchInput: function (input) {
       this.search_input = input
     },
@@ -104,6 +127,7 @@ export default {
       this.show_register = input
     },
     closeRegister: function (input) {
+      console.log("closeRegister")
       this.show_register = false
       this.show_option = input;
     },
@@ -122,16 +146,23 @@ export default {
     closeOption: function (input) {
       this.show_option = !input
       this.successful_register = input
-      this.show_login = input
+      if (this.step_over)
+        this.show_login = !input
+      else
+        this.show_login = input
     },
     successfulLogin: function (input) {
-      if (input === "Chen Yuqi") {
-        this.user_id = 0;
-      } else {
-        this.user_id = 1;
+      this.successful_login = input;
+      this.init()
+    },
+    stepOver: function (input) {
+      console.log("stepOver")
+      this.step_over = input;
+      this.show_register = !input;
+      if (input) {
+        this.init();
       }
-      this.username = new Data().users[this.user_id].user.name;
-      this.url = new Data().users[this.user_id].user.portrait_url;
+
     },
     toPosting() {
       this.$router.push({
@@ -146,6 +177,10 @@ export default {
         }
       })
     },
+  },
+  created() {
+    console.log("init")
+    this.init()
   }
 }
 </script>
@@ -208,7 +243,8 @@ body {
   padding-right: 20%;
   border-radius: 8px;
 }
-.post-outer-container{
+
+.post-outer-container {
   margin-top: 50px;
   margin-bottom: 50px;
 }

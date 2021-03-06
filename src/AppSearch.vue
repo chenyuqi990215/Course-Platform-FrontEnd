@@ -80,6 +80,25 @@ export default {
 
   methods: {
     init() {
+      this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        console.log(res.data);
+        let n = res.data.indexOf("Please Sign In");
+        if (n >= 0) {
+          console.log(n)
+
+        } else {
+          console.log(res.data[0].name)
+          this.username = res.data[0].name
+          this.url = res.data[0].portrait_url
+          this.successful_login = true
+          console.log(this.username)
+          console.log(this.url)
+        }
+      })
       if (this.search_input === '机器学习') {
         this.courses = new Data().machine_learning.courses;
         this.videos = new Data().machine_learning.videos;
@@ -162,13 +181,8 @@ export default {
       }
     },
     successfulLogin: function (input) {
-      if (input === "Chen Yuqi") {
-        this.user_id = 0;
-      } else {
-        this.user_id = 1;
-      }
-      this.username = new Data().users[this.user_id].user.name;
-      this.url = new Data().users[this.user_id].user.portrait_url;
+      this.successful_login = input;
+      this.init()
     },
     toCenter() {
       this.$router.push({
@@ -180,6 +194,7 @@ export default {
     },
   },
   created() {
+    console.log("init")
     this.init()
   }
 }

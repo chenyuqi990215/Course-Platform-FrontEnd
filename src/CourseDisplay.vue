@@ -36,7 +36,7 @@ export default {
       successful_register: false,
       show_register: false,
       show_login: false,
-      show_option:false,
+      show_option: false,
       search_input: "Search What?",
       successful_login: false,
       username: new Data().username,
@@ -44,7 +44,7 @@ export default {
       course_id: this.$route.query.id,
       course_name: this.$route.query.name,
       relative_course: new Data().relative_course,
-      course : new Data().total_courses[0],
+      course: new Data().total_courses[0],
       type: this.$route.query.type,
       user_id: 0,
     }
@@ -60,6 +60,25 @@ export default {
   methods: {
     init() {
       this.course = new Data().total_courses[this.course_id];
+      this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        console.log(res.data);
+        let n = res.data.indexOf("Please Sign In");
+        if (n >= 0) {
+          console.log(n)
+
+        } else {
+          console.log(res.data[0].name)
+          this.username = res.data[0].name
+          this.url = res.data[0].portrait_url
+          this.successful_login = true
+          console.log(this.username)
+          console.log(this.url)
+        }
+      })
     },
     searchInput: function (input) {
       this.search_input = input
@@ -86,8 +105,8 @@ export default {
       this.show_login = !input
       this.show_register = input
     },
-    closeOption:function (input) {
-      this.show_option=!input
+    closeOption: function (input) {
+      this.show_option = !input
       this.successful_register = input
       this.show_login = input
     },
@@ -100,16 +119,12 @@ export default {
       })
     },
     successfulLogin: function (input) {
-      if (input === "Chen Yuqi") {
-        this.user_id = 0;
-      } else {
-        this.user_id = 1;
-      }
-      this.username = new Data().users[this.user_id].user.name;
-      this.url = new Data().users[this.user_id].user.portrait_url;
-    }
+      this.successful_login = input;
+      this.init()
+    },
   },
   created() {
+    console.log("init")
     this.init()
   }
 }

@@ -179,6 +179,7 @@ export default {
   },
   created() {
     this.postingsCopy = this.postings;
+
   }
 }
 </script>

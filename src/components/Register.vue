@@ -20,10 +20,11 @@
           </el-form-item>
           <el-form-item prop="smscode" class="code">
             <el-input v-model="ruleForm2.smscode" placeholder="验证码"></el-input>
-            <el-button type="primary" :disabled='isDisabled' @click="sendCode">{{buttonText}}</el-button>
+            <el-button type="primary" :disabled='isDisabled' @click="sendCode">{{ buttonText }}</el-button>
           </el-form-item>
           <el-form-item prop="school">
-            <el-select v-model="ruleForm2.school" placeholder="请选择，若无请选择其他" style="width: 100%" filterable :filter-method="dataFilter">
+            <el-select v-model="ruleForm2.school" placeholder="请选择，若无请选择其他" style="width: 100%" filterable
+                       :filter-method="dataFilter">
               <el-option v-for="item in stateArr" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </el-form-item>
@@ -45,6 +46,7 @@
 
 <script>
 import Data from "../entity/Data"
+
 export default {
   name: "Register",
   data() {
@@ -104,9 +106,12 @@ export default {
       }
     };
     return {
+      successful_login: false,
       successfulRegister: false,
       stateArr: new Data().schools,
       stateArrCopy: new Data().schools,
+      username: "",
+      url: "",
       ruleForm2: {
         pass: "",
         checkPass: "",
@@ -116,10 +121,10 @@ export default {
         school: ""
       },
       rules2: {
-        pass: [{ validator: validatePass, trigger: 'change' }],
-        checkPass: [{ validator: validatePass2, trigger: 'change' }],
-        tel: [{ validator: checkTel, trigger: 'change' }],
-        smscode: [{ validator: checkSmscode, trigger: 'change' }],
+        pass: [{validator: validatePass, trigger: 'change'}],
+        checkPass: [{validator: validatePass2, trigger: 'change'}],
+        tel: [{validator: checkTel, trigger: 'change'}],
+        smscode: [{validator: checkSmscode, trigger: 'change'}],
         name: [{validator: checkUsername, trigger: 'change'}],
         school: [{validator: checkSchool, trigger: 'change'}]
       },
@@ -130,7 +135,7 @@ export default {
   },
   methods: {
     // <!--发送验证码-->
-    sendCode () {
+    sendCode() {
       let tel = this.ruleForm2.tel
       if (this.checkMobile(tel)) {
         console.log(tel)
@@ -157,22 +162,55 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.successfulRegister = true;
-          let data = {
-            'name': this.ruleForm2.name,
-            'telephone': this.ruleForm2.tel,
-            'school': this.ruleForm2.school,
-            'password': this.ruleForm2.pass,
-          }
-          let header = {
-            'Content-Type':'application/json'
-          }
           this.$emit('closeRegister', true);
-          this.$axios.post('http://47.100.79.77:8080/User/insert', {
-            params: data,
-            headers: header
-          }).then((res)=>{
-            console.log(res)
+          this.$axios.post('http://47.100.79.77:8080/User/insert?name=' + this.ruleForm2.name + '&password=' + this.ruleForm2.pass + '&school=' + this.ruleForm2.school + '&telephone=' + this.ruleForm2.tel, {
+            headers: {   //设置上传请求头
+              'Content-Type': 'application/x-www-from-urlencoded',
+            },
+            withCredentials: true,
+          }).then((res) => {
+            console.log(res.data)
+            if (res.data === "注册失败") {
+              this.$message({
+                message: "用户名重复",
+                type: 'error',
+                duration: 2 * 1000
+              })
+            } else {
+              this.successfulRegister = true;
+              this.$emit('closeRegister', true);
+              this.$emit('openLogin', false);
+
+              this.$axios.post('http://47.100.79.77:8080/signIn?username=' + this.ruleForm2.name + '&password=' + this.ruleForm2.pass, {
+                headers: {   //设置上传请求头
+                  'Content-Type': 'application/x-www-from-urlencoded',
+                },
+                transformRequest: [function (data, headers) {
+                  let ret = ''
+                  for (let it in data) {
+                    if (ret !== '') ret += '&'
+                    ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]);
+                    console.log(headers)
+                  }
+                  return ret;
+                }],
+                withCredentials: true,
+              }).then((res) => {
+                console.log(res.data)
+                if (res.data === 1) {
+                  this.$message({
+                    message: "登录失败",
+                    type: 'error',
+                    duration: 2 * 1000
+                  })
+                } else {
+                  console.log("登录成功")
+                  this.$emit('closeRegister', true);
+                }
+              })
+            }
           })
+          this.$emit('stepOver', true);
         } else {
           console.log("error submit!!");
           return false;
@@ -181,7 +219,7 @@ export default {
     },
     // <!--进入登录页-->
     gotoLogin() {
-      this.$emit('openLogin',true)
+      this.$emit('openLogin', true)
     },
     // 验证手机号
     checkMobile(str) {
@@ -224,10 +262,12 @@ export default {
   align-items: center;
   justify-content: center;
 }
+
 .register-wrapper img {
   position: absolute;
   z-index: 1;
 }
+
 .register-wrapper {
   position: fixed;
   top: 0;
@@ -235,6 +275,7 @@ export default {
   left: 0;
   bottom: 0;
 }
+
 #register {
   max-width: 340px;
   margin: 60px auto;
@@ -244,6 +285,7 @@ export default {
   position: relative;
   z-index: 9;
 }
+
 .title {
   font-size: 26px;
   line-height: 50px;
@@ -251,9 +293,11 @@ export default {
   margin: 10px;
   text-align: center;
 }
+
 .el-form-item {
   text-align: center;
 }
+
 .login {
   margin-top: 10px;
   font-size: 14px;
@@ -264,24 +308,29 @@ export default {
   text-indent: 8px;
   width: 160px;
 }
+
 .login:hover {
   color: #2c2fd6;
 }
+
 .code >>> .el-form-item__content {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .code button {
   margin-left: 20px;
   width: 140px;
   text-align: center;
 }
+
 .el-button--primary:focus {
   background: #409EFF;
   border-color: #409EFF;
   color: #fff;
 }
+
 .close {
   position: absolute;
   width: 10px;
