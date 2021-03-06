@@ -163,14 +163,8 @@ export default {
             'school': this.ruleForm2.school,
             'password': this.ruleForm2.pass,
           }
-          let header = {
-            'Content-Type':'application/json'
-          }
           this.$emit('closeRegister', true);
-          this.$axios.post('http://47.100.79.77:8080/User/insert', {
-            params: data,
-            headers: header
-          }).then((res)=>{
+          this.$axios.post('http://47.100.79.77:8080/User/insert', data).then((res)=>{
             console.log(res)
           })
         } else {

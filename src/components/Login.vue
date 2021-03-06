@@ -75,10 +75,23 @@ export default {
         if (valid) {
           this.$axios.post('http://47.100.79.77:8080/signIn?username='+this.ruleForm2.name+'&password='+this.ruleForm2.pass, {
               headers:{   //设置上传请求头
-                'Content-Type':'application/json',
+                'Content-Type':'application/x-www-from-urlencoded',
               },
+            transformRequest: [function (data, headers){
+                let ret = ''
+                for (let it in data) {
+                  if (ret !== '') ret += '&'
+                  ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]);
+                  console.log(headers)
+                }
+                return ret;
+            }],
+            withCredentials:true,
           }).then((res)=>{
             console.log(res)
+            this.$axios.get('http://47.100.79.77:8080/User/getDetail').then((res)=>{
+              console.log(res)
+            })
           })
           this.successfulLogin = true;
           this.$emit('closeLogin', true)
