@@ -108,12 +108,12 @@ export default {
       stateArr: new Data().schools,
       stateArrCopy: new Data().schools,
       ruleForm2: {
-        pass: "",
-        checkPass: "",
-        tel: "",
-        smscode: "",
-        name: "",
-        school: ""
+        pass: "1234",
+        checkPass: "1234",
+        tel: "12312312312",
+        smscode: "1234",
+        name: "test4",
+        school: "华东师范大学"
       },
       rules2: {
         pass: [{ validator: validatePass, trigger: 'change' }],
@@ -163,8 +163,14 @@ export default {
             'school': this.ruleForm2.school,
             'password': this.ruleForm2.pass,
           }
+          console.log(JSON.stringify(data))
           this.$emit('closeRegister', true);
-          this.$axios.post('http://47.100.79.77:8080/User/insert', data).then((res)=>{
+          this.$axios.post('http://47.100.79.77:8080/User/insert', {
+            headers: {
+              'content-type': 'application/json charset=UTF-8"',
+            },
+            data: JSON.stringify(data)
+          }).then((res)=>{
             console.log(res)
           })
         } else {
