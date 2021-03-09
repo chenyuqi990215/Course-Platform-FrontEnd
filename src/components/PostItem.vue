@@ -2,20 +2,18 @@
   <div class="post-item-container">
     <div class="upper-half">
       <div class="post-title">
-        <a :href="post.posting.url">
-          <p class="post-item-title">{{post.posting.title}}</p>
-        </a>
+          <p class="post-item-title">{{post.title}}</p>
         <div class="center-part">
-          <p class="ov">{{post.posting.content}}</p>
+          <p class="ov">{{post.content}}</p>
         </div>
         <div class="bottom-part">
           <div class="zan" v-if="!zan_click" v-on:click="change_zan">
             <img class="bottom-img"  src="../assets/zan.png" alt="zan">
-            <span class="bottom-img-num">{{post.posting.counter}}</span>
+            <span class="bottom-img-num">{{post.counter}}</span>
           </div>
           <div class="zan" v-if="zan_click" v-on:click="change_zan">
             <img class="bottom-img"  src="../assets/zan-click.png" alt="zan">
-            <span class="bottom-img-num">{{post.posting.counter}}</span>
+            <span class="bottom-img-num">{{post.counter}}</span>
           </div>
           <div class="cai" v-if="!cai_click" v-on:click="change_cai">
             <img class="bottom-img"  src="../assets/cai.png" alt="cai">
@@ -25,17 +23,17 @@
           </div>
           <div class="comment">
             <img class="bottom-img"  src="../assets/talk.png" alt="talk">
-            <span class="bottom-img-num">{{post.posting.comment_num}}</span>
+            <span class="bottom-img-num">{{post.comment_num}}</span>
           </div>
           <div class="time">
-            <span class="bottom-img-num">{{post.posting.post_time}}</span>
+            <span class="bottom-img-num">{{post.post_time}}</span>
           </div>
         </div>
       </div>
 
       <div class="user-container">
-        <img class="user-img" :src="user.user.portrait_url" alt="user-img">
-        <span class="user-name">{{ user.user.name }}</span>
+        <img class="user-img" :src="post.portrait_url" alt="user-img">
+        <span class="user-name">{{ post.name }}</span>
       </div>
     </div>
   </div>
@@ -46,7 +44,6 @@ export default {
   name: "PostItem.vue",
   data(){
     return {
-      userid:this.post.posting.user_id,
       zan_click:false,
       cai_click:false,
     }
@@ -54,11 +51,25 @@ export default {
 
   props: {
     post: Object,
-    user: Object
   },
   methods:{
     change_zan(){
       this.zan_click=!this.zan_click;
+      if (this.zan_click) {
+        this.$axios.post('http://47.100.79.77:8080/Posting/like?post_id=' + this.post.post_id, {
+          headers:{   //设置上传请求头
+            'Content-Type':'application/x-www-from-urlencoded',
+          },
+        }).then((res)=>{
+          if (res.data !== "收藏成功") {
+            this.$message({
+              message: "收藏失败",
+              type: 'error',
+              duration: 2 * 1000
+            })
+          }
+        })
+      }
     },
     change_cai(){
       this.cai_click=!this.cai_click;

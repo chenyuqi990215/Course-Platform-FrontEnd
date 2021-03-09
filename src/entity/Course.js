@@ -8,7 +8,7 @@ function Course(id, name, url, cover, origin='BiliBili', score=100, amount="100ä
     obj.score = score;
     obj.amount = amount;
     obj.titleList = titleList;
-    obj.univerityList = universityList;
+    obj.universityList = universityList;
     obj.contentList = contentList;
     return obj;
 }

@@ -97,7 +97,7 @@ export default {
                 duration: 2 * 1000
               })
             } else {
-              this.$axios.get('http://47.100.79.77:8080/User/Detail', {
+              this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
                 headers: {   //设置上传请求头
                   'Content-Type': 'application/json',
                 },

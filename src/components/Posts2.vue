@@ -3,7 +3,7 @@
   <div class="divider-name">
     <ul class="post-ul">
       <li class="post-li" v-for="(item,index) in postings" :key="index">
-        <PostItem class="post-item" :post="item" :user="users[item.posting.user_id]"></PostItem>
+        <PostItem class="post-item" :post="item"></PostItem>
       </li>
     </ul>
   </div>
@@ -17,9 +17,6 @@ export default {
   name: "Posts2.vue",
   props:{
     postings:{
-      type:Array
-    },
-    users:{
       type:Array
     },
   },

@@ -12,7 +12,7 @@
         <a href="#"><p v-on:click="toPosting">论坛讨论</p></a>
       </div>
       <div class="bander-container">
-        <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true"
+        <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="browse_course" :initIndex="0" :loop="true"
                 :autoTime="8000"></Swiper>
         <Hot :width="500" :height="400" :hot_course="hot_course" :hot_posting="hot_posting"></Hot>
       </div>
@@ -37,7 +37,7 @@
     <Login v-if="show_login"
            v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"
            v-on:successfulLogin="successfulLogin"></Login>
-    <Option v-if="show_option" v-on:submitTable="closeOption"></Option>
+    <Option v-if="show_option" v-on:submitTable="closeOption" v-on:stepOver="stepOver"></Option>
   </div>
 </template>
 
@@ -60,7 +60,6 @@ export default {
   name: 'Home',
   data() {
     return {
-      test_img: 'https://i0.hdslb.com/bfs/archive/0aff68fab987a889d1cca8620266e66b2b03d9f2.jpg@640w_400h.webp',
       successful_register: false,
       show_register: false,
       show_login: false,
@@ -68,16 +67,17 @@ export default {
 
       search_input: "Search What?",
       successful_login: false,
-      imgList: new Data().courses,
+      browse_course: [],
       username: "",
       url: "",
       cloud_url: "./assets/cloud.png",
-      hot_course: new Data().courses,
-      hot_posting: new Data().postings,
+      hot_course: [],
+      hot_posting: [],
       hot_resource: new Data().resources,
+      step_over: false,
       interests: new Data().interests,
       user_id: 0,
-      postings:new Data().postings,
+      postings: new Data().postings,
       users: new Data().users,
     }
   },
@@ -94,6 +94,50 @@ export default {
     Posts3,
   },
   methods: {
+    init() {
+      this.$axios.get('http://47.100.79.77:8080/Posting/hot',{
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        this.hot_posting = res.data
+      })
+      this.$axios.get('http://47.100.79.77:8080/Course/hot',{
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        this.hot_course = res.data
+      })
+      this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        let n = res.data.indexOf("!DOCTYPE html");
+        if (n >= 0) {
+          this.$axios.get('http://47.100.79.77:8080/Course/hot',{
+            headers: {   //设置上传请求头
+              'Content-Type': 'application/json',
+            },
+          }).then((res) => {
+            this.browse_course = res.data
+          })
+        } else {
+          this.successful_login = true
+          this.username = res.data[0].name
+          this.url = res.data[0].portrait_url
+          this.successful_login = true
+          this.$axios.get('http://47.100.79.77:8080/User/recentBrowse',{
+            headers: {   //设置上传请求头
+              'Content-Type': 'application/json',
+            },
+          }).then((res) => {
+            this.browse_course = res.data
+          })
+        }
+      })
+    },
     searchInput: function (input) {
       this.search_input = input
     },
@@ -120,18 +164,21 @@ export default {
       this.show_register = input
     },
     closeOption: function (input) {
+      this.stepOver(true)
       this.show_option = !input
       this.successful_register = input
-      this.show_login = input
+      this.show_login = !input
     },
     successfulLogin: function (input) {
-      if (input === "Chen Yuqi") {
-        this.user_id = 0;
-      } else {
-        this.user_id = 1;
+      this.successful_login = input;
+      this.init()
+    },
+    stepOver: function (input) {
+      this.step_over = input;
+      this.show_register = !input;
+      if (input) {
+        this.init();
       }
-      this.username = new Data().users[this.user_id].user.name;
-      this.url = new Data().users[this.user_id].user.portrait_url;
     },
     toPosting() {
       this.$router.push({
@@ -146,6 +193,9 @@ export default {
         }
       })
     },
+  },
+  created() {
+    this.init()
   }
 }
 </script>
@@ -208,7 +258,8 @@ body {
   padding-right: 20%;
   border-radius: 8px;
 }
-.post-outer-container{
+
+.post-outer-container {
   margin-top: 50px;
   margin-bottom: 50px;
 }

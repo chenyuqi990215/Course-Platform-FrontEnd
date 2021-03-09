@@ -22,13 +22,12 @@
     <Login v-if="show_login"
            v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"
            v-on:successfulLogin="successfulLogin"></Login>
-    <Option v-if="show_option" v-on:submitTable="closeOption"></Option>
+    <Option v-if="show_option" v-on:submitTable="closeOption" v-on:stepOver="stepOver"></Option>
   </div>
 </template>
 
 <script>
 
-import Data from "./entity/Data"
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import Register from "./components/Register.vue";
@@ -54,19 +53,15 @@ export default {
       show_resource:false,
       successful_login: false,
       search_input:this.$route.query.search_input,
-      imgList: new Data().courses,
-      username: new Data().username,
-      url: new Data().url,
-      courses: new Data().courses,
-      videos: new Data().videos,
-      resources: new Data().resources,
-      hot_question: new Data().resources,
-      user_id: 0,
+      username: "",
+      url: "",
+      courses: [],
+      videos: [],
+      resources: [],
     }
   },
 
   components: {
-
     Register,
     Footer,
     Header,
@@ -80,29 +75,48 @@ export default {
 
   methods: {
     init() {
-      if (this.search_input === '机器学习') {
-        this.courses = new Data().machine_learning.courses;
-        this.videos = new Data().machine_learning.videos;
-        this.resources = new Data().machine_learning.resources;
-      } else {
-        console.log('deep learning')
-        this.courses = new Data().deep_learning.courses;
-        this.videos = new Data().deep_learning.videos;
-        this.resources = new Data().deep_learning.resources;
-      }
+      this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        console.log(res.data);
+        let n = res.data.indexOf("!DOCTYPE html");
+        if (n >= 0) {
+          console.log(n)
+        } else {
+          console.log(res.data[0].name)
+          this.username = res.data[0].name
+          this.url = res.data[0].portrait_url
+          this.successful_login = true
+          console.log(this.username)
+          console.log(this.url)
+        }
+      })
+      this.$axios.post('http://47.100.79.77:8080/Course/search/keyWord?keyword='+this.search_input,{
+        header: {
+          'Content-Type': 'application/json',
+        }
+      }).then(res => {
+        console.log(res.data)
+        var total = res.data;
+        this.courses = total.filter(item => item.type === "course");
+        this.resources = total.filter(item => item.type === "resource")
+        this.videos = total.filter(item => item.type === "video")
+      })
     },
     searchInput: function (input) {
       this.search_input = input
-      if (this.search_input === '机器学习') {
-        this.courses = new Data().machine_learning.courses;
-        this.videos = new Data().machine_learning.videos;
-        this.resources = new Data().machine_learning.resources;
-      } else {
-        console.log('deep learning')
-        this.courses = new Data().deep_learning.courses;
-        this.videos = new Data().deep_learning.videos;
-        this.resources = new Data().deep_learning.resources;
-      }
+      this.$axios.get('http://47.100.79.77:8080/Course/search/keyWord?keyword='+this.search_input,{
+        header: {
+          'Content-Type': 'application/json',
+        }
+      }).then(res => {
+        var total = res.data;
+        this.courses = total.filter(item => item.type === "course");
+        this.resources = total.filter(item => item.type === "resource")
+        this.videos = total.filter(item => item.type === "video")
+      })
     },
     attemptLogin: function (input) {
       this.show_login = input
@@ -126,10 +140,11 @@ export default {
       this.show_login = !input
       this.show_register = input
     },
-    closeOption:function (input) {
-      this.show_option=!input
+    closeOption: function (input) {
+      this.stepOver(true)
+      this.show_option = !input
       this.successful_register = input
-      this.show_login = input
+      this.show_login = !input
     },
     chooseToShow:function (input){
       if(input===0)
@@ -162,20 +177,19 @@ export default {
       }
     },
     successfulLogin: function (input) {
-      if (input === "Chen Yuqi") {
-        this.user_id = 0;
-      } else {
-        this.user_id = 1;
+      this.successful_login = input;
+      this.init()
+    },
+    stepOver: function (input) {
+      this.step_over = input;
+      this.show_register = !input;
+      if (input) {
+        this.init();
       }
-      this.username = new Data().users[this.user_id].user.name;
-      this.url = new Data().users[this.user_id].user.portrait_url;
     },
     toCenter() {
       this.$router.push({
         name: 'Center',
-        query: {
-          id: this.user_id
-        }
       })
     },
   },

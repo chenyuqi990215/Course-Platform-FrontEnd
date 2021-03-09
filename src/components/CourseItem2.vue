@@ -2,22 +2,22 @@
   <div class="course-item-container">
     <div class="course-img-container">
 
-        <img class="course-item-img" referrerpolicy="no-referrer" v-bind:src="course.course.cover" alt="course-item" v-on:click="clickCourse">
+        <img class="course-item-img" referrerpolicy="no-referrer" v-bind:src="course.cover" alt="course-item" v-on:click="clickCourse">
 
     </div>
     <div class="course-information-container">
-        <span class="course-item-title" v-on:click="clickCourse">{{ course.course.name }}</span>
-      <ul class="course-item-ul" v-if="course.course.titleList.length > 0">
-        <li class="course-item-li" v-for="(item,index) in course.course.titleList.split('；').slice(0,4)" :key="index" >
-          <p class="course-item-p">{{item}}</p>
+        <span class="course-item-title" v-on:click="clickCourse" v-html="course.name"></span>
+      <ul class="course-item-ul" v-if="course.titleList.length > 0">
+        <li class="course-item-li" v-for="(item,index) in course.titleList.split('；').slice(0,4)" :key="index" >
+          <p class="course-item-p" v-html="item"></p>
         </li>
       </ul>
-      <ul class="course-ul-university" v-if="course.course.univerityList.length > 0">
-        <li class="course-li-university" v-for="(item,index) in course.course.univerityList.split('；').slice(0,4)" :key="index" >
-          <p class="course-p-university">{{item}}</p>
+      <ul class="course-ul-university" v-if="course.universityList.length > 0">
+        <li class="course-li-university" v-for="(item,index) in course.universityList.split('；').slice(0,4)" :key="index" >
+          <p class="course-p-university" v-html="item"></p>
         </li>
       </ul>
-      <p class="course-item-origin" v-if="course.course.origin !== ''">来源：{{ course.course.origin }}</p>
+      <p class="course-item-origin" v-if="course.origin !== ''">来源：{{ course.origin }}</p>
     </div>
 
   </div>
@@ -36,8 +36,8 @@ export default {
       this.$router.push({
         name: 'Course',
         query: {
-          id: this.course.course.id,
-          name: this.course.course.name,
+          id: this.course.id,
+          name: this.course.name,
           type: '优质课程',
         }
       })

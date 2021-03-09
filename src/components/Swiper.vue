@@ -2,15 +2,15 @@
   <div id="swiper" @mouseover="stopAuto" @mouseout="autoPlay" :style="{'width': width+'px','height': height+'px'}">
     <div class="swiper-box" :style="{width:allCount,'-webkit-transition':transitionConfig,'-webkit-transform':slateX}"
          ref='swiper'>
-      <SwiperItem :obj="imgList[imgList.length-1].course" :trans_width="-width" :width="width" :height="height"
+      <SwiperItem :obj="imgList[imgList.length-1]" :trans_width="-width" :width="width" :height="height"
                    v-if="loop" :show="imgIndex === imgList.length-1"/>
-      <SwiperItem v-for="(item,index) in imgList" :key="index" :obj="item.course" :trans_width="width*index"
+      <SwiperItem v-for="(item,index) in imgList" :key="index" :obj="item" :trans_width="width*index"
                    :width="width" :height="height" :show="imgIndex === index"/>
-      <SwiperItem :obj="imgList[0].course" :trans_width="width*imgList.length" :width="width" :height="height"
+      <SwiperItem :obj="imgList[0]" :trans_width="width*imgList.length" :width="width" :height="height"
                    v-if="loop" :show="imgIndex === imgList.length"/>
     </div>
     <div class="swiper-dots" v-if="dots">
-      <button v-for="(item,index) in imgList.length" :key="index" :class="{active:index==dotsIndex}"
+      <button v-for="(item,index) in imgList.length" :key="index" :class="{active:index===dotsIndex}"
               @click="toDots(index)"></button>
     </div>
   </div>
@@ -91,7 +91,7 @@ export default {
         if(this.imgIndex<=-2) this.loopFn('left');
       }
       else {
-        if(this.imgIndex==0) return this.dotsIndex=this.imgIndex=this.imgList.length-1;
+        if(this.imgIndex===0) return this.dotsIndex=this.imgIndex=this.imgList.length-1;
         this.imgIndex--;
         this.dotsIndex--;
       }
@@ -101,8 +101,8 @@ export default {
         // alert(this.loop)
         this.imgIndex++;
         this.dotsIndex++;
-        if(this.dotsIndex==this.imgList.length) this.dotsIndex=0;
-        if(this.imgIndex==this.imgList.length+1) this.loopFn('right');
+        if(this.dotsIndex===this.imgList.length) this.dotsIndex=0;
+        if(this.imgIndex===this.imgList.length+1) this.loopFn('right');
       }
       else {
         this.imgIndex++;
@@ -113,11 +113,11 @@ export default {
     loopFn(type) {
       const dur = this.durationTime;
       this.durationTime = 0;
-      this.imgIndex = type == 'right' ? 0 : this.imgList.length - 1;
+      this.imgIndex = type === 'right' ? 0 : this.imgList.length - 1;
       setTimeout(() => {
         this.$nextTick(function () {
           this.durationTime = dur;
-          if (type == 'right') this.imgIndex++;
+          if (type === 'right') this.imgIndex++;
           else this.imgIndex--;
         })
       }, 30)

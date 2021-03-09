@@ -29,7 +29,7 @@
             </li>
           </ul>
         </div>
-        <Posts2 class="post-outer-container" :postings="postings" :users="users"></Posts2>
+        <Posts2 class="post-outer-container" :postings="postings" ></Posts2>
         <AddPosting :course_title="''"></AddPosting>
       </div>
     </div>
@@ -39,12 +39,11 @@
     <Login v-if="show_login"
            v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"
            v-on:successfulLogin="successfulLogin"></Login>
-    <Option v-if="show_option" v-on:submitTable="closeOption"></Option>
+    <Option v-if="show_option" v-on:submitTable="closeOption" v-on:stepOver="stepOver"></Option>
   </div>
 </template>
 
 <script>
-import Data from "./entity/Data";
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import Register from "./components/Register.vue";
@@ -62,16 +61,16 @@ export default {
       show_option:false,
       search_input: "机器学习",
       successful_login: false,
-      username: new Data().username,
-      url: new Data().url,
-      postings:new Data().postings,
-      users: new Data().users,
+      username: "",
+      url: "",
+      postings: [],
+      postingsCopy: [],
+      step_over: false,
       all:false,
       hot:true,
       comment:true,
       question:true,
       experience:true,
-      user_id: 0
     }
   },
   components: {
@@ -84,6 +83,34 @@ export default {
     AddPosting
   },
   methods: {
+    init() {
+      this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        console.log(res.data);
+        let n = res.data.indexOf("!DOCTYPE html");
+        if (n >= 0) {
+          console.log(n)
+        } else {
+          this.successful_login = true
+          this.username = res.data[0].name
+          this.url = res.data[0].portrait_url
+          this.successful_login = true
+          this.user = res.data[0]
+        }
+      })
+      this.$axios.get('http://47.100.79.77:8080/Posting/all', {
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        console.log(res)
+        this.postings = res.data
+        this.postingsCopy = this.postings;
+      })
+    },
     searchInput: function (input) {
       this.search_input = input
     },
@@ -109,10 +136,22 @@ export default {
       this.show_login = !input
       this.show_register = input
     },
-    closeOption:function (input) {
-      this.show_option=!input
+    closeOption: function (input) {
+      this.stepOver(true)
+      this.show_option = !input
       this.successful_register = input
-      this.show_login = input
+      this.show_login = !input
+    },
+    successfulLogin: function (input) {
+      this.successful_login = input;
+      this.init()
+    },
+    stepOver: function (input) {
+      this.step_over = input;
+      this.show_register = !input;
+      if (input) {
+        this.init();
+      }
     },
     change_all(){
       this.postings = this.postingsCopy;
@@ -154,15 +193,6 @@ export default {
       this.experience=true;
       this.question=false;
     },
-    successfulLogin: function (input) {
-      if (input === "Chen Yuqi") {
-        this.user_id = 0;
-      } else {
-        this.user_id = 1;
-      }
-      this.username = new Data().users[this.user_id].user.name;
-      this.url = new Data().users[this.user_id].user.portrait_url;
-    },
     toPosting() {
       this.$router.push({
         name: 'Post',
@@ -171,14 +201,11 @@ export default {
     toCenter() {
       this.$router.push({
         name: 'Center',
-        query: {
-          id: this.user_id
-        }
       })
     },
   },
   created() {
-    this.postingsCopy = this.postings;
+    this.init()
   }
 }
 </script>

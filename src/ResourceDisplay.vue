@@ -16,7 +16,7 @@
     <Login v-if="show_login"
            v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"
            v-on:successfulLogin="successfulLogin"></Login>
-    <Option v-if="show_option" v-on:submitTable="closeOption"></Option>
+    <Option v-if="show_option" v-on:submitTable="closeOption" v-on:stepOver="stepOver"></Option>
   </div>
 </template>
 
@@ -58,7 +58,25 @@ export default {
   },
   methods: {
     init() {
-      this.resource = new Data().resources[this.resource_id];
+      this.resource = new Data().resources[this.resource_id];xf
+      this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        console.log(res.data);
+        let n = res.data.indexOf("!DOCTYPE html");
+        if (n >= 0) {
+          console.log(n)
+        } else {
+          this.successful_login = true
+          this.username = res.data[0].name
+          this.url = res.data[0].portrait_url
+          this.successful_login = true
+          console.log(this.username)
+          console.log(this.url)
+        }
+      })
     },
     searchInput: function (input) {
       this.search_input = input
@@ -85,21 +103,23 @@ export default {
       this.show_login = !input
       this.show_register = input
     },
-    closeOption:function (input) {
-      this.show_option=!input
+    closeOption: function (input) {
+      this.stepOver(true)
+      this.show_option = !input
       this.successful_register = input
-      this.show_login = input
+      this.show_login = !input
     },
     successfulLogin: function (input) {
-      var idx;
-      if (input === "Chen Yuqi") {
-        idx = 0;
-      } else {
-        idx = 1;
+      this.successful_login = input;
+      this.init()
+    },
+    stepOver: function (input) {
+      this.step_over = input;
+      this.show_register = !input;
+      if (input) {
+        this.init();
       }
-      this.username = new Data().users[idx].user.name;
-      this.url = new Data().users[idx].user.portrait_url;
-    }
+    },
   },
   created() {
     this.init()

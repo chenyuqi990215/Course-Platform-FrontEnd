@@ -6,7 +6,7 @@
     <div :class="{opacity_container: show_register || show_login || show_option}">
       <div class="tag-container">
         <p>
-          首页  >  <span>{{ type }}</span> >  <span>{{ course.course.name }}</span>
+          首页  >  <span>{{ type }}</span> >  <span>{{ course.name }}</span>
         </p>
       </div>
       <CourseDetail :course="course" :relative_course="relative_course"></CourseDetail>
@@ -17,7 +17,7 @@
     <Login v-if="show_login"
            v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"
            v-on:successfulLogin="successfulLogin"></Login>
-    <Option v-if="show_option" v-on:submitTable="closeOption"></Option>
+    <Option v-if="show_option" v-on:submitTable="closeOption" v-on:stepOver="stepOver"></Option>
   </div>
 </template>
 
@@ -36,17 +36,17 @@ export default {
       successful_register: false,
       show_register: false,
       show_login: false,
-      show_option:false,
+      show_option: false,
+      step_over: false,
       search_input: "Search What?",
       successful_login: false,
-      username: new Data().username,
-      url: new Data().url,
+      username: "",
+      url: "",
       course_id: this.$route.query.id,
       course_name: this.$route.query.name,
       relative_course: new Data().relative_course,
-      course : new Data().total_courses[0],
+      course: null,
       type: this.$route.query.type,
-      user_id: 0,
     }
   },
   components: {
@@ -59,7 +59,28 @@ export default {
   },
   methods: {
     init() {
-      this.course = new Data().total_courses[this.course_id];
+      this.$axios.get('http://47.100.79.77:8080/Course/detail?course_id=' + this.course_id,{
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        this.course = res.data[0]
+      })
+      this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        let n = res.data.indexOf("!DOCTYPE html");
+        if (n >= 0) {
+          console.log(n)
+        } else {
+          this.successful_login = true
+          this.username = res.data[0].name
+          this.url = res.data[0].portrait_url
+          this.successful_login = true
+        }
+      })
     },
     searchInput: function (input) {
       this.search_input = input
@@ -86,28 +107,28 @@ export default {
       this.show_login = !input
       this.show_register = input
     },
-    closeOption:function (input) {
-      this.show_option=!input
+    closeOption: function (input) {
+      this.stepOver(true)
+      this.show_option = !input
       this.successful_register = input
-      this.show_login = input
+      this.show_login = !input
+    },
+    stepOver: function (input) {
+      this.step_over = input;
+      this.show_register = !input;
+      if (input) {
+        this.init();
+      }
     },
     toCenter() {
       this.$router.push({
         name: 'Center',
-        query: {
-          id: this.user_id
-        }
       })
     },
     successfulLogin: function (input) {
-      if (input === "Chen Yuqi") {
-        this.user_id = 0;
-      } else {
-        this.user_id = 1;
-      }
-      this.username = new Data().users[this.user_id].user.name;
-      this.url = new Data().users[this.user_id].user.portrait_url;
-    }
+      this.successful_login = input;
+      this.init()
+    },
   },
   created() {
     this.init()

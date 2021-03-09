@@ -3,7 +3,7 @@
     <transition name="fade">
       <div class="swiper-inter-item">
         <span class="swiper-item-title">{{obj.name}}</span>
-        <span class="swiper-item-university" v-if="obj.univerityList.length > 0">{{obj.univerityList.split('；')[0]}}</span>
+        <span class="swiper-item-university" v-if="obj.universityList.length > 0">{{obj.universityList.split('；')[0]}}</span>
         <img v-bind:src="obj.cover" referrerpolicy="no-referrer"
              :style="{'width':width+'px', 'height':height+'px'}" v-if="show" alt="course"
               v-on:click="clickCourse"/>
@@ -49,7 +49,7 @@ export default {
       this.$router.push({
         name: 'Course',
         query: {
-          id: this.obj.id,
+          id: this.obj.course_id,
           name: this.obj.name,
           type: '优质课程',
         }

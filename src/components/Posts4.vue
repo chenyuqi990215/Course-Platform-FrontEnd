@@ -16,7 +16,7 @@
       </div>
       <ul class="post-ul">
         <li class="post-li" v-for="(item,index) in postings.slice(start_num,start_num+4)" :key="index">
-          <PostItem3 class="post-item" :post="item" :user="users[item.posting.user_id]" ></PostItem3>
+          <PostItem3 class="post-item" :post="item"></PostItem3>
         </li>
       </ul>
     </div>
@@ -99,9 +99,6 @@ export default {
 
   props:{
     postings:{
-      type:Array
-    },
-    users:{
       type:Array
     },
     course_title: {
