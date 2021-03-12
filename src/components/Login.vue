@@ -115,27 +115,6 @@ export default {
         }
       })
     },
-    // 验证手机号
-    checkMobile(str) {
-      let re = /^1\d{10}$/
-      if (re.test(str)) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    dataFilter(val) {
-      this.value = val;
-      if (val) { //val存在
-        this.stateArr = this.stateArrCopy.filter((item) => {
-          if (!!~item.label.indexOf(val) || !!~item.label.toUpperCase().indexOf(val.toUpperCase())) {
-            return true
-          }
-        })
-      } else { //val为空时，还原数组
-        this.stateArr = this.stateArrCopy;
-      }
-    },
     // <!--进入登录页-->
     gotoRegister() {
       this.$emit('openRegister', true)
