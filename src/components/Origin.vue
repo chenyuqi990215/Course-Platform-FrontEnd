@@ -7,6 +7,7 @@
       <img src="../assets/jike.png">
       <img src="../assets/csdn.png">
       <img src="../assets/jianshu.png">
+      <img src="../assets/course.png">
     </div>
   </div>
 </template>

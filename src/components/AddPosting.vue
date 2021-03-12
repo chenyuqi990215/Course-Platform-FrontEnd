@@ -72,7 +72,12 @@ export default {
   },
   props: {
     course_title: {
-      type: String
+      type: String,
+      default: ""
+    },
+    course_id: {
+      type: Number,
+      default: -1
     }
   },
   methods: {
@@ -84,8 +89,42 @@ export default {
     Post() {
       this.$validator.validateAll().then((result) => {
         if (result) {
-          console.log(this.title);
-          console.log(this.content);
+          var type="";
+          if (this.show_recommend) type="课程推荐";
+          if (this.show_guide) type="经验分享";
+          if (this.show_self) type="自定义";
+          if (this.show_question) type="课程答疑";
+          if (this.course_id !== -1) {
+            this.$axios.post('http://47.100.79.77:8080/Course/post/insert?course_id=' + this.course_id +
+          "&type=" + type + "&title=" + this.title + "&content=" + this.content, {
+              headers:{   //设置上传请求头
+                'Content-Type':'application/x-www-from-urlencoded',
+              },
+            }).then((res)=>{
+              if (res.data !== "发布成功") {
+                this.$message({
+                  message: "发布失败",
+                  type: 'error',
+                  duration: 2 * 1000
+                })
+              }
+            })
+          } else {
+            this.$axios.post('http://47.100.79.77:8080/Post/insert?type='
+                + type + "&title=" + this.title + "&content=" + this.content, {
+              headers:{   //设置上传请求头
+                'Content-Type':'application/x-www-from-urlencoded',
+              },
+            }).then((res)=>{
+              if (res.data !== "发布成功") {
+                this.$message({
+                  message: "发布失败",
+                  type: 'error',
+                  duration: 2 * 1000
+                })
+              }
+            })
+          }
         } else {
           console.log('Not valid');
         }

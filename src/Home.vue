@@ -12,7 +12,7 @@
         <a href="#"><p v-on:click="toPosting">论坛讨论</p></a>
       </div>
       <div class="bander-container">
-        <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="imgList" :initIndex="0" :loop="true"
+        <Swiper class="swiper-outer-container" :width="700" :height="400" :imgList="browse_course" :initIndex="0" :loop="true"
                 :autoTime="8000"></Swiper>
         <Hot :width="500" :height="400" :hot_course="hot_course" :hot_posting="hot_posting"></Hot>
       </div>
@@ -33,11 +33,11 @@
     </div>
     <Footer></Footer>
     <Register v-if="show_register"
-              v-on:closeRegister="closeRegister" v-on:openLogin="openLogin" v-on:stepOver="stepOver"></Register>
+              v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
     <Login v-if="show_login"
            v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"
            v-on:successfulLogin="successfulLogin"></Login>
-    <Option v-if="show_option" v-on:submitTable="closeOption"></Option>
+    <Option v-if="show_option" v-on:submitTable="closeOption" v-on:stepOver="stepOver"></Option>
   </div>
 </template>
 
@@ -60,7 +60,6 @@ export default {
   name: 'Home',
   data() {
     return {
-      test_img: 'https://i0.hdslb.com/bfs/archive/0aff68fab987a889d1cca8620266e66b2b03d9f2.jpg@640w_400h.webp',
       successful_register: false,
       show_register: false,
       show_login: false,
@@ -68,12 +67,12 @@ export default {
 
       search_input: "Search What?",
       successful_login: false,
-      imgList: new Data().courses,
+      browse_course: [],
       username: "",
       url: "",
       cloud_url: "./assets/cloud.png",
-      hot_course: new Data().courses,
-      hot_posting: new Data().postings,
+      hot_course: [],
+      hot_posting: [],
       hot_resource: new Data().resources,
       step_over: false,
       interests: new Data().interests,
@@ -96,24 +95,46 @@ export default {
   },
   methods: {
     init() {
-      console.log("init");
+      this.$axios.get('http://47.100.79.77:8080/Posting/hot',{
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        this.hot_posting = res.data
+      })
+      this.$axios.get('http://47.100.79.77:8080/Course/hot',{
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        this.hot_course = res.data
+      })
       this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',
         },
       }).then((res) => {
-        console.log(res.data);
         let n = res.data.indexOf("!DOCTYPE html");
         if (n >= 0) {
-          console.log(n)
-
+          this.$axios.get('http://47.100.79.77:8080/Course/hot',{
+            headers: {   //设置上传请求头
+              'Content-Type': 'application/json',
+            },
+          }).then((res) => {
+            this.browse_course = res.data
+          })
         } else {
-          console.log(res.data[0].name)
+          this.successful_login = true
           this.username = res.data[0].name
           this.url = res.data[0].portrait_url
           this.successful_login = true
-          console.log(this.username)
-          console.log(this.url)
+          this.$axios.get('http://47.100.79.77:8080/User/recentBrowse',{
+            headers: {   //设置上传请求头
+              'Content-Type': 'application/json',
+            },
+          }).then((res) => {
+            this.browse_course = res.data
+          })
         }
       })
     },
@@ -127,7 +148,6 @@ export default {
       this.show_register = input
     },
     closeRegister: function (input) {
-      console.log("closeRegister")
       this.show_register = false
       this.show_option = input;
     },
@@ -144,25 +164,21 @@ export default {
       this.show_register = input
     },
     closeOption: function (input) {
+      this.stepOver(true)
       this.show_option = !input
       this.successful_register = input
-      if (this.step_over)
-        this.show_login = !input
-      else
-        this.show_login = input
+      this.show_login = !input
     },
     successfulLogin: function (input) {
       this.successful_login = input;
       this.init()
     },
     stepOver: function (input) {
-      console.log("stepOver")
       this.step_over = input;
       this.show_register = !input;
       if (input) {
         this.init();
       }
-
     },
     toPosting() {
       this.$router.push({
@@ -179,7 +195,6 @@ export default {
     },
   },
   created() {
-    console.log("init")
     this.init()
   }
 }

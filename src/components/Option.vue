@@ -106,6 +106,7 @@ export default {
       } else this.lan_num.option = this.lan_num.option - 1;
     },
     submitTable() {
+      this.$emit('stepOver',true)
       this.$emit('submitTable', true)
     }
   }

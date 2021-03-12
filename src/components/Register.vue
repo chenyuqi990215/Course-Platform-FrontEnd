@@ -210,7 +210,6 @@ export default {
               })
             }
           })
-          this.$emit('stepOver', true);
         } else {
           console.log("error submit!!");
           return false;

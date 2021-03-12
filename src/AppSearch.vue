@@ -22,13 +22,12 @@
     <Login v-if="show_login"
            v-on:closeLogin="closeLogin" v-on:openRegister="openRegister"
            v-on:successfulLogin="successfulLogin"></Login>
-    <Option v-if="show_option" v-on:submitTable="closeOption"></Option>
+    <Option v-if="show_option" v-on:submitTable="closeOption" v-on:stepOver="stepOver"></Option>
   </div>
 </template>
 
 <script>
 
-import Data from "./entity/Data"
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import Register from "./components/Register.vue";
@@ -54,19 +53,15 @@ export default {
       show_resource:false,
       successful_login: false,
       search_input:this.$route.query.search_input,
-      imgList: new Data().courses,
-      username: new Data().username,
-      url: new Data().url,
-      courses: new Data().courses,
-      videos: new Data().videos,
-      resources: new Data().resources,
-      hot_question: new Data().resources,
-      user_id: 0,
+      username: "",
+      url: "",
+      courses: [],
+      videos: [],
+      resources: [],
     }
   },
 
   components: {
-
     Register,
     Footer,
     Header,
@@ -86,10 +81,9 @@ export default {
         },
       }).then((res) => {
         console.log(res.data);
-        let n = res.data.indexOf("Please Sign In");
+        let n = res.data.indexOf("!DOCTYPE html");
         if (n >= 0) {
           console.log(n)
-
         } else {
           console.log(res.data[0].name)
           this.username = res.data[0].name
@@ -99,29 +93,30 @@ export default {
           console.log(this.url)
         }
       })
-      if (this.search_input === '机器学习') {
-        this.courses = new Data().machine_learning.courses;
-        this.videos = new Data().machine_learning.videos;
-        this.resources = new Data().machine_learning.resources;
-      } else {
-        console.log('deep learning')
-        this.courses = new Data().deep_learning.courses;
-        this.videos = new Data().deep_learning.videos;
-        this.resources = new Data().deep_learning.resources;
-      }
+      this.$axios.post('http://47.100.79.77:8080/Course/search/keyWord?keyword='+this.search_input,{
+        header: {
+          'Content-Type': 'application/json',
+        }
+      }).then(res => {
+        console.log(res.data)
+        var total = res.data;
+        this.courses = total.filter(item => item.type === "course");
+        this.resources = total.filter(item => item.type === "resource")
+        this.videos = total.filter(item => item.type === "video")
+      })
     },
     searchInput: function (input) {
       this.search_input = input
-      if (this.search_input === '机器学习') {
-        this.courses = new Data().machine_learning.courses;
-        this.videos = new Data().machine_learning.videos;
-        this.resources = new Data().machine_learning.resources;
-      } else {
-        console.log('deep learning')
-        this.courses = new Data().deep_learning.courses;
-        this.videos = new Data().deep_learning.videos;
-        this.resources = new Data().deep_learning.resources;
-      }
+      this.$axios.get('http://47.100.79.77:8080/Course/search/keyWord?keyword='+this.search_input,{
+        header: {
+          'Content-Type': 'application/json',
+        }
+      }).then(res => {
+        var total = res.data;
+        this.courses = total.filter(item => item.type === "course");
+        this.resources = total.filter(item => item.type === "resource")
+        this.videos = total.filter(item => item.type === "video")
+      })
     },
     attemptLogin: function (input) {
       this.show_login = input
@@ -145,10 +140,11 @@ export default {
       this.show_login = !input
       this.show_register = input
     },
-    closeOption:function (input) {
-      this.show_option=!input
+    closeOption: function (input) {
+      this.stepOver(true)
+      this.show_option = !input
       this.successful_register = input
-      this.show_login = input
+      this.show_login = !input
     },
     chooseToShow:function (input){
       if(input===0)
@@ -184,17 +180,20 @@ export default {
       this.successful_login = input;
       this.init()
     },
+    stepOver: function (input) {
+      this.step_over = input;
+      this.show_register = !input;
+      if (input) {
+        this.init();
+      }
+    },
     toCenter() {
       this.$router.push({
         name: 'Center',
-        query: {
-          id: this.user_id
-        }
       })
     },
   },
   created() {
-    console.log("init")
     this.init()
   }
 }

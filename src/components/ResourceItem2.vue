@@ -2,18 +2,18 @@
   <div class="resource-item-container">
     <div class="resource-information-container">
 
-        <span class="resource-item-title" v-on:click="clickResource">{{ resource.resource.name }}</span>
+        <span class="resource-item-title" v-on:click="clickResource" v-html="resource.name"></span>
 
-      <ul class="resource-item-ul" v-if="resource.resource.titleList.length > 0">
-        <li class="resource-item-li" v-for="(item,index) in resource.resource.titleList.split('；').slice(0,4)" :key="index" >
-          <p class="resource-item-p">{{item}}</p>
+      <ul class="resource-item-ul" v-if="resource.titleList.length > 0">
+        <li class="resource-item-li" v-for="(item,index) in resource.titleList.split('；').slice(0,4)" :key="index" >
+          <p class="resource-item-p" v-html="item"></p>
         </li>
       </ul>
-      <p class="resource-item-origin" v-if="resource.resource.origin !== ''">来源：{{ resource.resource.origin }}</p>
+      <p class="resource-item-origin" v-if="resource.origin !== ''">来源：{{ resource.origin }}</p>
     </div>
-    <div  v-if="resource.resource.cover !== ''">
-      <span class="resource-item-cover">博主：{{resource.resource.cover}}</span>
-      <span class="resource-item-score">浏览量：{{resource.resource.amount}}</span>
+    <div  v-if="resource.cover !== ''">
+      <span class="resource-item-cover">博主：{{resource.cover}}</span>
+      <span class="resource-item-score">浏览量：{{resource.amount}}</span>
     </div>
   </div>
 </template>
@@ -31,8 +31,8 @@ export default {
       this.$router.push({
         name: 'Resource',
         query: {
-          id: this.resource.resource.id,
-          name: this.resource.resource.name,
+          id: this.resource.id,
+          name: this.resource.name,
           type: '优质资源',
         }
       })

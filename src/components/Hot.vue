@@ -9,7 +9,7 @@
         <li v-for="(data, index) in hot_course.slice(0,3)" :key='index'>
           <a href="#">
             <span class="span-index">{{ index+1 }}、</span>
-            <span class="span-content">{{ data.course.name }}</span>
+            <span class="span-content">{{ data.name }}</span>
           </a>
         </li>
       </ul>
@@ -19,7 +19,7 @@
         <li v-for="(data, index) in hot_posting.slice(0,3)" :key='index'>
           <a href="#">
             <span class="span-index">{{ index+1 }}、</span>
-            <span class="span-content">{{ data.posting.title }}</span>
+            <span class="span-content">{{ data.title }}</span>
           </a>
         </li>
       </ul>

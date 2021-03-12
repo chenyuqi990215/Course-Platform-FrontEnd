@@ -1,7 +1,7 @@
-function Posting(id,type,title,content,counter,comment_num,post_time,user_id)
+function Posting(post_id,type,title,content,counter,comment_num,post_time,user_id)
 {
     var obj = {}
-    obj.id = id;
+    obj.post_id = post_id;
     obj.type = type;
     obj.title = title;
     obj.content = content;

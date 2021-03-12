@@ -1,13 +1,13 @@
 <template>
   <div class="course-item-container">
-    <img class="course-item-img" v-on:click="clickCourse" referrerpolicy="no-referrer" v-bind:src="course.course.cover" alt="course-item">
-    <p class="course-item-title" v-on:click="clickCourse">{{ course.course.name }}</p>
-    <ul class="course-item-ul" v-if="course.course.titleList.length > 0">
-      <li class="course-item-li" v-for="(item,index) in course.course.titleList.split('；').slice(0,4)" :key="index" >
+    <img class="course-item-img" v-on:click="clickCourse" referrerpolicy="no-referrer" v-bind:src="course.cover" alt="course-item">
+    <p class="course-item-title" v-on:click="clickCourse">{{ course.name }}</p>
+    <ul class="course-item-ul" v-if="course.titleList.length > 0">
+      <li class="course-item-li" v-for="(item,index) in course.titleList.split('；').slice(0,4)" :key="index" >
         <p class="course-item-p">{{item}}</p>
       </li>
     </ul>
-    <p class="course-item-origin" v-if="course.course.origin !== ''">来源：{{ course.course.origin }}</p>
+    <p class="course-item-origin" v-if="course.origin !== ''">来源：{{ course.origin }}</p>
   </div>
 </template>
 
@@ -24,8 +24,8 @@ export default {
       this.$router.push({
         name: 'Course',
         query: {
-          id: this.course.course.id,
-          name: this.course.course.name,
+          id: this.course.course_id,
+          name: this.course.name,
           type: '优质课程',
         }
       })
