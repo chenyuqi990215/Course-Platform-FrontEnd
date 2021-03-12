@@ -48,7 +48,7 @@
     </div>
 
     <div class="course-relative-container">
-      <h3 class="course-relative-h3">相似课程</h3>
+      <h3 class="course-relative-h3">相似视频</h3>
       <Course class="course-relative-course" :courses="relative_course"></Course>
     </div>
   </div>
@@ -59,7 +59,7 @@ import Course from "../components/Course";
 import Data from "../entity/Data"
 import Posts4 from "../components/Posts4.vue";
 export default {
-  name: "CourseDetail",
+  name: "VideoDetail",
   data(){
     return{
       users: new Data().users,

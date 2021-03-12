@@ -51,6 +51,7 @@ import Login from "./components/Login.vue";
 import Option from "./components/Option.vue";
 import Posts2 from "./components/Posts2.vue";
 import AddPosting from "./components/AddPosting.vue";
+
 export default {
   name: 'Posts',
   data() {

@@ -77,8 +77,8 @@ export default {
       step_over: false,
       interests: new Data().interests,
       user_id: 0,
-      postings: new Data().postings,
       users: new Data().users,
+      postings: []
     }
   },
   components: {
@@ -101,6 +101,7 @@ export default {
         },
       }).then((res) => {
         this.hot_posting = res.data
+        this.postings = res.data
       })
       this.$axios.get('http://47.100.79.77:8080/Course/hot',{
         headers: {   //设置上传请求头

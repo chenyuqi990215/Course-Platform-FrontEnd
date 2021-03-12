@@ -9,7 +9,7 @@
           首页  >  <span>{{ type }}</span> >  <span>{{ course.name }}</span>
         </p>
       </div>
-      <CourseDetail :course="course" :relative_course="relative_course"></CourseDetail>
+      <CourseDetail :course="course"></CourseDetail>
     </div>
     <Footer :class="{opacity_container: show_register || show_login || show_option}"></Footer>
     <Register v-if="show_register"

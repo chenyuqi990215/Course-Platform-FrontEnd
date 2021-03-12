@@ -1,24 +1,17 @@
 <template>
-  <div id="post" class="post">
+  <div id="display">
     <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
-            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
+            v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"
+            v-on:toCenter="toCenter"></Header>
     <div :class="{opacity_container: show_register || show_login || show_option}">
       <div class="tag-container">
-        <a href="#"><p>首页</p></a>
-        <a href="#"><p>优质课程</p></a>
-        <a href="#"><p>优质视频</p></a>
-        <a href="#"><p>优质资源</p></a>
-        <a href="#"><p v-on:click="toPosting">论坛讨论</p></a>
+        <p>
+          首页  >  <span>{{ type }}</span> >  <span>{{ course.name }}</span>
+        </p>
       </div>
-      <div class="center-container">
-        <CenterNav v-on:CenterSelect="CenterSelect" :user="user" :msg_count="msg_count"></CenterNav>
-        <Info class="info-outer-container" v-if="type === 'info'"></Info>
-        <Save class="info-outer-container" v-if="type === 'save'"></Save>
-        <Msg class="info-outer-container" v-if="type === 'msg'"></Msg>
-        <Post class="info-outer-container" v-if="type === 'post'"></Post>
-      </div>
+      <VideoDetail :course="course"></VideoDetail>
     </div>
-    <Footer></Footer>
+    <Footer :class="{opacity_container: show_register || show_login || show_option}"></Footer>
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
     <Login v-if="show_login"
@@ -29,58 +22,56 @@
 </template>
 
 <script>
-
+import Data from "./entity/Data"
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import Register from "./components/Register.vue";
 import Login from "./components/Login.vue";
 import Option from "./components/Option.vue";
-import CenterNav from "@/components/CenterNav";
-import Info from "@/components/Info";
-import Save from "@/components/Save";
-import Post from "@/components/Post";
-import Msg from "@/components/Msg"
-
+import VideoDetail from "@/components/VideoDetail";
 
 export default {
-  name: 'CenterHome',
+  name: 'VideoDisplay',
   data() {
     return {
       successful_register: false,
       show_register: false,
       show_login: false,
       show_option: false,
-      search_input: "机器学习",
+      step_over: false,
+      search_input: "Search What?",
       successful_login: false,
       username: "",
       url: "",
-      step_over: false,
-      user: [],
-      type: 'info',
-      msg_count: 100,
+      course_id: this.$route.query.id,
+      course_name: this.$route.query.name,
+      relative_course: new Data().relative_course,
+      course: null,
+      type: this.$route.query.type,
     }
   },
   components: {
-    CenterNav,
+    VideoDetail,
     Register,
     Footer,
     Header,
     Login,
     Option,
-    Info,
-    Save,
-    Msg,
-    Post
   },
   methods: {
     init() {
-      console.log("init");
+      this.$axios.get('http://47.100.79.77:8080/Course/detail?course_id=' + this.course_id,{
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        this.course = res.data[0]
+      })
       this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',
         },
       }).then((res) => {
-        console.log(res.data);
         let n = res.data.indexOf("!DOCTYPE html");
         if (n >= 0) {
           console.log(n)
@@ -89,11 +80,9 @@ export default {
           this.username = res.data[0].name
           this.url = res.data[0].portrait_url
           this.successful_login = true
-          this.user = res.data[0]
         }
       })
     },
-
     searchInput: function (input) {
       this.search_input = input
     },
@@ -132,27 +121,26 @@ export default {
         this.init();
       }
     },
+    toCenter() {
+      this.$router.push({
+        name: 'Center',
+      })
+    },
     successfulLogin: function (input) {
       this.successful_login = input;
       this.init()
     },
-    toPosting() {
-      this.$router.push({
-        name: 'Post',
-      })
-    },
-    CenterSelect(input) {
-      this.type = input
-    },
   },
-
   created() {
     this.init()
   }
 }
 </script>
 
-<style scoped>
+<style>
+#courseDetail {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
 a {
   text-decoration: none;
 }
@@ -160,14 +148,16 @@ body{
   padding: 0;
   margin: 0;
 }
-.center-container {
+.tag-container {
+  padding-left: 10%;
+  background-color: rgb(231, 231, 231);
   display: flex;
-  background-color: rgb(250,250,250);
+}
+.tag-container p {
+  color: black;
+  margin-right: 50px;
 }
 .opacity_container {
   filter: opacity(50%);
-}
-.info-outer-container {
-  margin-left: 40%;
 }
 </style>

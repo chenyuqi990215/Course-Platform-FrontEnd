@@ -5,6 +5,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import VueRouter from 'vue-router';
 import Router from 'vue-router';
 import CourseDisplay from "@/CourseDisplay";
+import VideoDisplay from "@/VideoDisplay"
 import Home from "@/Home";
 import Posts from "@/Posts"
 import AppSearch from "@/AppSearch";
@@ -107,6 +108,11 @@ const routers = [
         path: '/course',
         name: 'Course',
         component: CourseDisplay
+    },
+    {
+        path: '/video',
+        name: 'Video',
+        component: VideoDisplay
     },
     {
         path: '/',
