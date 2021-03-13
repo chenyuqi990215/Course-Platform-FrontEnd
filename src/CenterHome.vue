@@ -14,10 +14,11 @@
         <CenterNav v-on:CenterSelect="CenterSelect" :user="user" :msg_count="msg_count"></CenterNav>
         <Info class="info-outer-container" v-if="type === 'info'"></Info>
         <Save class="info-outer-container" v-if="type === 'save'"></Save>
-        <Msg class="info-outer-container" v-if="type === 'msg' " v-on:scoring="showScore"></Msg>
+        <Msg class="info-outer-container" v-if="type === 'msg' " v-on:scoring="showScore" v-on:show_scoring_course="showScoringCourse"></Msg>
         <Post class="info-outer-container" v-if="type === 'post'"></Post>
       </div>
     </div>
+    <Scoring  v-if="scoring" :course="show_scoring_course" v-on:scoringFinished="finishScoring"></Scoring>
     <Footer></Footer>
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
@@ -40,6 +41,8 @@ import Info from "@/components/Info";
 import Save from "@/components/Save";
 import Post from "@/components/Post";
 import Msg from "@/components/Msg"
+import Scoring from "@/components/Scoring";
+
 
 
 export default {
@@ -59,7 +62,8 @@ export default {
       user: new Data().users[0].user,
       type: 'info',
       msg_count: 100,
-      scoring:false,
+      scoring:true,
+      show_scoring_course:[]
     }
   },
   components: {
@@ -72,7 +76,8 @@ export default {
     Info,
     Save,
     Msg,
-    Post
+    Post,
+    Scoring
   },
   methods: {
     init() {
@@ -140,6 +145,14 @@ export default {
     },
     showScore:function(input){
       this.scoring=input
+      console.log(this.scoring)
+    },
+    showScoringCourse:function(input){
+      this.show_scoring_course=input
+      console.log(this.show_scoring_course)
+    },
+    finishScoring:function(input){
+      this.scoring=!input
     },
     toPosting() {
       this.$router.push({

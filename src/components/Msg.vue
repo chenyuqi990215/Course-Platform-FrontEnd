@@ -2,7 +2,7 @@
   <div class="msg-container">
     <ul class="msg-ul">
       <li class="msg-li" v-for="(item,index) in courses" :key="index">
-        <MsgItem :course="item" v-on:scoring="scoring"></MsgItem>
+        <MsgItem :course="item" v-on:scoring="Scoring" v-on:scoring_course="showScoringCourse"></MsgItem>
       </li>
     </ul>
 
@@ -36,8 +36,11 @@ export default {
 
       })
     },
-    scoring(){
-      this.$emit('scoring',true)
+    Scoring:function (input){
+      this.$emit('scoring',input)
+    },
+    showScoringCourse:function(input){
+      this.$emit('show_scoring_course',input)
     }
   },
   created(){
@@ -62,4 +65,5 @@ background:rgb(249,249,249);
   list-style-type: none;
   margin-left: 0;
 }
+
 </style>
