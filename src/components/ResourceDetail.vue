@@ -1,21 +1,21 @@
 <template>
   <div class="resource-detail-container">
-    <h2 class="resource-name"> {{ resource.resource.name }}</h2>
+    <h2 class="resource-name"> {{ resource.name }}</h2>
     <div class="resource-inner-container">
       <div class="resource-another-container">
-        <div  class="resource-information" v-if="resource.resource.cover !== ''">
-          <span class="title">博主：</span><span class="resource-p">{{resource.resource.cover}}</span>
+        <div  class="resource-information" v-if="resource.cover !== ''">
+          <span class="title">博主：</span><span class="resource-p">{{resource.cover}}</span>
         </div>
           <br>
         <div class="resource-information">
-          <span class="title">来源：</span> <span class="resource-p">{{resource.resource.origin}}</span>
+          <span class="title">来源：</span> <span class="resource-p">{{resource.origin}}</span>
         </div>
         <br>
         <div class="resource-information">
         <span class="title">评分:</span>
-          <span class="resource-score-h1"> {{ Math.floor(resource.resource.score) / 10 }}</span>
+          <span class="resource-score-h1"> {{ Math.floor(resource.score) / 10 }}</span>
           <div class="star-rating">
-            <div class="star-rating-top" :style="{width:Math.floor(resource.resource.score)+'%'}">
+            <div class="star-rating-top" :style="{width:Math.floor(resource.score)+'%'}">
               <span></span>
               <span></span>
               <span></span>
@@ -32,16 +32,19 @@
           </div>
         </div>
         <br>
-        <ul class="resource-ul-title" v-if="resource.resource.titleList.length > 0">
-          <li class="resource-li-title" v-for="(item,index) in resource.resource.titleList.split('；').slice(0,4)" :key="index" >
+        <ul class="resource-ul-title" v-if="resource.titleList.length > 0">
+          <li class="resource-li-title" v-for="(item,index) in resource.titleList.split('；').slice(0,4)" :key="index" >
             <p class="resource-p-title">{{item}}</p>
           </li>
         </ul>
         <div class="resource-view-container">
-          <a :href="resource.resource.url" target=_blank>
-            <p class="resource-view-p">阅读全文</p>
-          </a>
-          <p class="resource-p-amount">{{resource.resource.amount}}点击</p>
+          <div v-on:click="submitWatch">
+            <a :href="resource.url" target=_blank>
+              <p class="resource-view-p">阅读全文</p>
+            </a>
+          </div>
+
+          <p class="resource-p-amount">{{resource.amount}}点击</p>
         </div>
       </div>
     </div>
@@ -51,7 +54,7 @@
     </div>
 
     <div class="post-outer-container">
-      <posts4 class="post-outer-container" :postings="postings" :users="users" :course_title=" resource.resource.name"></posts4>
+      <posts4 class="post-outer-container" :postings="postings" :users="users" :course_title=" resource.name"></posts4>
     </div>
 
 
@@ -70,7 +73,18 @@ export default {
       users: new Data().users,
     }
   },
-
+  methods:{
+    submitWatch(){
+      console.log(this.resource.course_id)
+      this.$axios.post('http://47.100.79.77:8080/User/watch?course_id='+this.resource.course_id, {
+        headers:{   //设置上传请求头
+          'Content-Type':'application/x-www-from-urlencoded',
+        },
+      }).then((res)=>{
+        console.log(res.data)
+      })
+    }
+  },
   props: {
     resource: Object,
     relative_resource: Array

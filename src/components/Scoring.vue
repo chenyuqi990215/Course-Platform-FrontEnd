@@ -1,6 +1,6 @@
 <template>
   <div class="scoring-container" >
-    <img class="course-item-img" referrerpolicy="no-referrer" v-bind:src="course.cover" alt="course-item" v-on:click="clickCourse">
+    <img class="course-item-img" referrerpolicy="no-referrer" v-if="type!=='资源'" v-bind:src="course.cover" alt="course-item" v-on:click="clickCourse">
 
     <div class="course-item-title">
       <p  v-on:click="clickCourse">{{ course.name }}</p>
@@ -36,8 +36,8 @@ export default {
 name: "Scoring",
   data(){
     return{
-      type:"课程",
       score:0,
+      type:"课程"
     }
   },
   props:{
@@ -46,7 +46,14 @@ name: "Scoring",
     }
   },
   methods:{
-
+    init(){
+      if(this.course.type==='course')
+        this.type='课程'
+      else if(this.course.type==='video')
+        this.type='视频'
+      else if(this.course.type==='resource')
+        this.type='资源'
+    },
     clickCourse() {
       this.$router.push({
         name: 'Course',
@@ -76,6 +83,9 @@ name: "Scoring",
       this.$emit('scoringFinished',true)
     }
   },
+  created(){
+  this.init()
+  }
 
 }
 </script>

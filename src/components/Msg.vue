@@ -17,7 +17,6 @@ export default {
   name: "Msg",
   data(){
     return{
-      courses:[],
 
     }
   },
@@ -26,15 +25,7 @@ export default {
   },
   methods:{
     init(){
-      this.$axios.get('http://47.100.79.77:8080/Course/hot',{
-        headers: {   //设置上传请求头
-          'Content-Type': 'application/json',
-        },
-      }).then((res) => {
-        this.courses = res.data
-        console.log(res.data)
 
-      })
     },
     Scoring:function (input){
       this.$emit('scoring',input)
@@ -42,6 +33,11 @@ export default {
     showScoringCourse:function(input){
       this.$emit('show_scoring_course',input)
     }
+  },
+  props:{
+    courses:{
+      type:Array
+    },
   },
   created(){
     this.init()

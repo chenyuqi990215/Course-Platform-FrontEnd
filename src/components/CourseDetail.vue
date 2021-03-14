@@ -36,9 +36,12 @@
           </li>
         </ul>
         <div class="course-view-container">
-          <a :href="course.url" target=_blank>
-            <p class="course-view-p">立即观看</p>
-          </a>
+          <div v-on:click="submitForm">
+            <a :href="course.url" target=_blank >
+              <p class="course-view-p">立即观看</p>
+            </a>
+          </div>
+
           <p class="course-origin">来源：{{course.origin}}</p>
         </div>
       </div>
@@ -66,7 +69,18 @@ export default {
       users: new Data().users,
     }
   },
+ methods:{
+   submitForm() {
 
+         this.$axios.post('http://47.100.79.77:8080/User/watch?course_id='+this.course.course_id, {
+           headers:{   //设置上传请求头
+             'Content-Type':'application/x-www-from-urlencoded',
+           },
+         }).then((res)=>{
+           console.log(res.data)
+         })
+   },
+ },
   props: {
     course: Object,
     relative_course: Array

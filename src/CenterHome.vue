@@ -14,7 +14,7 @@
         <CenterNav v-on:CenterSelect="CenterSelect" :user="user" :msg_count="msg_count"></CenterNav>
         <Info class="info-outer-container" v-if="type === 'info'"></Info>
         <Save class="info-outer-container" v-if="type === 'save'"></Save>
-        <Msg class="info-outer-container" v-if="type === 'msg' " v-on:scoring="showScore" v-on:show_scoring_course="showScoringCourse"></Msg>
+        <Msg class="info-outer-container" v-if="type === 'msg' " v-on:scoring="showScore" v-on:show_scoring_course="showScoringCourse" :courses="courses"></Msg>
         <Post class="info-outer-container" v-if="type === 'post'"></Post>
       </div>
     </div>
@@ -62,8 +62,9 @@ export default {
       user: new Data().users[0].user,
       type: 'info',
       msg_count: 100,
-      scoring:true,
-      show_scoring_course:[]
+      scoring:false,
+      show_scoring_course:[],
+      courses:[]
     }
   },
   components: {
@@ -98,6 +99,15 @@ export default {
           this.successful_login = true
           this.user = res.data[0]
         }
+      })
+      this.$axios.get('http://47.100.79.77:8080/User/message',{
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        this.courses = res.data
+        console.log(res.data)
+
       })
     },
 

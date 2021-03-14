@@ -1,8 +1,11 @@
 <template>
   <div class="resource-item-container">
-    <a :href="resource.resource.url">
-      <p class="resource-item-title">{{resource.resource.name}}</p>
-    </a>
+    <div v-on:click="submitForm">
+      <a :href="resource.resource.url">
+        <p class="resource-item-title">{{resource.resource.name}}</p>
+      </a>
+    </div>
+
 
     <ul class="resource-item-ul">
       <li class="resource-item-li" v-for="(item,index) in resource.resource.titleList.split('；').slice(0,4)" :key="index" >
@@ -18,6 +21,17 @@ export default {
   name: "ResourceItem",
   props: {
     resource: Object
+  },
+  methods:{
+    submitForm(){
+      this.$axios.post('http://47.100.79.77:8080/User/browse?course_id='+this.resource.resource.id, {
+        headers:{   //设置上传请求头
+          'Content-Type':'application/x-www-from-urlencoded',
+        },
+      }).then((res)=>{
+        console.log(res.data)
+      })
+    },
   }
 }
 

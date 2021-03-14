@@ -43,7 +43,6 @@ export default {
       username: "",
       url: "",
       course_id: this.$route.query.id,
-      course_name: this.$route.query.name,
       relative_course: new Data().relative_course,
       course: null,
       type: this.$route.query.type,
@@ -64,7 +63,9 @@ export default {
           'Content-Type': 'application/json',
         },
       }).then((res) => {
+        console.log(res.data[0])
         this.course = res.data[0]
+
       })
       this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
         headers: {   //设置上传请求头

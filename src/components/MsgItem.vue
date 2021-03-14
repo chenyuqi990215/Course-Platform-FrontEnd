@@ -13,7 +13,7 @@ export default {
 name: "MsgItem",
   data(){
     return{
-      type:"课程",
+      type:"课程"
     }
   },
   props:{
@@ -22,13 +22,23 @@ name: "MsgItem",
   }
   },
   methods:{
-
+    init(){
+      if(this.course.type==='course')
+        this.type='课程'
+      else if(this.course.type==='video')
+        this.type='视频'
+      else if(this.course.type==='resource')
+        this.type='资源'
+    },
     Scoring(){
       this.$emit('scoring',true)
       this.$emit('scoring_course',this.course)
     },
 
   },
+  created(){
+  this.init()
+  }
 
 
 }
