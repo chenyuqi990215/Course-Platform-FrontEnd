@@ -1,31 +1,65 @@
 <template>
   <div class="msg-container">
-    <p class="msg-p"> 我的信息 </p>
-    <img class="msg-img" src="../assets/empty.png">
+    <ul class="msg-ul">
+      <li class="msg-li" v-for="(item,index) in courses" :key="index">
+        <MsgItem :course="item" v-on:scoring="scoring"></MsgItem>
+      </li>
+    </ul>
+
   </div>
 </template>
 
 <script>
+
+import MsgItem from "@/components/MsgItem";
+
 export default {
-  name: "Msg"
+  name: "Msg",
+  data(){
+    return{
+      courses:[],
+
+    }
+  },
+  components:{
+    MsgItem,
+  },
+  methods:{
+    init(){
+      this.$axios.get('http://47.100.79.77:8080/Course/hot',{
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        this.courses = res.data
+        console.log(res.data)
+
+      })
+    },
+    scoring(input){
+      this.$emit('scoring', input)
+    }
+  },
+  created(){
+    this.init()
+  }
 }
 </script>
 
 <style scoped>
 .msg-container{
   background-color: white;
-  width: 70%;
-  margin: 30px;
-  height: 700px;
-  text-align: center;
+  width: 100%;
+  margin-left: 0;
+  min-height: 700px;
 }
-.msg-p {
-  margin: 30px 0;
-  font-size: large;
-  font-weight: bold;
+.msg-ul{
+  margin-top: 60px;
+  margin-left: -40px;
 }
-.msg-img {
-  width: 300px;
-  height: 300px;
+.msg-li {
+background:rgb(249,249,249);
+  list-style-type: none;
+  margin-left: 0;
 }
 </style>

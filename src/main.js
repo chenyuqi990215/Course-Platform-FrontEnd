@@ -61,12 +61,7 @@ axios.defaults.transformRequest = [function (data) {
     }
     return newData
 }]
-axios.interceptors.request.use(config => {
-    if (sessionStorage.getItem('token')) { // 若存在token，则每个Http Header都加上token
-        config.headers.Authorization = `token ${sessionStorage.getItem('token')}`
-    }
-    return config
-})
+
 axios.interceptors.response.use(response => {
         const res = response;
         if (res.status === 200) {

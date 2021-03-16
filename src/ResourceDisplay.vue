@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     init() {
-      this.resource = new Data().resources[this.resource_id];xf
+      this.resource = new Data().resources[this.resource_id];
       this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',

@@ -2,7 +2,7 @@
   <div id="post" class="post">
     <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
             v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
-    <div :class="{opacity_container: show_register || show_login || show_option}">
+    <div :class="{opacity_container: show_register || show_login || show_option || scoring}">
       <div class="tag-container">
         <a href="#"><p>首页</p></a>
         <a href="#"><p>优质课程</p></a>
@@ -14,7 +14,7 @@
         <CenterNav v-on:CenterSelect="CenterSelect" :user="user" :msg_count="msg_count"></CenterNav>
         <Info class="info-outer-container" v-if="type === 'info'"></Info>
         <Save class="info-outer-container" v-if="type === 'save'"></Save>
-        <Msg class="info-outer-container" v-if="type === 'msg'"></Msg>
+        <Msg class="info-outer-container" v-if="type === 'msg' " v-on:scoring="showScore"></Msg>
         <Post class="info-outer-container" v-if="type === 'post'"></Post>
       </div>
     </div>
@@ -58,6 +58,7 @@ export default {
       user: [],
       type: 'info',
       msg_count: 100,
+      scoring:false,
     }
   },
   components: {
@@ -136,6 +137,10 @@ export default {
       this.successful_login = input;
       this.init()
     },
+    showScore:function(input){
+      this.scoring=input
+      console.log(this.scoring)
+    },
     toPosting() {
       this.$router.push({
         name: 'Post',
@@ -144,6 +149,7 @@ export default {
     CenterSelect(input) {
       this.type = input
     },
+
   },
 
   created() {
@@ -168,6 +174,9 @@ body{
   filter: opacity(50%);
 }
 .info-outer-container {
-  margin-left: 40%;
+  margin-left: 31%;
+  margin-right: 5%;
+  background-color: white;
+  padding-bottom: 60px;
 }
 </style>
