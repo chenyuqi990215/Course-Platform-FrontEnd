@@ -28,11 +28,20 @@ export default {
   },
   methods:{
     clickResource() {
+
+        this.$axios.post('http://47.100.79.77:8080/User/browse?course_id='+this.resource.course_id, {
+          headers:{   //设置上传请求头
+            'Content-Type':'application/x-www-from-urlencoded',
+          },
+        }).then((res)=>{
+          console.log(res.data)
+
+        })
+
       this.$router.push({
         name: 'Resource',
         query: {
-          id: this.resource.id,
-          name: this.resource.name,
+          id: this.resource.course_id,
           type: '优质资源',
         }
       })

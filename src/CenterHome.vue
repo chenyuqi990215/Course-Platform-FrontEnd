@@ -2,7 +2,7 @@
   <div id="post" class="post">
     <Header v-bind:login="successful_login" v-bind:username="username" v-bind:portrait_url="url"
             v-on:searchInput="searchInput" v-on:login="attemptLogin" v-on:attemptRegister="attemptRegister"></Header>
-    <div :class="{opacity_container: show_register || show_login || show_option || scoring}">
+    <div :class="{opacity_container: show_register || show_login || show_option||scoring}">
       <div class="tag-container">
         <a href="#"><p>首页</p></a>
         <a href="#"><p>优质课程</p></a>
@@ -14,10 +14,11 @@
         <CenterNav v-on:CenterSelect="CenterSelect" :user="user" :msg_count="msg_count"></CenterNav>
         <Info class="info-outer-container" v-if="type === 'info'"></Info>
         <Save class="info-outer-container" v-if="type === 'save'"></Save>
-        <Msg class="info-outer-container" v-if="type === 'msg' " v-on:scoring="showScore"></Msg>
+        <Msg class="info-outer-container" v-if="type === 'msg' " v-on:scoring="showScore" v-on:show_scoring_course="showScoringCourse" :courses="courses"></Msg>
         <Post class="info-outer-container" v-if="type === 'post'"></Post>
       </div>
     </div>
+    <Scoring  v-if="scoring" :course="show_scoring_course" v-on:scoringFinished="finishScoring"></Scoring>
     <Footer></Footer>
     <Register v-if="show_register"
               v-on:closeRegister="closeRegister" v-on:openLogin="openLogin"></Register>
@@ -29,7 +30,7 @@
 </template>
 
 <script>
-
+import Data from "./entity/Data";
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import Register from "./components/Register.vue";
@@ -40,6 +41,8 @@ import Info from "@/components/Info";
 import Save from "@/components/Save";
 import Post from "@/components/Post";
 import Msg from "@/components/Msg"
+import Scoring from "@/components/Scoring";
+
 
 
 export default {
@@ -52,13 +55,16 @@ export default {
       show_option: false,
       search_input: "机器学习",
       successful_login: false,
-      username: "",
-      url: "",
+      username: new Data().username,
+      url: new Data().url,
       step_over: false,
-      user: [],
+      users: new Data().users,
+      user: new Data().users[0].user,
       type: 'info',
       msg_count: 100,
       scoring:false,
+      show_scoring_course:[],
+      courses:[]
     }
   },
   components: {
@@ -71,7 +77,8 @@ export default {
     Info,
     Save,
     Msg,
-    Post
+    Post,
+    Scoring
   },
   methods: {
     init() {
@@ -92,6 +99,15 @@ export default {
           this.successful_login = true
           this.user = res.data[0]
         }
+      })
+      this.$axios.get('http://47.100.79.77:8080/User/message',{
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        this.courses = res.data
+        console.log(res.data)
+
       })
     },
 
@@ -140,6 +156,13 @@ export default {
     showScore:function(input){
       this.scoring=input
       console.log(this.scoring)
+    },
+    showScoringCourse:function(input){
+      this.show_scoring_course=input
+      console.log(this.show_scoring_course)
+    },
+    finishScoring:function(input){
+      this.scoring=!input
     },
     toPosting() {
       this.$router.push({

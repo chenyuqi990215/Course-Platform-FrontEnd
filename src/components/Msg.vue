@@ -2,7 +2,7 @@
   <div class="msg-container">
     <ul class="msg-ul">
       <li class="msg-li" v-for="(item,index) in courses" :key="index">
-        <MsgItem :course="item" v-on:scoring="scoring"></MsgItem>
+        <MsgItem :course="item" v-on:scoring="Scoring" v-on:scoring_course="showScoringCourse"></MsgItem>
       </li>
     </ul>
 
@@ -17,7 +17,6 @@ export default {
   name: "Msg",
   data(){
     return{
-      courses:[],
 
     }
   },
@@ -26,19 +25,19 @@ export default {
   },
   methods:{
     init(){
-      this.$axios.get('http://47.100.79.77:8080/Course/hot',{
-        headers: {   //设置上传请求头
-          'Content-Type': 'application/json',
-        },
-      }).then((res) => {
-        this.courses = res.data
-        console.log(res.data)
 
-      })
     },
-    scoring(input){
-      this.$emit('scoring', input)
+    Scoring:function (input){
+      this.$emit('scoring',input)
+    },
+    showScoringCourse:function(input){
+      this.$emit('show_scoring_course',input)
     }
+  },
+  props:{
+    courses:{
+      type:Array
+    },
   },
   created(){
     this.init()
@@ -58,8 +57,9 @@ export default {
   margin-left: -40px;
 }
 .msg-li {
-background:rgb(249,249,249);
+  background:rgb(249,249,249);
   list-style-type: none;
   margin-left: 0;
 }
+
 </style>

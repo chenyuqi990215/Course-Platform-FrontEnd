@@ -36,15 +36,18 @@
           </li>
         </ul>
         <div class="course-view-container">
-          <a :href="course.url" target=_blank>
-            <p class="course-view-p" v-on:click="Browse">立即观看</p>
-          </a>
+          <div v-on:click="submitForm">
+            <a :href="course.url" target=_blank >
+              <p class="course-view-p">立即观看</p>
+            </a>
+          </div>
+
           <p class="course-origin">来源：{{course.origin}}</p>
         </div>
       </div>
     </div>
     <div class="post-outer-container">
-      <posts4 :course="course"></posts4>
+      <posts4 :postings="postings" :users="users" :course_title="course.name"></posts4>
     </div>
 
     <div class="course-relative-container">
@@ -62,35 +65,38 @@ export default {
   name: "CourseDetail",
   data(){
     return{
+      postings:new Data().postings,
       users: new Data().users,
-      relative_course : [],
+      relative_course: []
     }
   },
-
+  methods:{
+    init() {
+      this.$axios.get('http://47.100.79.77:8080/Course/relative?course_id=' + this.course.course_id,{
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        console.log(res.data)
+        this.relative_course = res.data
+      })
+    },
+    submitForm() {
+      this.$axios.post('http://47.100.79.77:8080/User/watch?course_id='+this.course.course_id, {
+        headers:{   //设置上传请求头
+          'Content-Type':'application/x-www-from-urlencoded',
+        },
+      }).then((res)=>{
+        console.log(res.data)
+      })
+    },
+  },
   props: {
-    course: Object,
+    course: Object
   },
   components: {
     Course,
     Posts4
-  },
-  methods: {
-    init() {
-      this.$axios.get('http://47.100.79.77:8080/Course/relative?course_id=' + this.course.course_id,{
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      }).then((res) => {
-        this.relative_course = res.data
-      })
-    },
-    Browse() {
-      this.$axios.post('http://47.100.79.77:8080/User/browse?course_id=' + this.course.course_id,{
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
-    }
   },
   created() {
     this.init()

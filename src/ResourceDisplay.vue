@@ -5,7 +5,7 @@
     <div :class="{opacity_container: show_register || show_login || show_option}">
       <div class="tag-container">
         <p>
-          首页  >  <span>{{ type }}</span> >  <span>{{ resource.resource.name }}</span>
+          首页  >  <span>{{ type }}</span> >  <span>{{ resource.name }}</span>
         </p>
       </div>
       <ResourceDetail :resource="resource" :relative_resource="relative_resource"></ResourceDetail>
@@ -44,7 +44,6 @@ export default {
       type: "优质资源",
       resource : new Data().resources[0],
       resource_id: this.$route.query.id,
-      resource_name: this.$route.query.name,
       relative_resource: new Data().relative_resource,
     }
   },
@@ -58,7 +57,15 @@ export default {
   },
   methods: {
     init() {
-      this.resource = new Data().resources[this.resource_id];
+      this.$axios.get('http://47.100.79.77:8080/Course/detail?course_id=' + this.resource_id,{
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        console.log(res.data[0])
+        this.resource= res.data[0]
+
+      })
       this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',
@@ -77,6 +84,7 @@ export default {
           console.log(this.url)
         }
       })
+
     },
     searchInput: function (input) {
       this.search_input = input
