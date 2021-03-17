@@ -106,6 +106,20 @@ export default {
       } else this.lan_num.option = this.lan_num.option - 1;
     },
     submitTable() {
+      var tag="";
+      for (var i = 0;i < this.options_states.length;  i++) {
+        if (this.options_states[i].option === true) {
+          tag += this.options_classes[i].option;
+          tag += "；";
+        }
+      }
+      this.$axios.post('http://47.100.79.77:8080/User/tag?tag=' + tag,{
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }).then((res) => {
+        console.log(res)
+      })
       this.$emit('stepOver',true)
       this.$emit('submitTable', true)
     }

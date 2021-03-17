@@ -129,6 +129,8 @@ export default {
           console.log('Not valid');
         }
       })
+      this.title = "";
+      this.content = "";
     },
     clickRecommend() {
       if (this.course_title.length > 0) {

@@ -197,7 +197,7 @@ body{
   filter: opacity(50%);
 }
 .info-outer-container {
-  margin-left: 31%;
+  margin-left: 35%;
   margin-right: 5%;
   background-color: white;
   padding-bottom: 60px;

@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import Data from "./entity/Data"
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import Register from "./components/Register.vue";
@@ -38,13 +37,13 @@ export default {
       show_option:false,
       search_input: "Search What?",
       successful_login: false,
-      username: new Data().username,
-      url: new Data().url,
+      username: "",
+      url: "",
 
       type: "优质资源",
-      resource : new Data().resources[0],
+      resource : [],
+      relative_resource: [],
       resource_id: this.$route.query.id,
-      relative_resource: new Data().relative_resource,
     }
   },
   components: {
@@ -62,16 +61,21 @@ export default {
           'Content-Type': 'application/json',
         },
       }).then((res) => {
-        console.log(res.data[0])
         this.resource= res.data[0]
-
+      })
+      this.$axios.get('http://47.100.79.77:8080/Resource/relative?course_id=' + this.resource_id,{
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        console.log(res.data)
+        this.relative_resource = res.data
       })
       this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',
         },
       }).then((res) => {
-        console.log(res.data);
         let n = res.data.indexOf("!DOCTYPE html");
         if (n >= 0) {
           console.log(n)
@@ -80,11 +84,15 @@ export default {
           this.username = res.data[0].name
           this.url = res.data[0].portrait_url
           this.successful_login = true
-          console.log(this.username)
-          console.log(this.url)
         }
       })
-
+      if (this.successful_login === true) {
+        this.$axios.post('http://47.100.79.77:8080/User/browse?course_id='+this.course_id, {
+          headers:{   //设置上传请求头
+            'Content-Type':'application/x-www-from-urlencoded',
+          },
+        })
+      }
     },
     searchInput: function (input) {
       this.search_input = input

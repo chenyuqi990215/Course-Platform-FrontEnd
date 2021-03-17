@@ -54,7 +54,7 @@
     </div>
 
     <div class="post-outer-container">
-      <posts4 class="post-outer-container" :postings="postings" :users="users" :course_title=" resource.name"></posts4>
+      <posts4 class="post-outer-container" :course="resource"></posts4>
     </div>
 
 
@@ -63,19 +63,11 @@
 
 <script>
 import Resource from "../components/Resource.vue";
-import Data from "../entity/Data"
 import Posts4 from "../components/Posts4.vue";
 export default {
   name: "ResourceDetail",
-  data(){
-    return{
-      postings:new Data().postings,
-      users: new Data().users,
-    }
-  },
   methods:{
     submitWatch(){
-      console.log(this.resource.course_id)
       this.$axios.post('http://47.100.79.77:8080/User/watch?course_id='+this.resource.course_id, {
         headers:{   //设置上传请求头
           'Content-Type':'application/x-www-from-urlencoded',
@@ -92,7 +84,7 @@ export default {
   components: {
     Resource,
     Posts4
-  }
+  },
 }
 </script>
 

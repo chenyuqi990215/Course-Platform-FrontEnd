@@ -171,7 +171,7 @@ export default {
       this.question=true;
     },
     change_comment(){
-      this.postings = this.postingsCopy.filter(item => item.posting.type === "课程推荐");
+      this.postings = this.postingsCopy.filter(item => item.type === "课程推荐");
       this.all=true;
       this.hot=true;
       this.comment=false;
@@ -179,7 +179,7 @@ export default {
       this.question=true;
     },
     change_experience(){
-      this.postings = this.postingsCopy.filter(item => item.posting.type === "经验分享");
+      this.postings = this.postingsCopy.filter(item => item.type === "经验分享");
       this.all=true;
       this.hot=true;
       this.comment=true;
@@ -187,7 +187,7 @@ export default {
       this.question=true;
     },
     change_question(){
-      this.postings = this.postingsCopy.filter(item => item.posting.type === "课程疑惑");
+      this.postings = this.postingsCopy.filter(item => item.type === "课程疑惑");
       this.all=true;
       this.hot=true;
       this.comment=true;

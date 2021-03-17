@@ -1,18 +1,18 @@
 <template>
   <div class="resource-item-container">
     <div v-on:click="submitForm">
-      <a :href="resource.resource.url">
-        <p class="resource-item-title">{{resource.resource.name}}</p>
+      <a :href="resource.url">
+        <p class="resource-item-title">{{resource.name}}</p>
       </a>
     </div>
 
 
     <ul class="resource-item-ul">
-      <li class="resource-item-li" v-for="(item,index) in resource.resource.titleList.split('；').slice(0,4)" :key="index" >
+      <li class="resource-item-li" v-for="(item,index) in resource.titleList.split('；').slice(0,4)" :key="index" >
         <p class="resource-item-p">{{item}}</p>
       </li>
     </ul>
-    <p class="resource-item-origin">来源：{{ resource.resource.origin }}</p>
+    <p class="resource-item-origin">来源：{{ resource.origin }}</p>
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
   },
   methods:{
     submitForm(){
-      this.$axios.post('http://47.100.79.77:8080/User/browse?course_id='+this.resource.resource.id, {
+      this.$axios.post('http://47.100.79.77:8080/User/browse?course_id='+this.resource.course_id, {
         headers:{   //设置上传请求头
           'Content-Type':'application/x-www-from-urlencoded',
         },
@@ -63,7 +63,7 @@ p {
 }
 .resource-item-container {
   width: 250px;
-  height: 100px;
+  height: 150px;
 }
 .resource-item-ul {
   list-style-type: none;
