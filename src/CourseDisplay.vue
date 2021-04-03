@@ -9,7 +9,7 @@
           首页  >  <span>{{ type }}</span> >  <span>{{ course.name }}</span>
         </p>
       </div>
-      <CourseDetail :course="course" :relative_course="relative_course"></CourseDetail>
+      <CourseDetail :course="course"></CourseDetail>
     </div>
     <Footer :class="{opacity_container: show_register || show_login || show_option}"></Footer>
     <Register v-if="show_register"
@@ -82,6 +82,15 @@ export default {
           this.successful_login = true
         }
       })
+      if (this.successful_login === true) {
+        this.$axios.post('http://47.100.79.77:8080/User/browse?course_id='+this.course_id, {
+          headers:{   //设置上传请求头
+            'Content-Type':'application/x-www-from-urlencoded',
+          },
+        }).then((res)=>{
+          console.log(res.data)
+        })
+      }
     },
     searchInput: function (input) {
       this.search_input = input

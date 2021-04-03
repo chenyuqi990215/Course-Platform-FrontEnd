@@ -21,8 +21,6 @@ export default {
   },
   methods: {
     clickCourse() {
-
-
         this.$axios.post('http://47.100.79.77:8080/User/browse?course_id='+this.course.course_id, {
           headers:{   //设置上传请求头
             'Content-Type':'application/x-www-from-urlencoded',

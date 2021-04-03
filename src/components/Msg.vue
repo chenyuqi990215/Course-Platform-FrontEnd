@@ -57,7 +57,7 @@ export default {
   margin-left: -40px;
 }
 .msg-li {
-background:rgb(249,249,249);
+  background:rgb(249,249,249);
   list-style-type: none;
   margin-left: 0;
 }

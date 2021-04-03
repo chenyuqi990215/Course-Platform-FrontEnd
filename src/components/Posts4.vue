@@ -20,7 +20,7 @@
         </li>
       </ul>
     </div>
-    <AddPosting  class="add-posting" :course_title="course_title" v-if="AddPosting"></AddPosting>
+    <AddPosting  class="add-posting" :course_title="course.name" :course_id="course.course_id" v-if="AddPosting"></AddPosting>
   </div>
 </template>
 
@@ -31,7 +31,7 @@ export default {
   name: "Posts4.vue",
   data() {
     return {
-      start_num:0,
+      start_num: 0,
       show_course: true,
       show_posting: false,
       all:false,
@@ -40,9 +40,21 @@ export default {
       experience:true,
       other:true,
       AddPosting:false,
+      postingsCopy: [],
+      postings: [],
     }
   },
   methods: {
+    init() {
+      this.$axios.get('http://47.100.79.77:8080/Posting/searchByCourseId?course_id=' + this.course.course_id,{
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }).then((res) => {
+        this.postings = res.data
+        this.postingsCopy = res.data
+      })
+    },
     showCourse() {
       this.show_course = true;
       this.show_posting = false;
@@ -61,7 +73,7 @@ export default {
     },
 
     change_comment(){
-      this.postings = this.postingsCopy.filter(item => item.posting.type === "课程推荐");
+      this.postings = this.postingsCopy.filter(item => item.type === "课程推荐");
       this.all=true;
       this.hot=true;
       this.comment=false;
@@ -69,7 +81,7 @@ export default {
       this.question=true;
     },
     change_experience(){
-      this.postings = this.postingsCopy.filter(item => item.posting.type === "经验分享");
+      this.postings = this.postingsCopy.filter(item => item.type === "经验分享");
       this.all=true;
       this.hot=true;
       this.comment=true;
@@ -77,7 +89,7 @@ export default {
       this.question=true;
     },
     change_question(){
-      this.postings = this.postingsCopy.filter(item => item.posting.type === "课程疑惑");
+      this.postings = this.postingsCopy.filter(item => item.type === "课程疑惑");
       this.all=true;
       this.hot=true;
       this.comment=true;
@@ -98,18 +110,14 @@ export default {
   },
 
   props:{
-    postings:{
-      type:Array
-    },
-    course_title: {
-      type:String
-    }
+    course: Object
   },
   components: {
     PostItem3,
     AddPosting
   },
   created() {
+    this.init()
     this.postingsCopy = this.postings;
   }
 }

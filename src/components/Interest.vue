@@ -18,7 +18,10 @@ import Course from "@/components/Course";
 import Resource from "@/components/Resource";
 export default {
   name: "Interest",
-  components: {Resource, Course},
+  components: {
+    Resource,
+    Course
+  },
   props:{
     courses: Array,
     resources: Array,

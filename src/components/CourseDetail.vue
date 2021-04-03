@@ -47,7 +47,7 @@
       </div>
     </div>
     <div class="post-outer-container">
-      <posts4 :postings="postings" :users="users" :course_title="course.name"></posts4>
+      <posts4 :course="course"></posts4>
     </div>
 
     <div class="course-relative-container">
@@ -59,35 +59,56 @@
 
 <script>
 import Course from "../components/Course";
-import Data from "../entity/Data"
 import Posts4 from "../components/Posts4.vue";
 export default {
   name: "CourseDetail",
   data(){
     return{
-      postings:new Data().postings,
-      users: new Data().users,
+      relative_course: []
     }
   },
- methods:{
-   submitForm() {
+  methods:{
+    init() {
+      if (this.course.type === "course") {
+        this.$axios.get('http://47.100.79.77:8080/Course/relative?course_id=' + this.course.course_id,{
+          headers: {   //设置上传请求头
+            'Content-Type': 'application/json',
+          },
+        }).then((res) => {
+          console.log(res.data)
+          this.relative_course = res.data
+        })
+      } else {
+        this.$axios.get('http://47.100.79.77:8080/Video/relative?course_id=' + this.course.course_id,{
+          headers: {   //设置上传请求头
+            'Content-Type': 'application/json',
+          },
+        }).then((res) => {
+          console.log(res.data)
+          this.relative_course = res.data
+        })
+      }
 
-         this.$axios.post('http://47.100.79.77:8080/User/watch?course_id='+this.course.course_id, {
-           headers:{   //设置上传请求头
-             'Content-Type':'application/x-www-from-urlencoded',
-           },
-         }).then((res)=>{
-           console.log(res.data)
-         })
-   },
- },
+    },
+    submitForm() {
+      this.$axios.post('http://47.100.79.77:8080/User/watch?course_id='+this.course.course_id, {
+        headers:{   //设置上传请求头
+          'Content-Type':'application/x-www-from-urlencoded',
+        },
+      }).then((res)=>{
+        console.log(res.data)
+      })
+    },
+  },
   props: {
-    course: Object,
-    relative_course: Array
+    course: Object
   },
   components: {
     Course,
     Posts4
+  },
+  created() {
+    this.init()
   }
 }
 </script>

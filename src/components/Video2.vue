@@ -8,18 +8,18 @@
 
     <ul class="course-ul">
       <li class="course-li" v-for="(item,index) in courses" :key="index">
-        <CourseItem2 class="course-item" :course="item"></CourseItem2>
+        <VideoItem2 class="course-item" :course="item"></VideoItem2>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import CourseItem2 from "./CourseItem2.vue"
+import VideoItem2 from "@/components/VideoItem2";
 export default {
   name: "Video2",
   components: {
-    CourseItem2
+    VideoItem2,
   },
   props: {
     courses: {

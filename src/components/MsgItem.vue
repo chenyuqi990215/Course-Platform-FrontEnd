@@ -3,23 +3,22 @@
     <p class="msg-title">待评分的{{type}}</p>
     <span class="msg-p">您观看的《{{course.name}}》还未评分。</span>
     <span class="msg-check"  v-on:click="Scoring">点击查看</span>
-
   </div>
 
 </template>
 
 <script>
 export default {
-name: "MsgItem",
+  name: "MsgItem",
   data(){
     return{
       type:"课程"
     }
   },
   props:{
-  course:{
-    type:Object,
-  }
+    course:{
+      type:Object,
+    }
   },
   methods:{
     init(){
@@ -37,7 +36,7 @@ name: "MsgItem",
 
   },
   created(){
-  this.init()
+    this.init()
   }
 
 

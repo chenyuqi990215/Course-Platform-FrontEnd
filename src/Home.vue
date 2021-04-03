@@ -23,10 +23,10 @@
         </div>
       </div>
       <div style="margin-right: 20%">
-        <posts3 class="post-outer-container" :postings="postings" :users="users" v-if="successful_login"></posts3>
+        <posts3 class="post-outer-container" :postings="postings"  v-if="successful_login"></posts3>
       </div>
 
-      <Interest :courses="hot_course" :resources="hot_resource" :interests="interests"
+      <Interest :courses="recommend_course" :resources="recommend_resource" :interests="interests"
                 v-if="successful_login"></Interest>
 
       <Origin></Origin>
@@ -73,12 +73,12 @@ export default {
       cloud_url: "./assets/cloud.png",
       hot_course: [],
       hot_posting: [],
-      hot_resource: new Data().resources,
+      recommend_course: [],
+      recommend_resource: [],
       step_over: false,
       interests: new Data().interests,
       user_id: 0,
-      postings: new Data().postings,
-      users: new Data().users,
+      postings: []
     }
   },
   components: {
@@ -101,6 +101,7 @@ export default {
         },
       }).then((res) => {
         this.hot_posting = res.data
+        this.postings = res.data
       })
       this.$axios.get('http://47.100.79.77:8080/Course/hot',{
         headers: {   //设置上传请求头
@@ -114,6 +115,7 @@ export default {
           'Content-Type': 'application/json',
         },
       }).then((res) => {
+        console.log(res.data)
         let n = res.data.indexOf("!DOCTYPE html");
         if (n >= 0) {
           this.$axios.get('http://47.100.79.77:8080/Course/hot',{
@@ -127,13 +129,21 @@ export default {
           this.successful_login = true
           this.username = res.data[0].name
           this.url = res.data[0].portrait_url
-          this.successful_login = true
           this.$axios.get('http://47.100.79.77:8080/User/recentBrowse',{
             headers: {   //设置上传请求头
               'Content-Type': 'application/json',
             },
           }).then((res) => {
             this.browse_course = res.data
+          })
+          this.$axios.get('http://47.100.79.77:8080/User/recommend',{
+            headers: {   //设置上传请求头
+              'Content-Type': 'application/json',
+            },
+          }).then((res) => {
+            console.log(res.data)
+            this.recommend_course = res.data.filter(item => item.type !== "resource")
+            this.recommend_resource = res.data.filter(item => item.type === "resource")
           })
         }
       })
@@ -158,6 +168,7 @@ export default {
     closeLogin: function (input) {
       this.show_login = false
       this.successful_login = input
+      this.init()
     },
     openRegister: function (input) {
       this.show_login = !input
