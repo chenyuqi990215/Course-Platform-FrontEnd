@@ -6,9 +6,9 @@
       <div class="course-another-container">
         <p class="course-score-p">评分</p>
         <div class="course-score-container">
-          <h1 class="course-score-h1"> {{ Math.floor(course.score) / 10 }}</h1>
+          <h1 class="course-score-h1"> {{ Math.floor(course.score)}}</h1>
           <div class="star-rating">
-            <div class="star-rating-top" :style="{width:Math.floor(course.score)+'%'}">
+            <div class="star-rating-top" :style="{width:Math.floor(course.score * 10)+'%'}">
               <span></span>
               <span></span>
               <span></span>

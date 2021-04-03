@@ -13,9 +13,9 @@
         <br>
         <div class="resource-information">
         <span class="title">评分:</span>
-          <span class="resource-score-h1"> {{ Math.floor(resource.score) / 10 }}</span>
+          <span class="resource-score-h1"> {{ Math.floor(resource.score) }}</span>
           <div class="star-rating">
-            <div class="star-rating-top" :style="{width:Math.floor(resource.score)+'%'}">
+            <div class="star-rating-top" :style="{width:Math.floor(resource.score * 10)+'%'}">
               <span></span>
               <span></span>
               <span></span>

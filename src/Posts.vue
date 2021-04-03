@@ -110,6 +110,12 @@ export default {
         console.log(res)
         this.postings = res.data
         this.postingsCopy = this.postings;
+        for (var i=0;i<this.postingsCopy.length;i++) {
+          this.postingsCopy[i].post_time = "2021/03/17";
+        }
+        for (i=0;i<this.postings.length;i++) {
+          this.postings[i].post_time = "2021/03/17";
+        }
       })
     },
     searchInput: function (input) {
@@ -187,7 +193,7 @@ export default {
       this.question=true;
     },
     change_question(){
-      this.postings = this.postingsCopy.filter(item => item.type === "课程疑惑");
+      this.postings = this.postingsCopy.filter(item => item.type === "课程答疑");
       this.all=true;
       this.hot=true;
       this.comment=true;

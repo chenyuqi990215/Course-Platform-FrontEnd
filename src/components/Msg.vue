@@ -49,15 +49,13 @@ export default {
 .msg-container{
   background-color: white;
   width: 100%;
-  margin-left: 0;
+  margin: 20px;
   min-height: 700px;
 }
 .msg-ul{
-  margin-top: 60px;
-  margin-left: -40px;
+  margin:20px;
 }
 .msg-li {
-  background:rgb(249,249,249);
   list-style-type: none;
   margin-left: 0;
 }

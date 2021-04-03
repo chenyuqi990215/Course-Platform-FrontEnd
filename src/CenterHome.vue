@@ -60,7 +60,7 @@ export default {
       step_over: false,
       users: new Data().users,
       user: new Data().users[0].user,
-      type: 'info',
+      type: 'msg',
       msg_count: 100,
       scoring:false,
       show_scoring_course:[],
@@ -163,6 +163,14 @@ export default {
     },
     finishScoring:function(input){
       this.scoring=!input
+      this.$axios.get('http://47.100.79.77:8080/User/message',{
+        headers: {   //设置上传请求头
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        console.log(res.data)
+        this.courses = []
+      })
     },
     toPosting() {
       this.$router.push({

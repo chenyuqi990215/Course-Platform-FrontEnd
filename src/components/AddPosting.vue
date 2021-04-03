@@ -101,6 +101,9 @@ export default {
                 'Content-Type':'application/x-www-from-urlencoded',
               },
             }).then((res)=>{
+              this.$emit("updatePosting",true)
+              this.title = "我推荐《" + this.course_title + "》课程";
+              this.content = "";
               if (res.data !== "发布成功") {
                 this.$message({
                   message: "发布失败",
@@ -108,6 +111,7 @@ export default {
                   duration: 2 * 1000
                 })
               }
+
             })
           } else {
             this.$axios.post('http://47.100.79.77:8080/Post/insert?type='
@@ -116,6 +120,8 @@ export default {
                 'Content-Type':'application/x-www-from-urlencoded',
               },
             }).then((res)=>{
+              this.title = "";
+              this.content = "";
               if (res.data !== "发布成功") {
                 this.$message({
                   message: "发布失败",
@@ -129,8 +135,7 @@ export default {
           console.log('Not valid');
         }
       })
-      this.title = "";
-      this.content = "";
+
     },
     clickRecommend() {
       if (this.course_title.length > 0) {

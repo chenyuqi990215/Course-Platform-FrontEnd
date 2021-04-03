@@ -20,7 +20,8 @@
         </li>
       </ul>
     </div>
-    <AddPosting  class="add-posting" :course_title="course.name" :course_id="course.course_id" v-if="AddPosting"></AddPosting>
+    <AddPosting  class="add-posting" :course_title="course.name" :course_id="course.course_id" v-if="AddPosting"
+                v-on:updatePosting="updatePosting"></AddPosting>
   </div>
 </template>
 
@@ -53,7 +54,16 @@ export default {
       }).then((res) => {
         this.postings = res.data
         this.postingsCopy = res.data
+        for (var i=0;i<this.postingsCopy.length;i++) {
+          this.postingsCopy[i].post_time = "2021/03/17";
+        }
+        for (i=0;i<this.postings.length;i++) {
+          this.postings[i].post_time = "2021/03/17";
+        }
       })
+    },
+    updatePosting() {
+      this.init()
     },
     showCourse() {
       this.show_course = true;

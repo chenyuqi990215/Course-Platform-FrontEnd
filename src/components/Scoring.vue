@@ -80,7 +80,13 @@ name: "Scoring",
       this.score=100;
     },
     submitTable(){
-      this.$emit('scoringFinished',true)
+      this.$axios.post("http://47.100.79.77:8080/Rate/insert?course_id=" + this.course.course_id + "&score=" + this.score, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }).then(()=>{
+        this.$emit('scoringFinished',true)
+      })
     }
   },
   created(){

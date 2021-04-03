@@ -54,6 +54,8 @@ axios.create({
     timeout: 5000, // 请求超时时间
     headers: { 'Content-Type':'application/json' }
 })
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.get['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.transformRequest = [function (data) {
     let newData = ''
     for (let k in data) {

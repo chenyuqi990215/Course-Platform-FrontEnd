@@ -1,6 +1,16 @@
 <template>
   <div class="nav-container">
     <img class="portrait_img" :src="user.portrait_url" referrerpolicy="no-referrer" alt="portrait">
+    <input
+      type="file"
+      name="image"
+      accept="image/*"
+      @change="onchangeImgFun"
+      class="header-upload-btn user-header-com"
+      style="background:red"/>
+    <p class="tip">
+      更换头像
+    </p>
     <p class="user_name"> {{ user.name }}</p>
     <div class="nav-outer-container">
       <nav class="center-nav">
@@ -33,7 +43,6 @@
           </div>
         </a>
       </nav>
-      <span v-if="msg_count > 0">{{ msg_count }}{{ sign }}</span>
     </div>
   </div>
 </template>
@@ -49,9 +58,9 @@ export default {
   data() {
     return {
       sign: '',
-      show_info: true,
+      show_info: false,
       show_post: false,
-      show_msg: false,
+      show_msg: true,
       show_save: false,
     }
   },
@@ -89,6 +98,19 @@ export default {
       this.show_msg = false;
       this.show_save = true;
       this.$emit('CenterSelect', 'save');
+    },
+    onchangeImgFun(e) {
+      var file = e.target.files[0];
+      var fd = new FormData();
+      fd.append('file', file);
+      this.$axios.post("http://47.100.79.77:8080/User/updatePortrait",{
+        data : fd,
+        headers : {
+          "Content-Type": "multipart/form-data"
+        }
+      }).then(res => {
+        console.log(res)
+      })
     }
   },
   created() {
@@ -112,6 +134,26 @@ p {
 div {
   margin: 0;
   padding: 0;
+}
+
+.user-header-com{
+  width: 1.44rem;
+  height: 1.44rem;
+  display: inline-block;
+}
+
+.header-upload-btn{
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.tip {
+  font-size: 0.26rem;
+  color: #666;
+  text-align: center;
+  display: block;
 }
 
 .nav-container {
