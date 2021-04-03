@@ -12,7 +12,7 @@
       </div>
       <div class="center-container">
         <CenterNav v-on:CenterSelect="CenterSelect" :user="user" :msg_count="msg_count"></CenterNav>
-        <Info class="info-outer-container" v-if="type === 'info'"></Info>
+        <Info class="info-outer-container" v-if="type === 'info'" :user="user" ></Info>
         <Save class="info-outer-container" v-if="type === 'save'"></Save>
         <Msg class="info-outer-container" v-if="type === 'msg' " v-on:scoring="showScore" v-on:show_scoring_course="showScoringCourse" :courses="courses"></Msg>
         <Post class="info-outer-container" v-if="type === 'post'"></Post>
