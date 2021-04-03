@@ -187,7 +187,7 @@ export default {
           'Content-Type': 'application/json',
         },
       }).then((res) => {
-        console.log(res.data);
+        console.log(res.data[0]);
         let n = res.data.indexOf("!DOCTYPE html");
         if (n >= 0) {
           console.log(n)
@@ -197,15 +197,15 @@ export default {
             this.monthsModel = res.data[0].birth.split('/')[1] + "月"
             this.daysModel = res.data[0].birth.split('/')[2] + "日"
           }
-          if (res.data[0].education !== null && this.data[0].education !== "") {
-            this.educationsModel =  this.data[0].education
+          if (res.data[0].education !== null && res.data[0].education !== "") {
+            this.educationsModel =  res.data[0].education
           }
-          if (res.data[0].city !== null && this.data[0].city !== "") {
-            this.selectedProv = this.data[0].city.split('/')[0]
-            this.selectedCity = this.data[0].city.split('/')[1]
+          if (res.data[0].city !== null && res.data[0].city !== "") {
+            this.selectedProv = res.data[0].city.split('/')[0]
+            this.selectedCity = res.data[0].city.split('/')[1]
           }
-          if (res.data[0].sex !== null && this.data[0].sex !== "") {
-            this.gendersModel = this.data[0].sex
+          if (res.data[0].sex !== null && res.data[0].sex !== "") {
+            this.gendersModel = res.data[0].sex
             if (this.gendersModel === "男") {
               this.picked_male = true
               this.picked_female = false
@@ -214,7 +214,7 @@ export default {
               this.picked_male = false
             }
           }
-          if (res.data[0].signature !== null && this.data[0].signature !== "") {
+          if (res.data[0].signature !== null && res.data[0].signature !== "") {
             this.signature = res.data[0].signature
           }
         }
@@ -253,8 +253,16 @@ export default {
       console.log(this.selectedProv);
       this.listCity = this.allCity.filter(item => item.prov === this.selectedProv);
       console.log(this.listCity);
-
-
+    },
+    getMaxDay(year, month) {
+      var new_year = year;
+      var new_month = month++;
+      if (month > 12) {
+        new_month -= 12;
+        new_year ++;
+      }
+      var new_date = new Date(new_year, new_month,1);
+      return (new Date(new_date.getTime()-1000*60*60*24)).getDate();
     },
     dateChange(type) {
       if (type === 1 || type === 2) {
