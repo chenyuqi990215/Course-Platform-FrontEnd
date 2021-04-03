@@ -58,9 +58,9 @@ export default {
   data() {
     return {
       sign: '',
-      show_info: false,
+      show_info: true,
       show_post: false,
-      show_msg: true,
+      show_msg: false,
       show_save: false,
     }
   },

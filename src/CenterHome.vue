@@ -60,7 +60,7 @@ export default {
       step_over: false,
       users: new Data().users,
       user: new Data().users[0].user,
-      type: 'msg',
+      type: 'info',
       msg_count: 100,
       scoring:false,
       show_scoring_course:[],
