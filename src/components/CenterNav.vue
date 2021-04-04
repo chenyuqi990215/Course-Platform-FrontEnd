@@ -100,14 +100,12 @@ export default {
       this.$emit('CenterSelect', 'save');
     },
     onchangeImgFun(e) {
-      var file = e.target.files[0];
-      var fd = new FormData();
+      let file = e.target.files[0];
+      let fd = new FormData();
       fd.append('file', file);
-      this.$axios.post("http://47.100.79.77:8080/User/updatePortrait",{
-        data : fd,
-        headers : {
-          "Content-Type": "multipart/form-data"
-        }
+      this.$http.post("http://47.100.79.77:8080/User/updatePortrait",fd,{
+        method: 'post',
+        headers: {'Content-Type': 'multipart/form-data'}
       }).then(res => {
         console.log(res)
       })

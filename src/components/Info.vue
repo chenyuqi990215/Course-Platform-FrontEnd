@@ -7,14 +7,13 @@
     <hr class="nav-hr">
     <hr class="nav-info-hr" v-if="check_info">
     <hr class="nav-safety-hr" v-if="check_safety">
-    <div class="content">
-      <div class="user-img">
-        <img class="picture" v-bind:src="user.portrait_url" alt="uer_img">
-
-      </div>
-      <div class="user-name">
+    <div class="user-img">
+      <img class="picture" v-bind:src="user.portrait_url" alt="uer_img">
+      <div class="user-name-ano">
         <p>{{ user.name }}</p>
       </div>
+    </div>
+    <div class="content">
       <div class="detail-info">
         <p class="detail-info-p">基本信息</p>
         <div class="name">
@@ -118,10 +117,7 @@
             <input class="input-signature" type="text" placeholder="请编辑您的个性签名" v-model="signature">
           </div>
         </div>
-
-
       </div>
-
       <div class="save" v-on:click="submitForm">
         保存
       </div>
@@ -193,9 +189,9 @@ export default {
           console.log(n)
         } else {
           if (res.data[0].birth !== null && res.data[0].birth !== "") {
-            this.yearsModel = res.data[0].birth.split('/')[0] + "年"
-            this.monthsModel = res.data[0].birth.split('/')[1] + "月"
-            this.daysModel = res.data[0].birth.split('/')[2] + "日"
+            this.yearsModel = res.data[0].birth.split('/')[0]
+            this.monthsModel = res.data[0].birth.split('/')[1]
+            this.daysModel = res.data[0].birth.split('/')[2]
           }
           if (res.data[0].education !== null && res.data[0].education !== "") {
             this.educationsModel =  res.data[0].education
@@ -308,6 +304,7 @@ export default {
 .info-navigation {
 
   margin-top: 20px;
+  margin-left: 40px;
 }
 
 .nav_text {
@@ -335,7 +332,7 @@ export default {
 .nav-info-hr {
   color: black;
   width: 75px;
-  margin-left: 0;
+  margin-left: 40px;
   margin-top: -11px;
   height: 1px;
   background-color: black;
@@ -345,7 +342,7 @@ export default {
   color: black;
   width: 75px;
   height: 1px;
-  margin-left: 109px;
+  margin-left: 149px;
   margin-top: -12px;
   background-color: black;
 }
@@ -369,6 +366,11 @@ export default {
   margin: -40px auto 0;
   text-align: center;
 
+}
+.user-name-ano {
+  margin: 0 auto 0;
+  text-align: center;
+  font-size: large;
 }
 
 .detail-info {
@@ -494,5 +496,8 @@ input {
   font-size: 1.1em;
   letter-spacing: 4px;
   margin-left: 300px;
+}
+.content {
+  margin-left: 50px;
 }
 </style>

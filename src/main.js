@@ -18,6 +18,8 @@ import store from "./store";
 import Element from 'element-ui'
 import "element-ui/lib/theme-chalk/index.css"
 import VueCookies from 'vue-cookies'
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
 Vue.use(VueCookies)
 Vue.use(Element)
 Vue.prototype.$axios = axios
