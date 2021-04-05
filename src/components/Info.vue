@@ -41,7 +41,7 @@
                   v-for="item in years"
                   :key="item.value"
                   :label="item.label"
-                  :value="item.value">
+                  :value="item.label">
               </el-option>
             </el-select>
             <el-select v-model="monthsModel" @change="dateChange(2)" placeholder="请选择" style="width:80px;">
@@ -49,7 +49,7 @@
                   v-for="item in months"
                   :key="item.value"
                   :label="item.label"
-                  :value="item.value">
+                  :value="item.label">
               </el-option>
             </el-select>
             <el-select v-model="daysModel" @change="dateChange(3)" placeholder="请选择" style="width:80px;">
@@ -57,7 +57,7 @@
                   v-for="item in days"
                   :key="item.value"
                   :label="item.label"
-                  :value="item.value">
+                  :value="item.label">
               </el-option>
             </el-select>
           </div>
@@ -174,10 +174,10 @@ export default {
 
       this.initSelectYear(year)
       this.initSelectMonth();
-      this.initSelectDay(year, month);
-      this.yearsModel = year;
-      this.monthsModel = month;
-      this.daysModel = day;
+      this.initSelectDay(year + "年", month + "月");
+      this.yearsModel = year + "年";
+      this.monthsModel = month + "月";
+      this.daysModel = day + "日";
       this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',
@@ -227,14 +227,14 @@ export default {
     initSelectYear(year) {
       this.years = [];
       for (let i = 0; i < 30; i++) {
-        this.years.push({value: (year - i), label: (year - i) + "年"});
+        this.years.push({value: (year - i) + "年", label: (year - i) + "年"});
       }
     },
     initSelectMonth() {
       this.months = [];
       this.months.push({value: 0, label: "全部"});
       for (let i = 1; i <= 12; i++) {
-        this.months.push({value: i, label: i + "月"});
+        this.months.push({value: i + "月", label: i + "月"});
       }
     },
     initSelectDay(year, month) {
@@ -242,7 +242,7 @@ export default {
       this.days = [];
       this.days.push({value: 0, label: "全部"});
       for (var i = 1; i <= maxDay; i++) {
-        this.days.push({value: i, label: i + "日"});
+        this.days.push({value: i + "日", label: i + "日"});
       }
     },
     cityChange() {
@@ -251,8 +251,24 @@ export default {
       console.log(this.listCity);
     },
     getMaxDay(year, month) {
-      var new_year = year;
-      var new_month = month++;
+      var new_year = year.slice(0,4);
+      var new_month;
+      console.log(new_year)
+      switch (month) {
+        case "1月": new_month = 1;break;
+        case "2月": new_month = 2;break;
+        case "3月": new_month = 3;break;
+        case "4月": new_month = 4;break;
+        case "5月": new_month = 5;break;
+        case "6月": new_month = 6;break;
+        case "7月": new_month = 7;break;
+        case "8月": new_month = 8;break;
+        case "9月": new_month = 9;break;
+        case "10月": new_month = 10;break;
+        case "11月": new_month = 11;break;
+        case "12月": new_month = 12;break;
+        default: new_month = 0;
+      }
       if (month > 12) {
         new_month -= 12;
         new_year ++;
