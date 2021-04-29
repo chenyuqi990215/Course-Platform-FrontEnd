@@ -41,8 +41,12 @@
               <p class="course-view-p">立即观看</p>
             </a>
           </div>
-
           <p class="course-origin">来源：{{course.origin}}</p>
+        </div>
+        <div class="course-star-container" v-on:click="clickStar">
+          <p class="course-star-p">点击收藏</p>
+          <img v-if="staring === 0" src="../assets/save.png" class="course-star-img">
+          <img v-if="staring === 100" src="../assets/save-click.png" class="course-star-img">
         </div>
       </div>
     </div>
@@ -64,7 +68,8 @@ export default {
   name: "CourseDetail",
   data(){
     return{
-      relative_course: []
+      relative_course: [],
+      staring: 0,
     }
   },
   methods:{
@@ -88,7 +93,17 @@ export default {
           this.relative_course = res.data
         })
       }
-
+    },
+    clickStar() {
+      this.$axios.post('http://47.100.79.77:8080/Course/star?course_id='+this.course.course_id,{
+        headers:{   //设置上传请求头
+          'Content-Type':'application/x-www-from-urlencoded',
+        },
+      }).then((res)=>{
+        if (res.data === "收藏成功") {
+          this.staring = 100;
+        }
+      })
     },
     submitForm() {
       this.$axios.post('http://47.100.79.77:8080/User/watch?course_id='+this.course.course_id, {
@@ -172,6 +187,7 @@ p{
   display: block;
   z-index: 0;
 }
+
 .course-ul-title {
   list-style-type: none;
   display: flex;
@@ -179,9 +195,11 @@ p{
   align-content: flex-start;
   width: 250px;
 }
+
 .course-li-title {
   flex:0 0 50%;
 }
+
 .course-p-title {
   width:80px;
   background-color: rgb(231,231,231);
@@ -192,6 +210,7 @@ p{
   border-radius: 5px;
   font-size: 0.6em;
 }
+
 .course-ul-university {
   list-style-type: none;
   display: flex;
@@ -199,9 +218,11 @@ p{
   align-content: flex-start;
   width: 250px;
 }
+
 .course-li-university {
   flex:0 0 50%;
 }
+
 .course-p-university {
   width:80px;
   background-color: rgb(143, 161, 205);
@@ -212,40 +233,50 @@ p{
   border-radius: 5px;
   font-size: 0.6em;
 }
+
 .course-detail-container {
   margin: 30px 200px 30px 150px;
 }
+
 .course-inner-container {
   margin: 10px;
   display: flex;
 }
+
 .course-cover {
   width: 400px;
   height: 300px;
 }
+
 .course-relative-container {
   margin: 0;
 }
+
 .course-score-p {
   color: rgb(150,150,150);
   font-size: 1.1em;
 }
+
 .course-score-container {
   display: flex;
   justify-content: flex-start;
 }
+
 .course-score-h1 {
   width: 50px;
   text-align: center;
 }
+
 .course-amount-p{
   margin-top: 10px;
 }
+
 .course-view-container{
   margin-top: 20px;
   display: flex;
   justify-content: flex-start;
 }
+
 .course-view-p {
   font-weight: bold;
   width: 90px;
@@ -257,15 +288,32 @@ p{
   border-radius: 5px;
   padding-top: 5px;
 }
+
 .course-origin{
   color: rgb(150,150,150);
   margin-top: 5px;
   margin-left: 20px;
 }
+
 .course-another-container{
   margin-left: 100px;
 }
+
 .post-outer-container{
   margin: 10px;
+}
+
+.course-star-container {
+  display: flex;
+  margin: 20px;
+}
+.course-star-p {
+  margin-top: 3px;
+  font-weight: bold;
+  color: rgb(23,23,23);
+}
+.course-star-img {
+  height: 30px;
+  margin-left: 20px;
 }
 </style>

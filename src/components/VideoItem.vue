@@ -1,13 +1,13 @@
 <template>
   <div class="video-item-container">
-    <img class="video-item-img" v-on:click="clickCourse" referrerpolicy="no-referrer" v-bind:src="video.course.cover" alt="video-item">
-    <p class="video-item-title" v-on:click="clickCourse">{{ video.course.name }}</p>
-    <ul class="video-item-ul" v-if="video.course.titleList.length > 0">
-      <li class="video-item-li" v-for="(item,index) in video.course.titleList.split('；').slice(0,4)" :key="index" >
+    <img class="video-item-img" v-on:click="clickCourse" referrerpolicy="no-referrer" v-bind:src="video.cover" alt="video-item">
+    <p class="video-item-title" v-on:click="clickCourse">{{ video.name }}</p>
+    <ul class="video-item-ul" v-if="video.titleList.length > 0">
+      <li class="video-item-li" v-for="(item,index) in video.titleList.split('；').slice(0,4)" :key="index" >
         <p class="video-item-p">{{item}}</p>
       </li>
     </ul>
-    <p class="video-item-origin" v-if="video.course.origin !== ''">来源：{{ video.course.origin }}</p>
+    <p class="video-item-origin" v-if="video.origin !== ''">来源：{{ video.origin }}</p>
   </div>
 </template>
 
@@ -24,8 +24,8 @@ export default {
       this.$router.push({
         name: 'Course',
         query: {
-          id: this.video.course.course_id,
-          name: this.video.course.name,
+          id: this.video.course_id,
+          name: this.video.name,
           type: '优质视频',
         }
       })

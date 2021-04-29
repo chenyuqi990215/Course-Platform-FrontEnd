@@ -95,7 +95,7 @@ axios.interceptors.response.use(response => {
             error.message = '权限不足，无法访问';
         }
         Element.Message({
-            message: error.message,
+            message: "请先登录！",
             type: 'error',
             duration: 3 * 1000
         })

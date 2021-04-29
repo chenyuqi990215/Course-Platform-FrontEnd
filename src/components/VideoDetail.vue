@@ -41,6 +41,11 @@
           </a>
           <p class="course-origin">来源：{{course.origin}}</p>
         </div>
+        <div class="video-star-container" v-on:click="clickStar">
+          <p class="video-star-p">点击收藏</p>
+          <img v-if="staring === 0" src="../assets/save.png" class="video-star-img">
+          <img v-if="staring === 100" src="../assets/save-click.png" class="video-star-img">
+        </div>
       </div>
     </div>
     <div class="post-outer-container">
@@ -62,6 +67,7 @@ export default {
   name: "VideoDetail",
   data(){
     return{
+      staring: 0,
       users: new Data().users,
       relative_course : [],
     }
@@ -75,6 +81,17 @@ export default {
     Posts4
   },
   methods: {
+    clickStar() {
+      this.$axios.post('http://47.100.79.77:8080/Course/star?course_id='+this.course.course_id,{
+        headers:{   //设置上传请求头
+          'Content-Type':'application/x-www-from-urlencoded',
+        },
+      }).then((res)=>{
+        if (res.data === "收藏成功") {
+          this.staring = 100;
+        }
+      })
+    },
     init() {
       this.$axios.get('http://47.100.79.77:8080/Course/relative?course_id=' + this.course.course_id,{
         headers: {
@@ -252,5 +269,18 @@ p{
 }
 .post-outer-container{
   margin: 10px;
+}
+.video-star-container {
+  display: flex;
+  margin: 20px;
+}
+.video-star-p {
+  margin-top: 3px;
+  font-weight: bold;
+  color: rgb(23,23,23);
+}
+.video-star-img {
+  height: 30px;
+  margin-left: 20px;
 }
 </style>

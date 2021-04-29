@@ -43,8 +43,11 @@
               <p class="resource-view-p">阅读全文</p>
             </a>
           </div>
-
-          <p class="resource-p-amount">{{resource.amount}}点击</p>
+        </div>
+        <div class="resource-star-container" v-on:click="clickStar">
+          <p class="resource-star-p">点击收藏</p>
+          <img v-if="staring === 0" src="../assets/save.png" class="resource-star-img">
+          <img v-if="staring === 100" src="../assets/save-click.png" class="resource-star-img">
         </div>
       </div>
     </div>
@@ -56,8 +59,6 @@
     <div class="post-outer-container">
       <posts4 class="post-outer-container" :course="resource"></posts4>
     </div>
-
-
   </div>
 </template>
 
@@ -66,7 +67,23 @@ import Resource from "../components/Resource.vue";
 import Posts4 from "../components/Posts4.vue";
 export default {
   name: "ResourceDetail",
+  data() {
+    return {
+      staring: 0,
+    }
+  },
   methods:{
+    clickStar() {
+      this.$axios.post('http://47.100.79.77:8080/Course/star?course_id='+this.resource.course_id,{
+        headers:{   //设置上传请求头
+          'Content-Type':'application/x-www-from-urlencoded',
+        },
+      }).then((res)=>{
+        if (res.data === "收藏成功") {
+          this.staring = 100;
+        }
+      })
+    },
     submitWatch(){
       this.$axios.post('http://47.100.79.77:8080/User/watch?course_id='+this.resource.course_id, {
         headers:{   //设置上传请求头
@@ -248,6 +265,20 @@ p{
 }
 .resource-relative-course{
   margin-left: -10px;
+}
+
+.resource-star-container {
+  display: flex;
+  margin: 20px;
+}
+.resource-star-p {
+  margin-top: 3px;
+  font-weight: bold;
+  color: rgb(23,23,23);
+}
+.resource-star-img {
+  height: 30px;
+  margin-left: 20px;
 }
 
 </style>

@@ -7,121 +7,152 @@
     <hr class="nav-hr">
     <hr class="nav-info-hr" v-if="check_info">
     <hr class="nav-safety-hr" v-if="check_safety">
-    <div class="user-img">
-      <img class="picture" v-bind:src="user.portrait_url" alt="uer_img">
-      <div class="user-name-ano">
-        <p>{{ user.name }}</p>
-      </div>
-    </div>
-    <div class="content">
-      <div class="detail-info">
-        <p class="detail-info-p">基本信息</p>
-        <div class="name">
-          <span class="user-name-p">昵称</span>
-          <span class="user-name">{{ user.name }}</span>
+    <div v-if="check_safety">
+      <el-form
+          :model="ruleForm2"
+          status-icon
+          :rules="rules2"
+          ref="ruleForm2"
+          label-width="0"
+          class="demo-ruleForm"
+      >
+        <div class="el-password">
+          <div class="set-password">
+            <span>原始密码</span>
+          </div>
+          <el-form-item prop="pass">
+            <el-input type="password" v-model="ruleForm2.pass" auto-complete="off" placeholder="请输入原始密码"></el-input>
+          </el-form-item>
         </div>
-        <div class="choose-gender">
-          <div class="choose-gender-p">
-            <span>性别</span>
+        <div class="el-password">
+          <div class="set-password">
+            <span>新密码</span>
           </div>
-          <div id="myGender">
-            <input type="radio" :checked="picked_male" @click="changeMale"/>
-            <span class="gender-option">男</span>
-            <input type="radio" :checked="picked_female" @click="changeFemale"/>
-            <span class="gender-option">女</span>
-          </div>
+          <el-form-item prop="checkPass">
+            <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off" placeholder="请输入新密码"></el-input>
+          </el-form-item>
         </div>
-        <div class="choose-date">
-          <div class="choose-date-p">
-            <span>出生日期</span>
-          </div>
-          <div id="myDate">
-            <el-select v-model="yearsModel" @change="dateChange(1)" placeholder="请选择" style="width:100px;">
-              <el-option
-                  v-for="item in years"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.label">
-              </el-option>
-            </el-select>
-            <el-select v-model="monthsModel" @change="dateChange(2)" placeholder="请选择" style="width:80px;">
-              <el-option
-                  v-for="item in months"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.label">
-              </el-option>
-            </el-select>
-            <el-select v-model="daysModel" @change="dateChange(3)" placeholder="请选择" style="width:80px;">
-              <el-option
-                  v-for="item in days"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.label">
-              </el-option>
-            </el-select>
-          </div>
-        </div>
-
-        <div class="choose-edu">
-          <div class="choose-edu-p">
-            <span>学历</span>
-          </div>
-          <div id="myEdu">
-            <el-select v-model="educationsModel" placeholder="请选择" style="width:100px;">
-              <el-option
-                  v-for="item in educations"
-                  :key="item.edu"
-                  :value="item.edu">
-              </el-option>
-            </el-select>
-          </div>
-        </div>
-
-        <div class="university">
-          <span class="university-p">所在学校</span>
-          <span class="university-name">{{ user.school }}</span>
-        </div>
-
-        <div class="choose-city">
-          <div class="choose-city-p">
-            <span>现居</span>
-          </div>
-          <div id="myCity">
-            <el-select v-model="selectedProv" @change="cityChange()" placeholder="请选择" style="width:100px;">
-              <el-option
-                  v-for="item in listProv"
-                  :key="item.key"
-                  :label="item.label"
-                  :value="item.value">
-              </el-option>
-            </el-select>
-
-            <el-select v-model="selectedCity" placeholder="请选择" style="width:100px;">
-              <el-option
-                  v-for="item in listCity"
-                  :key="item.key"
-                  :value="item.label">
-              </el-option>
-            </el-select>
-
-
-          </div>
-        </div>
-
-        <div class="set-signature">
-          <div class="set-signature-p">
-            <span>个性签名</span>
-          </div>
-          <div class="my-signature">
-            <input class="input-signature" type="text" placeholder="请编辑您的个性签名" v-model="signature">
-          </div>
-        </div>
-      </div>
-      <div class="save" v-on:click="submitForm">
+      </el-form>
+      <div class="save" v-on:click="submitForm2">
         保存
       </div>
+    </div>
+    <div v-if="check_info">
+      <div class="user-img">
+        <img class="picture" v-bind:src="user.portrait_url" alt="uer_img">
+        <div class="user-name-ano">
+          <p>{{ user.name }}</p>
+        </div>
+      </div>
+      <div class="content">
+        <div class="detail-info">
+          <p class="detail-info-p">基本信息</p>
+          <div class="name">
+            <span class="user-name-p">昵称</span>
+            <span class="user-name">{{ user.name }}</span>
+          </div>
+          <div class="choose-gender">
+            <div class="choose-gender-p">
+              <span>性别</span>
+            </div>
+            <div id="myGender">
+              <input type="radio" :checked="picked_male" @click="changeMale"/>
+              <span class="gender-option">男</span>
+              <input type="radio" :checked="picked_female" @click="changeFemale"/>
+              <span class="gender-option">女</span>
+            </div>
+          </div>
+          <div class="choose-date">
+            <div class="choose-date-p">
+              <span>出生日期</span>
+            </div>
+            <div id="myDate">
+              <el-select v-model="yearsModel" @change="dateChange(1)" placeholder="请选择" style="width:100px;">
+                <el-option
+                    v-for="item in years"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.label">
+                </el-option>
+              </el-select>
+              <el-select v-model="monthsModel" @change="dateChange(2)" placeholder="请选择" style="width:80px;">
+                <el-option
+                    v-for="item in months"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.label">
+                </el-option>
+              </el-select>
+              <el-select v-model="daysModel" @change="dateChange(3)" placeholder="请选择" style="width:80px;">
+                <el-option
+                    v-for="item in days"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.label">
+                </el-option>
+              </el-select>
+            </div>
+          </div>
 
+          <div class="choose-edu">
+            <div class="choose-edu-p">
+              <span>学历</span>
+            </div>
+            <div id="myEdu">
+              <el-select v-model="educationsModel" placeholder="请选择" style="width:100px;">
+                <el-option
+                    v-for="item in educations"
+                    :key="item.edu"
+                    :value="item.edu">
+                </el-option>
+              </el-select>
+            </div>
+          </div>
+
+          <div class="university">
+            <span class="university-p">所在学校</span>
+            <span class="university-name">{{ user.school }}</span>
+          </div>
+
+          <div class="choose-city">
+            <div class="choose-city-p">
+              <span>现居</span>
+            </div>
+            <div id="myCity">
+              <el-select v-model="selectedProv" @change="cityChange()" placeholder="请选择" style="width:100px;">
+                <el-option
+                    v-for="item in listProv"
+                    :key="item.key"
+                    :label="item.label"
+                    :value="item.value">
+                </el-option>
+              </el-select>
+
+              <el-select v-model="selectedCity" placeholder="请选择" style="width:100px;">
+                <el-option
+                    v-for="item in listCity"
+                    :key="item.key"
+                    :value="item.label">
+                </el-option>
+              </el-select>
+
+
+            </div>
+          </div>
+
+          <div class="set-signature">
+            <div class="set-signature-p">
+              <span>个性签名</span>
+            </div>
+            <div class="my-signature">
+              <input class="input-signature" type="text" placeholder="请编辑您的个性签名" v-model="signature">
+            </div>
+          </div>
+        </div>
+        <div class="save" v-on:click="submitForm">
+          保存
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -131,7 +162,26 @@ import Data from "../entity/Data"
 export default {
   name: "Info",
   data() {
-
+    let validatePass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请输入密码"))
+      } else {
+        if (this.ruleForm2.checkPass !== "") {
+          this.$refs.ruleForm2.validateField("checkPass");
+        }
+        callback()
+      }
+    };
+    let validatePass2 = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请输入密码"))
+      } else {
+        if (this.ruleForm2.checkPass !== "") {
+          this.$refs.ruleForm2.validateField("checkPass2");
+        }
+        callback()
+      }
+    };
     return {
       signature: "",
       picked_male: false,
@@ -158,7 +208,15 @@ export default {
 
       listProv: new Data().provs,
       listCity: [],
-      allCity: new Data().cities
+      allCity: new Data().cities,
+      rules2: {
+        pass: [{validator: validatePass, trigger: 'change'}],
+        checkPass: [{validator: validatePass2, trigger: 'change'}],
+      },
+      ruleForm2: {
+        pass: "",
+        checkPass: "",
+      },
     }
   },
   props: {
@@ -297,7 +355,16 @@ export default {
       this.gendersModel = "女";
     },
     submitForm() {
-      this.$axios.post('http://47.100.79.77:8080/User/update?birth=' + this.yearsModel + '/' + this.monthsModel + '/' + this.daysModel + '&sex=' + this.gendersModel + '&education=' + this.educationsModel + '&city=' + this.selectedProv + '/' + this.selectedCity + '&signature=' + this.signature, {}).then((res) => {
+      this.$axios.post('http://47.100.79.77:8080/User/update?birth=' + this.yearsModel + '/' +
+          this.monthsModel + '/' + this.daysModel + '&sex=' + this.gendersModel + '&education=' +
+          this.educationsModel + '&city=' + this.selectedProv + '/' + this.selectedCity + '&signature=' +
+          this.signature, {}).then((res) => {
+        console.log(res.data)
+      })
+    },
+    submitForm2() {
+      this.$axios.post('http://47.100.79.77:8080/User/updatePassword?password=' +
+          this.ruleForm2.checkPass, {}).then((res) => {
         console.log(res.data)
       })
     }
@@ -515,5 +582,16 @@ input {
 }
 .content {
   margin-left: 50px;
+}
+.el-password {
+  margin: 40px;
+}
+.set-password {
+  color: rgb(120, 120, 120);
+  padding-top: 10px;
+  margin-right: 30px;
+  margin-bottom: 20px;
+  font-size: large;
+  font-weight: bold;
 }
 </style>
