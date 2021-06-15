@@ -74,7 +74,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.$axios.post('http://47.100.79.77:8080/signIn?username='+this.ruleForm2.name+'&password='+this.ruleForm2.pass, {
+          this.$axios.post('http://1.117.107.95:8080/signIn?username='+this.ruleForm2.name+'&password='+this.ruleForm2.pass, {
               headers:{   //设置上传请求头
                 'Content-Type':'application/x-www-from-urlencoded',
               },
@@ -97,7 +97,7 @@ export default {
                 duration: 2 * 1000
               })
             } else {
-              this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
+              this.$axios.get('http://1.117.107.95:8080/User/getDetail', {
                 headers: {   //设置上传请求头
                   'Content-Type': 'application/json',
                 },

@@ -113,7 +113,7 @@ export default {
           tag += "；";
         }
       }
-      this.$axios.post('http://47.100.79.77:8080/User/tag?tag=' + tag,{
+      this.$axios.post('http://1.117.107.95:8080/User/tag?tag=' + tag,{
         headers: {
           'Content-Type': 'application/json',
         }

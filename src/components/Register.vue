@@ -163,7 +163,7 @@ export default {
         if (valid) {
           this.successfulRegister = true;
           this.$emit('closeRegister', true);
-          this.$axios.post('http://47.100.79.77:8080/User/insert?name=' + this.ruleForm2.name + '&password=' + this.ruleForm2.pass + '&school=' + this.ruleForm2.school + '&telephone=' + this.ruleForm2.tel, {
+          this.$axios.post('http://1.117.107.95:8080/User/insert?name=' + this.ruleForm2.name + '&password=' + this.ruleForm2.pass + '&school=' + this.ruleForm2.school + '&telephone=' + this.ruleForm2.tel, {
             headers: {   //设置上传请求头
               'Content-Type': 'application/x-www-from-urlencoded',
             },
@@ -181,7 +181,7 @@ export default {
               this.$emit('closeRegister', true);
               this.$emit('openLogin', false);
 
-              this.$axios.post('http://47.100.79.77:8080/signIn?username=' + this.ruleForm2.name + '&password=' + this.ruleForm2.pass, {
+              this.$axios.post('http://1.117.107.95:8080/signIn?username=' + this.ruleForm2.name + '&password=' + this.ruleForm2.pass, {
                 headers: {   //设置上传请求头
                   'Content-Type': 'application/x-www-from-urlencoded',
                 },

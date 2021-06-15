@@ -63,7 +63,7 @@ export default {
     change_zan(){
       this.zan_click=!this.zan_click;
       if (this.zan_click) {
-        this.$axios.post('http://47.100.79.77:8080/Posting/like?post_id=' + this.post.post_id, {
+        this.$axios.post('http://1.117.107.95:8080/Posting/like?post_id=' + this.post.post_id, {
           headers:{   //设置上传请求头
             'Content-Type':'application/x-www-from-urlencoded',
           },

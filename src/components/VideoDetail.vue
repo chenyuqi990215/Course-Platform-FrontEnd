@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     clickStar() {
-      this.$axios.post('http://47.100.79.77:8080/Course/star?course_id='+this.course.course_id,{
+      this.$axios.post('http://1.117.107.95:8080/Course/star?course_id='+this.course.course_id,{
         headers:{   //设置上传请求头
           'Content-Type':'application/x-www-from-urlencoded',
         },
@@ -93,7 +93,7 @@ export default {
       })
     },
     init() {
-      this.$axios.get('http://47.100.79.77:8080/Course/relative?course_id=' + this.course.course_id,{
+      this.$axios.get('http://1.117.107.95:8080/Course/relative?course_id=' + this.course.course_id,{
         headers: {
           'Content-Type': 'application/json',
         }
@@ -102,7 +102,7 @@ export default {
       })
     },
     Browse() {
-      this.$axios.post('http://47.100.79.77:8080/User/browse?course_id=' + this.course.course_id,{
+      this.$axios.post('http://1.117.107.95:8080/User/browse?course_id=' + this.course.course_id,{
         headers: {
           'Content-Type': 'application/json',
         }

@@ -236,7 +236,7 @@ export default {
       this.yearsModel = year + "年";
       this.monthsModel = month + "月";
       this.daysModel = day + "日";
-      this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
+      this.$axios.get('http://1.117.107.95:8080/User/getDetail', {
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',
         },
@@ -355,7 +355,7 @@ export default {
       this.gendersModel = "女";
     },
     submitForm() {
-      this.$axios.post('http://47.100.79.77:8080/User/update?birth=' + this.yearsModel + '/' +
+      this.$axios.post('http://1.117.107.95:8080/User/update?birth=' + this.yearsModel + '/' +
           this.monthsModel + '/' + this.daysModel + '&sex=' + this.gendersModel + '&education=' +
           this.educationsModel + '&city=' + this.selectedProv + '/' + this.selectedCity + '&signature=' +
           this.signature, {}).then((res) => {
@@ -363,7 +363,7 @@ export default {
       })
     },
     submitForm2() {
-      this.$axios.post('http://47.100.79.77:8080/User/updatePassword?password=' +
+      this.$axios.post('http://1.117.107.95:8080/User/updatePassword?password=' +
           this.ruleForm2.checkPass, {}).then((res) => {
         console.log(res.data)
       })

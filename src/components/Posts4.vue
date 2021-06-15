@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     init() {
-      this.$axios.get('http://47.100.79.77:8080/Posting/searchByCourseId?course_id=' + this.course.course_id,{
+      this.$axios.get('http://1.117.107.95:8080/Posting/searchByCourseId?course_id=' + this.course.course_id,{
         headers: {
           'Content-Type': 'application/json',
         }

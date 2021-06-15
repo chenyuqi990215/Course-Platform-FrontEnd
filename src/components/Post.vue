@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     init() {
-      this.$axios.get('http://47.100.79.77:8080/User/posting',{
+      this.$axios.get('http://1.117.107.95:8080/User/posting',{
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',
         },

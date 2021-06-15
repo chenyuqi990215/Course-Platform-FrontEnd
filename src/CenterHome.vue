@@ -83,7 +83,7 @@ export default {
   methods: {
     init() {
       console.log("init");
-      this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
+      this.$axios.get('http://1.117.107.95:8080/User/getDetail', {
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',
         },
@@ -100,7 +100,7 @@ export default {
           this.user = res.data[0]
         }
       })
-      this.$axios.get('http://47.100.79.77:8080/User/message',{
+      this.$axios.get('http://1.117.107.95:8080/User/message',{
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',
         },
@@ -163,7 +163,7 @@ export default {
     },
     finishScoring:function(input){
       this.scoring=!input
-      this.$axios.get('http://47.100.79.77:8080/User/message',{
+      this.$axios.get('http://1.117.107.95:8080/User/message',{
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',
         },

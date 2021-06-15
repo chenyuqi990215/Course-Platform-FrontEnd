@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     init() {
-      this.$axios.get('http://47.100.79.77:8080/Course/detail?course_id=' + this.course_id,{
+      this.$axios.get('http://1.117.107.95:8080/Course/detail?course_id=' + this.course_id,{
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',
         },
@@ -67,7 +67,7 @@ export default {
         this.course = res.data[0]
 
       })
-      this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
+      this.$axios.get('http://1.117.107.95:8080/User/getDetail', {
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',
         },
@@ -83,7 +83,7 @@ export default {
         }
       })
       if (this.successful_login === true) {
-        this.$axios.post('http://47.100.79.77:8080/User/browse?course_id='+this.course_id, {
+        this.$axios.post('http://1.117.107.95:8080/User/browse?course_id='+this.course_id, {
           headers:{   //设置上传请求头
             'Content-Type':'application/x-www-from-urlencoded',
           },

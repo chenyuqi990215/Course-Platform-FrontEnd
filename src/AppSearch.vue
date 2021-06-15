@@ -75,7 +75,7 @@ export default {
 
   methods: {
     init() {
-      this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
+      this.$axios.get('http://1.117.107.95:8080/User/getDetail', {
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',
         },
@@ -93,7 +93,7 @@ export default {
           console.log(this.url)
         }
       })
-      this.$axios.post('http://47.100.79.77:8080/Course/search/keyWord?keyword='+this.search_input,{
+      this.$axios.post('http://1.117.107.95:8080/Course/search/keyWord?keyword='+this.search_input,{
         header: {
           'Content-Type': 'application/json',
         }
@@ -107,7 +107,7 @@ export default {
     },
     searchInput: function (input) {
       this.search_input = input
-      this.$axios.post('http://47.100.79.77:8080/Course/search/keyWord?keyword='+this.search_input,{
+      this.$axios.post('http://1.117.107.95:8080/Course/search/keyWord?keyword='+this.search_input,{
         header: {
           'Content-Type': 'application/json',
         }

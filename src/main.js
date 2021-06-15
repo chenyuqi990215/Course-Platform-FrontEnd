@@ -49,7 +49,7 @@ Router.prototype.push = function push(location) {
     return originalPush.call(this, location).catch(err => err)
 }
 
-axios.defaults.baseURL='http://47.100.79.77:8080'
+axios.defaults.baseURL='http://1.117.107.95:8080'
 axios.defaults.withCredentials=true;
 axios.create({
     baseURL: process.env.BASE_API, // api 的 base_url

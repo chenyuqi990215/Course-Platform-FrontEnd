@@ -95,8 +95,8 @@ export default {
           if (this.show_self) type="自定义";
           if (this.show_question) type="课程答疑";
           if (this.course_id !== -1) {
-            this.$axios.post('http://1.117.107.95:8080/Course/post/insert?course_id=' + this.course_id +
-                "&type=" + type + "&title=" + this.title + "&content=" + this.content, {
+            this.$axios.post('http://47.100.79.77:8080/Course/post/insert?course_id=' + this.course_id +
+          "&type=" + type + "&title=" + this.title + "&content=" + this.content, {
               headers:{   //设置上传请求头
                 'Content-Type':'application/x-www-from-urlencoded',
               },
@@ -114,7 +114,7 @@ export default {
 
             })
           } else {
-            this.$axios.post('http://1.117.107.95:8080/Post/insert?type='
+            this.$axios.post('http://47.100.79.77:8080/Post/insert?type='
                 + type + "&title=" + this.title + "&content=" + this.content, {
               headers:{   //设置上传请求头
                 'Content-Type':'application/x-www-from-urlencoded',

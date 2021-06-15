@@ -103,7 +103,7 @@ export default {
       let file = e.target.files[0];
       let fd = new FormData();
       fd.append('file', file);
-      this.$http.post("http://47.100.79.77:8080/User/updatePortrait",fd,{
+      this.$http.post("http://1.117.107.95:8080/User/updatePortrait",fd,{
         method: 'post',
         headers: {'Content-Type': 'multipart/form-data'}
       }).then(res => {

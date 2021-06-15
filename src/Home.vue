@@ -95,7 +95,7 @@ export default {
   },
   methods: {
     init() {
-      this.$axios.get('http://47.100.79.77:8080/Posting/hot',{
+      this.$axios.get('http://1.117.107.95:8080/Posting/hot',{
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',
         },
@@ -103,14 +103,14 @@ export default {
         this.hot_posting = res.data
         this.postings = res.data
       })
-      this.$axios.get('http://47.100.79.77:8080/Course/hot',{
+      this.$axios.get('http://1.117.107.95:8080/Course/hot',{
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',
         },
       }).then((res) => {
         this.hot_course = res.data
       })
-      this.$axios.get('http://47.100.79.77:8080/User/getDetail', {
+      this.$axios.get('http://1.117.107.95:8080/User/getDetail', {
         headers: {   //设置上传请求头
           'Content-Type': 'application/json',
         },
@@ -118,7 +118,7 @@ export default {
         console.log(res.data)
         let n = res.data.indexOf("!DOCTYPE html");
         if (n >= 0) {
-          this.$axios.get('http://47.100.79.77:8080/Course/hot',{
+          this.$axios.get('http://1.117.107.95:8080/Course/hot',{
             headers: {   //设置上传请求头
               'Content-Type': 'application/json',
             },
@@ -129,14 +129,14 @@ export default {
           this.successful_login = true
           this.username = res.data[0].name
           this.url = res.data[0].portrait_url
-          this.$axios.get('http://47.100.79.77:8080/User/recentBrowse',{
+          this.$axios.get('http://1.117.107.95:8080/User/recentBrowse',{
             headers: {   //设置上传请求头
               'Content-Type': 'application/json',
             },
           }).then((res) => {
             this.browse_course = res.data
           })
-          this.$axios.get('http://47.100.79.77:8080/User/recommend',{
+          this.$axios.get('http://1.117.107.95:8080/User/recommend',{
             headers: {   //设置上传请求头
               'Content-Type': 'application/json',
             },
