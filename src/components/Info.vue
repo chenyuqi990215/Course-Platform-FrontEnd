@@ -258,8 +258,8 @@ export default {
             this.selectedProv = res.data[0].city.split('/')[0]
             this.selectedCity = res.data[0].city.split('/')[1]
           }
-          if (res.data[0].sex !== null && res.data[0].sex !== "") {
-            this.gendersModel = res.data[0].sex
+          if (res.data[0].gender !== null && res.data[0].gender !== "") {
+            this.gendersModel = res.data[0].gender
             if (this.gendersModel === "男") {
               this.picked_male = true
               this.picked_female = false
@@ -356,7 +356,7 @@ export default {
     },
     submitForm() {
       this.$axios.post('http://1.117.107.95:8080/User/update?birth=' + this.yearsModel + '/' +
-          this.monthsModel + '/' + this.daysModel + '&sex=' + this.gendersModel + '&education=' +
+          this.monthsModel + '/' + this.daysModel + '&gender=' + this.gendersModel + '&education=' +
           this.educationsModel + '&city=' + this.selectedProv + '/' + this.selectedCity + '&signature=' +
           this.signature, {}).then((res) => {
         console.log(res.data)

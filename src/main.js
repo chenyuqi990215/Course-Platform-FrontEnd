@@ -94,11 +94,6 @@ axios.interceptors.response.use(response => {
         if (error.response.status === 403) {
             error.message = '权限不足，无法访问';
         }
-        Element.Message({
-            message: "请先登录！",
-            type: 'error',
-            duration: 3 * 1000
-        })
         return Promise.reject(error)
     })
 

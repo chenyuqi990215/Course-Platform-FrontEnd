@@ -99,7 +99,7 @@ export default {
       this.question=true;
     },
     change_question(){
-      this.postings = this.postingsCopy.filter(item => item.type === "课程疑惑");
+      this.postings = this.postingsCopy.filter(item => item.type === "课程答疑");
       this.all=true;
       this.hot=true;
       this.comment=true;

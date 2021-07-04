@@ -8,7 +8,7 @@ function User(user_id,name,school,telephone,portrait_url) {
     obj.birth = "";
     obj.education = "";
     obj.signature = "";
-    obj.sex = "";
+    obj.gender = "";
     obj.city = "";
     obj.nickname = "";
     return obj;
